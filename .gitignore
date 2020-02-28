@@ -1,0 +1,13 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+bin-int/
+
+#
+.vs/

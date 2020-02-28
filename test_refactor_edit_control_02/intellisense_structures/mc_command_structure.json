@@ -1,0 +1,1266 @@
+//(in object) key: value -> if value is string, that
+//means break the operation and indicate end of command
+{
+  "commands": {
+    "advancement": [
+      [ "grant", "revoke" ],
+      "<targets>",
+      {
+        "everything": "",
+        "only": [ "advancement", "<criterion>" ],
+        "from": [ "advancement" ],
+        "through": [ "advancement" ],
+        "until": [ "advancement" ]
+      }
+    ],
+
+
+    "bossbar": [
+      {
+        "add": [
+          "<id>",
+          "<name>"
+        ],
+        "get": [
+          "<id>",
+          [ "max", "players", "value", "visible" ]
+        ],
+        "list": "",
+        "remove": [ "id" ],
+        "set": {
+          "color": [ "blue", "green", "pink", "purple", "red", "white", "yellow" ],
+          "max": [ "<max>" ],
+          "players": [ "<targets>" ],
+          "style": [ "notched_6", "notched_10", "notched_12", "notched_20", "progress" ],
+          "value": [ "<value>" ],
+          "visible": [ "<visible>" ]
+        }
+      }
+    ],
+
+
+    "clear": [ "<targets>", "<item>", "<max count>" ],
+
+
+    "clone": [
+      "<pos1>",
+      "<pos2>",
+      "<pos>",
+      {
+        "filtered": [
+          "<TileName>",
+          [ "force", "move", "normal" ]
+        ],
+        "masked": [
+          [ "force", "move", "normal" ]
+        ],
+        "replace": [
+          [ "force", "move", "normal" ]
+        ]
+      }
+    ],
+
+
+    "data": [
+      {
+        "get": [
+          {
+            "block": [ "<pos>", "<path>", "<scale>" ],
+            "entity": [ "<target>", "<path>", "<scale>" ]
+          }
+        ],
+        "merge": [
+          {
+            "block": [ "<pos>", "<NBT>" ],
+            "entity": [ "<target>", "<NBT>" ]
+          }
+        ],
+        "modify": [
+          {
+            "block": [
+              "<x>",
+              "<y>",
+              "<z>",
+              "<target path>",
+              {
+                "append": [
+                  {
+                    "from": [
+                      {
+                        "block": [ "<pos>", "[<sourcePath>]" ],
+                        "entity": [ "<target>", "[<sourcePath>]" ]
+                      }
+                    ],
+                    "value": [ "<value>" ]
+                  }
+                ],
+                "insert": [
+                  "<index>",
+                  [
+                    {
+                      "from": [
+                        {
+                          "block": [ "<pos>", "[<sourcePath>]" ],
+                          "entity": [ "<target>", "[<sourcePath>]" ]
+                        }
+                      ],
+                      "value": [ "<value>" ]
+                    }
+                  ]
+                ],
+                "merge": [
+                  {
+                    "from": [
+                      {
+                        "block": [ "<pos>", "[<sourcePath>]" ],
+                        "entity": [ "<target>", "[<sourcePath>]" ]
+                      }
+                    ],
+                    "value": [ "<value>" ]
+                  }
+                ],
+                "prepend": [
+                  {
+                    "from": [
+                      {
+                        "block": [ "<pos>", "[<sourcePath>]" ],
+                        "entity": [ "<target>", "[<sourcePath>]" ]
+                      }
+                    ],
+                    "value": [ "<value>" ]
+                  }
+                ],
+                "set": [
+                  {
+                    "from": [
+                      {
+                        "block": [ "<pos>", "[<sourcePath>]" ],
+                        "entity": [ "<target>", "[<sourcePath>]" ]
+                      }
+                    ],
+                    "value": [ "<value>" ]
+                  }
+                ]
+              }
+            ],
+            "entity": [
+              "<target>",
+              "<target path>",
+              {
+                "append": [
+                  {
+                    "from": [
+                      {
+                        "block": [ "<pos>", "[<sourcePath>]" ],
+                        "entity": [ "<target>", "[<sourcePath>]" ]
+                      }
+                    ],
+                    "value": [ "<value>" ]
+                  }
+                ],
+                "insert": [
+                  "<index>",
+                  [
+                    {
+                      "from": [
+                        {
+                          "block": [ "<pos>", "[<sourcePath>]" ],
+                          "entity": [ "<target>", "[<sourcePath>]" ]
+                        }
+                      ],
+                      "value": [ "<value>" ]
+                    }
+                  ]
+                ],
+                "merge": [
+                  {
+                    "from": [
+                      {
+                        "block": [ "<pos>", "[<sourcePath>]" ],
+                        "entity": [ "<target>", "[<sourcePath>]" ]
+                      }
+                    ],
+                    "value": [ "<value>" ]
+                  }
+                ],
+                "prepend": [
+                  {
+                    "from": [
+                      {
+                        "block": [ "<pos>", "[<sourcePath>]" ],
+                        "entity": [ "<target>", "[<sourcePath>]" ]
+                      }
+                    ],
+                    "value": [ "<value>" ]
+                  }
+                ],
+                "set": [
+                  {
+                    "from": [
+                      {
+                        "block": [ "<pos>", "[<sourcePath>]" ],
+                        "entity": [ "<target>", "[<sourcePath>]" ]
+                      }
+                    ],
+                    "value": [ "<value>" ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "remove": [
+          {
+            "block": [ "<pos>", "[<sourcePath>]" ],
+            "entity": [ "<target>", "[<sourcePath>]" ]
+          }
+        ]
+      }
+    ],
+
+
+    "datapack": [
+      {
+        "disable": [ "<name>" ],
+        "enable": [
+          "<name>",
+          {
+            "first": "",
+            "last": "",
+            "before": [ "<existing>" ],
+            "after": [ "<existing>" ]
+          }
+        ],
+        "list": [ "[available", "enabled]" ]
+      }
+    ],
+
+
+    "debug": [ [ "start", "stop", "report" ] ],
+
+
+    "defaultgamemode": [ [ "survival", "creative", "adventure", "spectator" ] ],
+
+
+    "difficulty": [ [ "peaceful", "easy", "normal", "hard" ] ],
+
+
+    "effect": [
+      {
+        "give": [ "<entity>", "<effect>", "<seconds>", "<amplifier>", "<hideParticles>" ],
+        "clear": [ "<entity>", "<effect>" ]
+      }
+    ],
+
+
+    "enchant": [ "<player>", "<enchantment ID>", "level" ],
+
+
+    "execute": [
+      {
+        "align": [ "<axes>", "$commands.execute" ],
+        "anchored": [
+          [ "eyes", "feet" ],
+          "$commands.execute"
+        ],
+        "as": [ "<targets>", "$commands.execute" ],
+        "at": [ "<targets>", "$commands.execute" ],
+        "facing": [
+          {
+            "<pos>": "",
+            "entity": [
+              "<targets>",
+              [ "eyes", "feet" ]
+            ]
+          },
+          "$commands.execute"
+        ],
+        "in": [
+          [ "overworld", "the_nether", "and", "the_end" ],
+          "$commands.execute"
+        ],
+        "positioned": [
+          {
+            "<pos>": "",
+            "as": [ "<targets>" ]
+          },
+          "$commands.execute"
+        ],
+        "rotated": [
+          {
+            "<rot>": "",
+            "as": [ "<target>" ]
+          },
+          "$commands.execute"
+        ],
+        "store": [
+          [ "result", "success" ],
+          {
+            "block": [
+              "<pos>",
+              "<path>",
+              [ "byte", "short", "int", "long", "float", "double" ],
+              "<scale>",
+              "$commands.execute"
+            ],
+            "bossbar": [
+              "<id>",
+              [ "max", "value" ],
+              "$commands.execute"
+            ],
+            "entity": [
+              "<target>",
+              "<path>",
+              [ "byte", "short", "int", "long", "float", "double" ],
+              "<scale>",
+              "$commands.execute"
+            ],
+            "score": [ "<targets>", "<objective>", "$commands.execute" ]
+          }
+        ],
+        "if": [
+          {
+            "block": [ "<pos>", "<block>", "$commands.execute" ],
+            "blocks": [
+              "<pos1>",
+              "<pos2>",
+              "<pos>",
+              [ "all", "masked" ],
+              "$commands.execute"
+            ],
+            "data": [
+              {
+                "block": [ "<pos>", "<path>", "$commands.execute" ],
+                "entity": [ "<target>", "<path>", "$commands.execute" ]
+              }
+            ],
+            "entity": [ "<targets>" ],
+            "score": [
+              "<target>",
+              "<objective>",
+              {
+                "<": [ "<target2>", "<objective2>", "$commands.execute" ],
+                "<=": [ "<target2>", "<objective2>", "$commands.execute" ],
+                "=": [ "<target2>", "<objective2>", "$commands.execute" ],
+                ">": [ "<target2>", "<objective2>", "$commands.execute" ],
+                ">=": [ "<target2>", "<objective2>", "$commands.execute" ],
+                "matches": [ "<range>", "$commands.execute" ]
+              }
+            ]
+          }
+        ],
+        "unless": [
+          {
+            "block": [ "<pos>", "<block>", "$commands.execute" ],
+            "blocks": [
+              "<pos1>",
+              "<pos2>",
+              "<pos>",
+              [ "all", "masked" ],
+              "$commands.execute"
+            ],
+            "data": [
+              {
+                "block": [ "<pos>", "<path>", "$commands.execute" ],
+                "entity": [ "<target>", "<path>", "$commands.execute" ]
+              }
+            ],
+            "entity": [ "<targets>" ],
+            "score": [
+              "<target>",
+              "<objective>",
+              {
+                "<": [ "<target2>", "<objective2>", "$commands.execute" ],
+                "<=": [ "<target2>", "<objective2>", "$commands.execute" ],
+                "=": [ "<target2>", "<objective2>", "$commands.execute" ],
+                ">": [ "<target2>", "<objective2>", "$commands.execute" ],
+                ">=": [ "<target2>", "<objective2>", "$commands.execute" ],
+                "matches": [ "<range>", "$commands.execute" ]
+              }
+            ]
+          }
+        ],
+        "run": [ "$commands" ]
+      }
+    ],
+
+
+    "experience": [
+      {
+        "add": [
+          "<targets>",
+          "<amount>",
+          [ "points", "levels" ]
+        ],
+        "set": [
+          "<targets>",
+          "<amount>",
+          [ "points", "levels" ]
+        ],
+        "query": [
+          "<targets>",
+          "<amount>",
+          [ "points", "levels" ]
+        ]
+      }
+    ],
+
+
+    "fill": [
+      "<pos1>",
+      "<pos2>",
+      "<block>",
+      {
+        "": [ [ "destroy", "hollow", "keep", "outline", "replace" ] ],
+        "replace": [ "<block>" ]
+      }
+    ],
+
+
+    "forceload": [
+      {
+        "add": [ "<plane_pos1>", "<plane_pos2>" ],
+        "remove": [
+          {
+            "all": "",
+            "<plane_pos1>": "<plane_pos2>"
+          }
+        ],
+        "query": [ "<plane_pos1>" ]
+      }
+    ],
+
+
+    "function": [ "<function>" ],
+
+
+    "gamemode": [ "<mode>", "<target>" ],
+
+
+    "gamerule": [
+      [
+        "announceAdvancements",
+        "commandBlocksEnabled",
+        "commandBlockOutput",
+        "disableElytraMovementCheck",
+        "disableRaids",
+        "doDaylightCycle",
+        "doEntityDrops",
+        "doFireTick",
+        "doInsomnia",
+        "doImmediateRespawn",
+        "doLimitedCrafting",
+        "doMobLoot",
+        "doMobSpawning",
+        "doTileDrops",
+        "doWeatherCycle",
+        "drowningDamage",
+        "fallDamage",
+        "fireDamage",
+        "keepInventory",
+        "logAdminCommands",
+        "maxCommandChainLength",
+        "maxEntityCramming",
+        "mobGriefing",
+        "naturalRegeneration",
+        "pvp",
+        "randomTickSpeed",
+        "reducedDebugInfo",
+        "sendCommandFeedback",
+        "showCoordinates",
+        "showDeathMessages",
+        "spawnRadius",
+        "spectatorsGenerateChunks",
+        "tntExplodes"
+      ],
+      "<value>"
+    ],
+
+
+    "give": [ "<targets>", "<item>", "<count>" ],
+
+
+    "help": [
+      [
+        "<page>",
+        "$commands"
+      ]
+    ],
+
+
+    "kill": [ "<targets>" ],
+
+
+    "list": [ "uuids" ],
+
+
+    "locate": [
+      [
+        "Buried_Treasure",
+        "EndCity",
+        "Fortress",
+        "Woodland",
+        "Mansion",
+        "Mineshaft",
+        "Monument",
+        "Ocean_Ruin",
+        "Shipwreck",
+        "Stronghold",
+        "Desert_Pyramid",
+        "Igloo",
+        "Jungle_Pyramid",
+        "Swamp_Hut",
+        "Village",
+        "Pillager_Outpost"
+      ]
+    ],
+
+
+    "loot": [
+      {
+        "spawn": [
+          "<pos>",
+          {
+            "fish": [
+              "<loot table id>",
+              "<fishing location>",
+              [ "<item>", "mainhand", "offhand" ]
+            ],
+            "loot": [ "<loot table id>" ],
+            "kill": [ "<target>" ],
+            "mine": [
+              "<pos>",
+              [ "<item>", "mainhand", "offhand" ]
+            ]
+          }
+        ],
+        "replace": [
+          {
+            "entity": [
+              "<targets>",
+              [
+                "armor.chest",
+                "armor.feet",
+                "armor.head",
+                "armor.legs",
+                "weapon.mainhand",
+                "weapon.offhand",
+                "container.0",
+                "container.1",
+                "container.2",
+                "container.3",
+                "container.4",
+                "container.5",
+                "container.6",
+                "container.7",
+                "container.8",
+                "container.9",
+                "container.10",
+                "container.11",
+                "container.12",
+                "container.13",
+                "container.14",
+                "container.15",
+                "container.16",
+                "container.17",
+                "container.18",
+                "container.19",
+                "container.20",
+                "container.21",
+                "container.22",
+                "container.23",
+                "container.24",
+                "container.25",
+                "container.26",
+                "container.27",
+                "container.28",
+                "container.29",
+                "container.30",
+                "container.31",
+                "container.32",
+                "container.33",
+                "container.34",
+                "container.35",
+                "container.36",
+                "container.37",
+                "container.38",
+                "container.39",
+                "container.40",
+                "container.41",
+                "container.42",
+                "container.43",
+                "container.44",
+                "container.45",
+                "container.46",
+                "container.47",
+                "container.48",
+                "container.49",
+                "container.50",
+                "container.51",
+                "container.52",
+                "container.53",
+                "enderchest.0",
+                "enderchest.1",
+                "enderchest.2",
+                "enderchest.3",
+                "enderchest.4",
+                "enderchest.5",
+                "enderchest.6",
+                "enderchest.7",
+                "enderchest.8",
+                "enderchest.9",
+                "enderchest.10",
+                "enderchest.11",
+                "enderchest.12",
+                "enderchest.13",
+                "enderchest.14",
+                "enderchest.15",
+                "enderchest.16",
+                "enderchest.17",
+                "enderchest.18",
+                "enderchest.19",
+                "enderchest.20",
+                "enderchest.21",
+                "enderchest.22",
+                "enderchest.23",
+                "enderchest.24",
+                "enderchest.25",
+                "enderchest.26",
+                "hotbar.0",
+                "hotbar.1",
+                "hotbar.2",
+                "hotbar.3",
+                "hotbar.4",
+                "hotbar.5",
+                "hotbar.6",
+                "hotbar.7",
+                "hotbar.8",
+                "inventory.0",
+                "inventory.1",
+                "inventory.2",
+                "inventory.3",
+                "inventory.4",
+                "inventory.5",
+                "inventory.6",
+                "inventory.7",
+                "inventory.8",
+                "inventory.9",
+                "inventory.10",
+                "inventory.11",
+                "inventory.12",
+                "inventory.13",
+                "inventory.14",
+                "inventory.15",
+                "inventory.16",
+                "inventory.17",
+                "inventory.18",
+                "inventory.19",
+                "inventory.20",
+                "inventory.21",
+                "inventory.22",
+                "inventory.23",
+                "inventory.24",
+                "inventory.25",
+                "inventory.26",
+                "horse.saddle",
+                "horse.chest",
+                "horse.armor",
+                "horse.0",
+                "horse.1",
+                "horse.2",
+                "horse.3",
+                "horse.4",
+                "horse.5",
+                "horse.6",
+                "horse.7",
+                "horse.8",
+                "horse.9",
+                "horse.10",
+                "horse.11",
+                "horse.12",
+                "horse.13",
+                "horse.14",
+                "villager.0",
+                "villager.1",
+                "villager.2",
+                "villager.3",
+                "villager.4",
+                "villager.5",
+                "villager.6",
+                "villager.7"
+              ],
+              "<count>",
+              {
+                "fish": [
+                  "<loot table id>",
+                  "<fishing location>",
+                  [ "<item>", "mainhand", "offhand" ]
+                ],
+                "loot": [ "<loot table id>" ],
+                "kill": [ "<target>" ],
+                "mine": [
+                  "<pos>",
+                  [ "<item>", "mainhand", "offhand" ]
+                ]
+              }
+            ],
+            "block": [
+              "<pos>",
+              [
+                "armor.chest",
+                "armor.feet",
+                "armor.head",
+                "armor.legs",
+                "weapon.mainhand",
+                "weapon.offhand",
+                "container.0",
+                "container.1",
+                "container.2",
+                "container.3",
+                "container.4",
+                "container.5",
+                "container.6",
+                "container.7",
+                "container.8",
+                "container.9",
+                "container.10",
+                "container.11",
+                "container.12",
+                "container.13",
+                "container.14",
+                "container.15",
+                "container.16",
+                "container.17",
+                "container.18",
+                "container.19",
+                "container.20",
+                "container.21",
+                "container.22",
+                "container.23",
+                "container.24",
+                "container.25",
+                "container.26",
+                "container.27",
+                "container.28",
+                "container.29",
+                "container.30",
+                "container.31",
+                "container.32",
+                "container.33",
+                "container.34",
+                "container.35",
+                "container.36",
+                "container.37",
+                "container.38",
+                "container.39",
+                "container.40",
+                "container.41",
+                "container.42",
+                "container.43",
+                "container.44",
+                "container.45",
+                "container.46",
+                "container.47",
+                "container.48",
+                "container.49",
+                "container.50",
+                "container.51",
+                "container.52",
+                "container.53",
+                "enderchest.0",
+                "enderchest.1",
+                "enderchest.2",
+                "enderchest.3",
+                "enderchest.4",
+                "enderchest.5",
+                "enderchest.6",
+                "enderchest.7",
+                "enderchest.8",
+                "enderchest.9",
+                "enderchest.10",
+                "enderchest.11",
+                "enderchest.12",
+                "enderchest.13",
+                "enderchest.14",
+                "enderchest.15",
+                "enderchest.16",
+                "enderchest.17",
+                "enderchest.18",
+                "enderchest.19",
+                "enderchest.20",
+                "enderchest.21",
+                "enderchest.22",
+                "enderchest.23",
+                "enderchest.24",
+                "enderchest.25",
+                "enderchest.26",
+                "hotbar.0",
+                "hotbar.1",
+                "hotbar.2",
+                "hotbar.3",
+                "hotbar.4",
+                "hotbar.5",
+                "hotbar.6",
+                "hotbar.7",
+                "hotbar.8",
+                "inventory.0",
+                "inventory.1",
+                "inventory.2",
+                "inventory.3",
+                "inventory.4",
+                "inventory.5",
+                "inventory.6",
+                "inventory.7",
+                "inventory.8",
+                "inventory.9",
+                "inventory.10",
+                "inventory.11",
+                "inventory.12",
+                "inventory.13",
+                "inventory.14",
+                "inventory.15",
+                "inventory.16",
+                "inventory.17",
+                "inventory.18",
+                "inventory.19",
+                "inventory.20",
+                "inventory.21",
+                "inventory.22",
+                "inventory.23",
+                "inventory.24",
+                "inventory.25",
+                "inventory.26",
+                "horse.saddle",
+                "horse.chest",
+                "horse.armor",
+                "horse.0",
+                "horse.1",
+                "horse.2",
+                "horse.3",
+                "horse.4",
+                "horse.5",
+                "horse.6",
+                "horse.7",
+                "horse.8",
+                "horse.9",
+                "horse.10",
+                "horse.11",
+                "horse.12",
+                "horse.13",
+                "horse.14",
+                "villager.0",
+                "villager.1",
+                "villager.2",
+                "villager.3",
+                "villager.4",
+                "villager.5",
+                "villager.6",
+                "villager.7"
+              ],
+              "<count>",
+              {
+                "fish": [
+                  "<loot table id>",
+                  "<fishing location>",
+                  [ "<item>", "mainhand", "offhand" ]
+                ],
+                "loot": [ "<loot table id>" ],
+                "kill": [ "<target>" ],
+                "mine": [
+                  "<pos>",
+                  [ "<item>", "mainhand", "offhand" ]
+                ]
+              }
+            ]
+          }
+        ],
+        "give": [
+          "<targets>",
+          {
+            "fish": [
+              "<loot table id>",
+              "<fishing location>",
+              [ "<item>", "mainhand", "offhand" ]
+            ],
+            "loot": [ "<loot table id>" ],
+            "kill": [ "<target>" ],
+            "mine": [
+              "<pos>",
+              [ "<item>", "mainhand", "offhand" ]
+            ]
+          }
+        ],
+        "insert": [
+          "<pos>",
+          {
+            "fish": [
+              "<loot table id>",
+              "<fishing location>",
+              [ "<item>", "mainhand", "offhand" ]
+            ],
+            "loot": [ "<loot table id>" ],
+            "kill": [ "<target>" ],
+            "mine": [
+              "<pos>",
+              [ "<item>", "mainhand", "offhand" ]
+            ]
+          }
+        ]
+      }
+    ],
+
+
+    "particle": [
+      [
+        "ambient_entity_effect",
+        "angry_villager",
+        "barrier",
+        //"block",
+        "bubble",
+        "bubble_column_up",
+        "bubble_pop",
+        "campfire_cosy_smoke",
+        "campfire_signal_smoke",
+        "cloud",
+        "composter",
+        "crit",
+        "current_down",
+        "damage_indicator",
+        "dolphin",
+        "dragon_breath",
+        "dripping_lava",
+        "dripping_water",
+        //"dust",
+        "effect",
+        "elder_guardian",
+        "enchant",
+        "enchanted_hit",
+        "end_rod",
+        "entity_effect",
+        "explosion",
+        "explosion_emitter",
+        //falling_dust",
+        "falling_lava",
+        "falling_water",
+        "firework",
+        "fishing",
+        "flame",
+        "flash",
+        "happy_villager",
+        "heart",
+        "instant_effect",
+        //"item",
+        "item_slime",
+        "item_snowball",
+        "landing_lava",
+        "large_smoke",
+        "lava",
+        "mycelium",
+        "nautilus",
+        "note",
+        "poof",
+        "portal",
+        "rain",
+        "smoke",
+        "sneeze",
+        "spit",
+        "splash",
+        "squid_ink",
+        "sweep_attack",
+        "totem_of_undying",
+        "underwater",
+        "witch"
+      ],
+      "<pos>",
+      "<delta>",
+      "<speed>",
+      "<count>",
+      [ "normal", "force" ],
+      "<targets>"
+    ],
+
+
+    "playsound": [
+      "<sound>",
+      [ "master", "music", "record", "weather", "block", "hostile", "neutral", "player", "ambient", "voice" ],
+      "<targets>",
+      "<pos>",
+      "<volume>",
+      "<pitch>"
+    ],
+
+
+    "recipe": [
+      [ "give", "take" ],
+      "<targets>",
+      "<recipe>"
+    ],
+
+
+    "reload": "",
+
+
+    "replaceitem": [
+      {
+        "block": [
+          "<pos>",
+          "<slot>",
+          "<item>",
+          "<amount>"
+        ],
+        "entity": [
+          "<tergets>",
+          "<slot>",
+          "<item>",
+          "<amount>"
+        ]
+      }
+    ],
+
+
+    "say": [ "<string>" ],
+
+
+    "schedule": [
+      "function",
+      "<function>",
+      "<time>"
+    ],
+
+
+    "scoreboard": [
+      {
+        "objectives": [
+          {
+            "add": [ "<objective>", "<criterion>", "<displayName>" ],
+            "list": "",
+            "modify": [
+              "<objective>",
+              {
+                "displayname": [ "<displayName>" ],
+                "rendertype": [ [ "hearts", "integer" ] ]
+              }
+            ],
+            "remove": [ "<objective>" ],
+            "setdisplay": [ "<slot>", "<objective>" ]
+          }
+        ],
+        "players": [
+          {
+            "add": [ "<targets>", "<objective>", "<score>" ],
+            "enable": [ "<targets>", "<objective>" ],
+            "get": [ "<target>", "<objective>" ],
+            "list": [ "<target>" ],
+            "operation": [
+              "<targets1>",
+              "<targetObjective1>",
+              [ "%=", "*=", "+=", "-=", "/=", "<", "=", ">", "><" ],
+              "<targets2>",
+              "<targetObjective2>"
+            ],
+            "remove": [ "<targets>", "<objective>", "<score>" ],
+            "reset": [ "<targets>", "<objective>" ],
+            "set": [ "<targets>", "<objective>", "<score>" ]
+          }
+        ]
+      }
+    ],
+
+
+    "setblock": [
+      "<pos>",
+      "<block>",
+      [ "replace", "destroy", "keep" ]
+    ],
+
+
+    "setworldspawn": [ "<pos>" ],
+
+
+    "spawnpoint": [ "<target>", "<pos>" ],
+
+
+    "spreadplayers": [ "<plane_pos>", "<spreadDistance>", "<maxRange>", "<respectTeams>", "<target>" ],
+
+
+    "stopsound": [
+      "<targets>",
+      [ "master", "music", "record", "weather", "block", "hostile", "neutral", "player", "ambient", "voice" ],
+      "<sound>"
+    ],
+
+
+    "summon": [ "<entity_name>", "<pos>", "<dataTag>" ],
+
+
+    "tag": [
+      "<targets>",
+      {
+        "add": [ "<string>" ],
+        "list": "",
+        "remove": [ "<string>" ]
+      }
+    ],
+
+
+    "team": [
+      {
+        "add": [ "<team>", "<displayname>" ],
+        "empty": [ "<team>" ],
+        "join": [ "<team>", "<targets>" ],
+        "leave": [ "<targets>" ],
+        "list": [ "<team>" ],
+        "modify": [
+          "<team>",
+          [
+            "collisionRule",
+            "color",
+            "deathMessageVisibility",
+            "displayName",
+            "friendlyFire",
+            "nametagVisibility",
+            "prefix",
+            "seeFriendlyInvisibles",
+            "suffix"
+          ]
+        ],
+        "remove": [ "<team>" ]
+      }
+    ],
+
+
+    "teammsg": [ "<string>" ],
+
+
+    "tp": [
+      "<targets>",
+      {
+        "<pos>": [
+          {
+            "": "",   //tp @s 30 59 34
+            "facing": [
+              {
+                "<pos>": "",
+                "entity": [
+                  "<target>",
+                  [ "feet", "eyes" ]
+                ]
+              }
+            ],
+            "<rotation>": ""
+          }
+        ],
+        "<target>": ""
+      }
+    ],
+    "teleport": [
+      "<targets>",
+      {
+        "<pos>": [
+          {
+            "": "", //teleport @s 30 59 34
+            "facing": [
+              {
+                "<pos>": "",
+                "entity": [
+                  "<target>",
+                  [ "feet", "eyes" ]
+                ]
+              }
+            ],
+            "<rotation>": ""
+          }
+        ],
+        "<target>": ""
+      }
+    ],
+
+
+    "tell": [ "<targets>", "<string>" ],
+
+
+    "tellraw": [ "<targets>", "<string>" ],
+
+
+    "time": [
+      {
+        "add": [ "<value>" ],
+        "query": [ [ "day", "daytime", "gametime" ] ],
+        "set": [ "<value>" ]
+      }
+    ],
+
+
+    "title": [
+      "<targets>",
+      {
+        "clear": "",
+        "reset": "",
+        "title": [ "<string>" ],
+        "subtitle": [ "<string>" ],
+        "actionbar": [ "<string>" ],
+        "times": [ "<fadeIn>", "<stay>", "<fadeOut>" ]
+      }
+    ],
+
+
+    "trigger": [
+      "<objective>",
+      [ "add", "set" ],
+      "<value>"
+    ],
+
+
+    "msg": [ "<targets>", "<string>" ],
+    "w": [ "<targets>", "<string>" ],
+
+
+    "weather": [
+      [ "clear", "rain", "thunder" ],
+      "<duration>"
+    ],
+
+
+    "worldborder": [
+      {
+        "add": [ "<distance>", "<time>" ],
+        "center": [ "<plane_pos>" ],
+        "damage": [
+          {
+            "amount": [ "<damagePerBlock>" ],
+            "buffer": [ "<distance>" ]
+          }
+        ],
+        "get": "",
+        "set": [ "<distance>", "<time>" ],
+        "warning": [
+          {
+            "distance": [ "<distance>" ],
+            "time": [ "<time>" ]
+          }
+        ]
+      }
+    ],
+
+
+    "xp": [
+      {
+        "add": [
+          "<targets>",
+          "<amount>",
+          [ "points", "levels" ]
+        ],
+        "set": [
+          "<targets>",
+          "<amount>",
+          [ "points", "levels" ]
+        ],
+        "query": [
+          "<target>",
+          [ "points", "levels" ]
+        ]
+      }
+    ]
+  }
+}
+

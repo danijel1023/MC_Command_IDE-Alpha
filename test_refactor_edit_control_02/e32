@@ -1,0 +1,300 @@
+|------------------------------------------------------|
+|                                                      |
+|---------------- | Log Entry Point | -----------------|
+|                                                      |
+|--------------  [2020-02-18] 23:58:25  ---------------|
+|                                                      |
+|------------------------------------------------------|
+pCmdLine = 
+[Edit Control System]: Init
+[Render System]: Init
+[Keyboard System]: Init
+[Mouse System]: Init
+[Line Number System]: Init
+[Edit Control System]: Size
+[Render System]: Set_Size
+[Line Number System]: Set_Size
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Mouse System]: WM_LBtn_Down
+[Render System]: WM_Set_Focus
+[Render System]: Set_Caret
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: f(102)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: g(103)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: f(102)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: g(103)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: d(100)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: g(103)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: f(102)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: d(100)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: g(103)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: f(102)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: d(100)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: g(103)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: f(102)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown - VK_BACK
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_Char - wParam: E(69)
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Render System]: WM_Kill_Focus
+|------------------------------------------------------|
+|                                                      |
+|---------------- | Log Entry Point | -----------------|
+|                                                      |
+|--------------  [2020-02-19] 00:20:52  ---------------|
+|                                                      |
+|------------------------------------------------------|
+pCmdLine = 
+[Edit Control System]: Init
+[Render System]: Init
+[Keyboard System]: Init
+[Mouse System]: Init
+[Line Number System]: Init
+[Edit Control System]: Size
+[Render System]: Set_Size
+[Line Number System]: Set_Size
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Mouse System]: WM_LBtn_Down
+[Render System]: WM_Set_Focus
+[Render System]: Set_Caret
+[Render System]: WM_Paint
+[Render System]: WM_Erase_Bkg
+[Render System]: Set_Caret
+[Render System]: Set_Caret - SetCaretPos
+[Line Number System]: Paint
+[Line Number System]: WM_Paint
+[Line Number System]: WM_Erase_Bkg
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_KeyDown
+[Keyboard System]: WM_KeyDown
+[Render System]: WM_Kill_Focus

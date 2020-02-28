@@ -1,0 +1,7 @@
+#pragma once
+
+#define HISTORY_MSG_DEL_SEL             0
+#define HISTORY_MSG_DEL_SEL_INSERT      (HISTORY_MSG_DEL_SEL + 1)
+#define HISTORY_MSG_INSERT              (HISTORY_MSG_DEL_SEL_INSERT + 1)
+#define HISTORY_MSG_DELETE              (HISTORY_MSG_INSERT + 1)
+#define HISTORY_MSG_BACKSPACE           (HISTORY_MSG_DELETE + 1)

@@ -1,0 +1,24 @@
+Structure is made of differend systems that write important information to "main" class (Edit_Control).
+  - eg; a mouse system reacts to mouse events, processes them and write result to the Edit_Control instance
+  
+The way this class is written, allows multiple instances of edit controls. The dispatcher system,
+glorified "BUS", uses "Control_Register" to get the right "Edit_Contorl" pointer to send message to right
+"SSC_Proc" function. (Last_ECP->m_Dispatcher.SSC_Proc(...))
+  - "Last_ECP" is Edit_Control pointer that was returned from "Control_Register"
+
+
+The main structure:
+1. [Main.cpp]: DispatchMessage(...)
+2. [dispatcher.cpp]: Global_SSC_Proc(...)
+3. [dispatcher.cpp]: Last_ECP->m_Dispatcher.SSC_Proc(...)
+4. [??? system]: {react to message}
+
+  - Parent window can control edit control window through "Edit_Control" class.
+  - The "Scroll_Bar" system uses its own message system, but that message system is seperate
+from the main message system (from "Edit_Control").
+  - A system can lock the dispatcher, maning that system will send messages to only that system
+(called main system), but also, that system can also activate so called "Sub-systems", and dispatcher
+will, alongside sending all messages to main system, send those messages to sub-systems
+    -eg; main system: render, sub-system: mouse -> mouse system detects right-click and locks the render
+and mouse. Render responds by, well, rendering, and mouse can detect clicks outside the righ-click menu
+and respond by killing righ-click menu.

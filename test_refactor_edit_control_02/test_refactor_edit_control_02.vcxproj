@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug 64|x64">
+      <Configuration>Debug 64</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release 64|x64">
+      <Configuration>Release 64</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{60D2A632-CCEA-8D5C-9597-1DF6016F22F6}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>test_refactor_edit_control_02</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug 64|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release 64|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug 64|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release 64|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug 64|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug-windows-x86_64\test_refactor_edit_control_02\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-x86_64\test_refactor_edit_control_02\</IntDir>
+    <TargetName>test_refactor_edit_control_02</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release 64|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\bin\Release-windows-x86_64\test_refactor_edit_control_02\</OutDir>
+    <IntDir>..\bin-int\Release-windows-x86_64\test_refactor_edit_control_02\</IntDir>
+    <TargetName>test_refactor_edit_control_02</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug 64|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>src;src\edit_control\_precompiled_headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST $(ProjectDir)bkg_image.bmp\ (xcopy /Q /E /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Debug-windows-x86_64\test_refactor_edit_control_02 &gt; nul) ELSE (xcopy /Q /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Debug-windows-x86_64\test_refactor_edit_control_02 &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release 64|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>src;src\edit_control\_precompiled_headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST $(ProjectDir)bkg_image.bmp\ (xcopy /Q /E /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Release-windows-x86_64\test_refactor_edit_control_02 &gt; nul) ELSE (xcopy /Q /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Release-windows-x86_64\test_refactor_edit_control_02 &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\edit_control\_edit_control\caret_struct.h" />
+    <ClInclude Include="src\edit_control\_edit_control\control_register.h" />
+    <ClInclude Include="src\edit_control\_edit_control\edit_control.h" />
+    <ClInclude Include="src\edit_control\_precompiled_headers\debugg_defines.h" />
+    <ClInclude Include="src\edit_control\_precompiled_headers\error_defines.h" />
+    <ClInclude Include="src\edit_control\_precompiled_headers\error_msg_defines.h" />
+    <ClInclude Include="src\edit_control\_precompiled_headers\pch.h" />
+    <ClInclude Include="src\edit_control\dispatcher_system\dispatcher.h" />
+    <ClInclude Include="src\edit_control\intellisense_system\intelisense.h" />
+    <ClInclude Include="src\edit_control\keyboard_system\history_defines.h" />
+    <ClInclude Include="src\edit_control\keyboard_system\keyboard.h" />
+    <ClInclude Include="src\edit_control\line_number_system\line_number.h" />
+    <ClInclude Include="src\edit_control\mouse_system\mouse.h" />
+    <ClInclude Include="src\edit_control\render_system\render.h" />
+    <ClInclude Include="src\edit_control\scroll_bar_system\scroll_bar.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\edit_control\_edit_control\control_register.cpp" />
+    <ClCompile Include="src\edit_control\_edit_control\edit_control.cpp" />
+    <ClCompile Include="src\edit_control\_precompiled_headers\pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\edit_control\dispatcher_system\dispatcher.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\intellisense.cpp" />
+    <ClCompile Include="src\edit_control\keyboard_system\helper_functions.cpp" />
+    <ClCompile Include="src\edit_control\keyboard_system\history.cpp" />
+    <ClCompile Include="src\edit_control\keyboard_system\keyboard.cpp" />
+    <ClCompile Include="src\edit_control\line_number_system\line_number.cpp" />
+    <ClCompile Include="src\edit_control\mouse_system\mouse.cpp" />
+    <ClCompile Include="src\edit_control\render_system\render.cpp" />
+    <ClCompile Include="src\edit_control\scroll_bar_system\scroll_bar.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="intellisense_structures\file.json" />
+    <None Include="intellisense_structures\mc_command_structure.json" />
+    <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
