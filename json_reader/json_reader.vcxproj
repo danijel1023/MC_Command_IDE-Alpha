@@ -91,12 +91,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\include\json.h" />
-    <ClInclude Include="src\json\defines.h" />
-    <ClInclude Include="src\json\json_private.h" />
+    <ClInclude Include="src\json.h" />
+    <ClInclude Include="src\json_type_defines.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\json\json.cpp" />
+    <ClCompile Include="src\json.cpp" />
+    <ClCompile Include="src\json_logic.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

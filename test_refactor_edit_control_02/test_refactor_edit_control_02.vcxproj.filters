@@ -124,5 +124,12 @@
     </None>
     <None Include="intellisense_structures\mc_command_structure.json" />
     <None Include="intellisense_structures\file.json" />
+    <None Include="intellisense_structures\commands.json" />
+    <None Include="e32" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bkg_image.bmp" />
+    <Image Include="icons8-folder-32.png" />
+    <Image Include="icons8-opened-folder-32.png" />
   </ItemGroup>
 </Project>

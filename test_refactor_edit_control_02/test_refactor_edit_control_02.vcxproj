@@ -131,9 +131,16 @@
     <ClCompile Include="src\edit_control\scroll_bar_system\scroll_bar.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="e32" />
+    <None Include="intellisense_structures\commands.json" />
     <None Include="intellisense_structures\file.json" />
     <None Include="intellisense_structures\mc_command_structure.json" />
     <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="bkg_image.bmp" />
+    <Image Include="icons8-folder-32.png" />
+    <Image Include="icons8-opened-folder-32.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
