@@ -48,7 +48,7 @@ void Json::Init(const std::wstring& Path) {
 
     std::wifstream File(Path);
     if (!File.is_open()) {
-        //std::wcout << "Error opening the file";
+        std::wcout << "Error opening the file";
         return;
     }
 
@@ -118,7 +118,7 @@ Json& Json::Obj(std::wstring Name) {
 
     auto C_Elm = (Obj_Element*)std::get<0>(m_Branch->back());
 
-    if (std::get<1>(m_Branch->back()) == Data_Value_Type::Array) {
+    if (std::get<1>(m_Branch->back()) == Data_Value_Type::Object) {
         for (size_t Pos = 0; Pos < C_Elm->Elements.size(); Pos++) {
             if (std::get<2>(C_Elm->Elements.at(Pos)) == Name) {
                 m_Branch->push_back({ std::get<0>(C_Elm->Elements.at(Pos)), std::get<1>(C_Elm->Elements.at(Pos)) });
@@ -203,6 +203,67 @@ Ptr_Element Json::Ptr() {
     }
 
     return Ptr_Element();
+}
+
+size_t Json::Size() {
+    if (m_Halted) return 0;
+    if (m_Error_Reading_Tree) {
+        m_Error_Reading_Tree = false;
+        return 0;
+    }
+
+    if (std::get<1>(m_Branch->back()) == Data_Value_Type::Object) {
+        return ((Obj_Element*)std::get<0>(m_Branch->back()))->Elements.size();
+    }
+    
+    else if (std::get<1>(m_Branch->back()) == Data_Value_Type::Array) {
+        return ((Arr_Element*)std::get<0>(m_Branch->back()))->Elements.size();
+    }
+
+    return 0;
+}
+
+bool Json::Has_Name(const std::wstring& Name) {
+    if (m_Halted) return 0;
+    if (m_Error_Reading_Tree) {
+        m_Error_Reading_Tree = false;
+        return 0;
+    }
+
+    if (std::get<1>(m_Branch->back()) == Data_Value_Type::Object) {
+        auto& Elements = ((Obj_Element*)std::get<0>(m_Branch->back()))->Elements;
+
+        size_t Elements_Size = Elements.size();
+        for (size_t Pos = 0; Pos < Elements_Size; Pos++) {
+            if (std::get<2>(Elements.at(Pos)) == Name) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+std::vector<std::wstring> Json::Get_Names() {
+    if (m_Halted) return std::vector<std::wstring>();
+    if (m_Error_Reading_Tree) {
+        m_Error_Reading_Tree = false;
+        return std::vector<std::wstring>();
+    }
+
+    if (std::get<1>(m_Branch->back()) == Data_Value_Type::Object) {
+        std::vector<std::wstring> Keys;
+        auto& Elements = ((Obj_Element*)std::get<0>(m_Branch->back()))->Elements;
+
+        size_t Elements_Size = Elements.size();
+        for (size_t Pos = 0; Pos < Elements_Size; Pos++) {
+            Keys.push_back(std::get<2>(Elements.at(Pos)));
+        }
+
+        return Keys;
+    }
+
+    return std::vector<std::wstring>();
 }
 
 

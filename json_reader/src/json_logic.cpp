@@ -381,7 +381,7 @@ void Json::Remove_Unnec_Char(std::wstring& Data) {
 }
 
 
-void Json::Format_Data(const std::wstring& InputData, std::wstring* Simp_Data_Ptr, std::vector<std::wstring>* Simp_Data_Val_Ptr) {
+void Json::Format_Data(std::wstring& InputData, std::wstring* Simp_Data_Ptr, std::vector<std::wstring>* Simp_Data_Val_Ptr) {
     auto& Simp_Data = *Simp_Data_Ptr;
     auto& Simp_Data_Val = *Simp_Data_Val_Ptr;
 
@@ -459,7 +459,12 @@ void Json::Format_Data(const std::wstring& InputData, std::wstring* Simp_Data_Pt
         }
 
         else if (Is_Str) {
-            if (ch == L'\\') { Skip_Next = true; continue; }
+            if (ch == L'\\') {
+                InputData.erase(Pos, 1);
+                InDt_Size--;
+                Skip_Next = true;
+                continue;
+            }
 
             if (ch == L'"') {
                 Is_Str = false;

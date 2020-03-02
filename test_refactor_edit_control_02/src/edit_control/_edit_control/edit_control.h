@@ -101,5 +101,6 @@ private:
     friend class Render;
     friend class Scroll_Bar;
     friend class Line_Number;
+    friend class IntelliSense;
 };
 

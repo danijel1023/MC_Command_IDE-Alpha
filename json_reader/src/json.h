@@ -27,8 +27,12 @@ public:
     Num_Element Num();
     Bol_Element Bol();
     Ptr_Element Ptr();
+    size_t Size();
+    std::vector<std::wstring> Get_Names();
+    bool Has_Name(const std::wstring& Name);
 
     std::wstringstream Get_Tree();
+
 
     Json& operator=(Json& Right);
 
@@ -65,7 +69,7 @@ private:
     void Remove_Unnec_Char(std::wstring& Data);
     
     //Simplifies data in easy-to-work with format
-    void Format_Data(const std::wstring& InputData, std::wstring* Simp_Data_Ptr, std::vector<std::wstring>* Simp_Data_Val_Ptr);
+    void Format_Data(std::wstring& InputData, std::wstring* Simp_Data_Ptr, std::vector<std::wstring>* Simp_Data_Val_Ptr);
 
     //Builds the data tree based on simplified data
     void Build_Tree(std::wstring& Simp_Data, std::vector<std::wstring>& Simp_Data_Val);

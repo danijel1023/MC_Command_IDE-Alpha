@@ -1,131 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="edit_control">
-      <UniqueIdentifier>{2B57BEAD-17BA-4D52-C03F-8608AC8119D5}</UniqueIdentifier>
+    <Filter Include="intellisense_structures">
+      <UniqueIdentifier>{17567CE1-838D-C478-8C97-289CF84DEB71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="edit_control\_edit_control">
-      <UniqueIdentifier>{7FB4B43F-6BC4-6010-D47D-C52EC0AC4FA9}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="edit_control\_precompiled_headers">
-      <UniqueIdentifier>{883701C7-F4A5-5646-3D8F-1146A93C4CE2}</UniqueIdentifier>
+    <Filter Include="src\edit_control">
+      <UniqueIdentifier>{A2FDDEC0-8EF6-FD12-B728-E397A380DD1E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="edit_control\dispatcher_system">
-      <UniqueIdentifier>{25A29961-11C8-63C8-FA0D-E993E6D28894}</UniqueIdentifier>
+    <Filter Include="src\edit_control\_edit_control">
+      <UniqueIdentifier>{36DF3382-2205-FEE8-0B4B-83B4F70F23B5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="edit_control\intellisense_system">
-      <UniqueIdentifier>{CDE37AC3-B934-6605-E298-54C7CE48F96E}</UniqueIdentifier>
+    <Filter Include="src\edit_control\_precompiled_headers">
+      <UniqueIdentifier>{5F4E9C14-CB12-9B04-9478-CBCE00FC363A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="edit_control\keyboard_system">
-      <UniqueIdentifier>{2F956F68-1B50-5F14-C407-D85EB0A1A9A4}</UniqueIdentifier>
+    <Filter Include="src\edit_control\dispatcher_system">
+      <UniqueIdentifier>{5C508DD0-488C-903A-B19E-A8319DF93855}</UniqueIdentifier>
     </Filter>
-    <Filter Include="edit_control\line_number_system">
-      <UniqueIdentifier>{2EE1E6FE-9AC4-F53E-A3C7-237B0F2ABC8F}</UniqueIdentifier>
+    <Filter Include="src\edit_control\intellisense_system">
+      <UniqueIdentifier>{C4FB12BE-B0E2-D4B5-5933-3BD345F94D1C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="edit_control\mouse_system">
-      <UniqueIdentifier>{E7FCC19F-53BF-F529-9C6F-84B60871CE07}</UniqueIdentifier>
+    <Filter Include="src\edit_control\keyboard_system">
+      <UniqueIdentifier>{A6496447-929A-4F89-BBFE-3D4BA7AEE2F2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="edit_control\render_system">
-      <UniqueIdentifier>{7E0DF7D0-6A1D-A3A1-D3D6-07C0BF05923A}</UniqueIdentifier>
+    <Filter Include="src\edit_control\line_number_system">
+      <UniqueIdentifier>{4556504C-B10F-BBF6-3A6F-D5D0A6277166}</UniqueIdentifier>
     </Filter>
-    <Filter Include="edit_control\scroll_bar_system">
-      <UniqueIdentifier>{41D36DB6-2DF9-371D-163F-BDE802045DE9}</UniqueIdentifier>
+    <Filter Include="src\edit_control\mouse_system">
+      <UniqueIdentifier>{BE2C1BF7-2A45-0221-F3F1-91BA5FC996BA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\edit_control\render_system">
+      <UniqueIdentifier>{35387613-215E-407A-0AA4-C545F6686546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\edit_control\scroll_bar_system">
+      <UniqueIdentifier>{78816125-64BD-648F-CDCF-7C86B92A0DAA}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\edit_control\_edit_control\caret_struct.h">
-      <Filter>edit_control\_edit_control</Filter>
+      <Filter>src\edit_control\_edit_control</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\_edit_control\control_register.h">
-      <Filter>edit_control\_edit_control</Filter>
+      <Filter>src\edit_control\_edit_control</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\_edit_control\edit_control.h">
-      <Filter>edit_control\_edit_control</Filter>
+      <Filter>src\edit_control\_edit_control</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\_precompiled_headers\debugg_defines.h">
-      <Filter>edit_control\_precompiled_headers</Filter>
+      <Filter>src\edit_control\_precompiled_headers</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\_precompiled_headers\error_defines.h">
-      <Filter>edit_control\_precompiled_headers</Filter>
+      <Filter>src\edit_control\_precompiled_headers</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\_precompiled_headers\error_msg_defines.h">
-      <Filter>edit_control\_precompiled_headers</Filter>
+      <Filter>src\edit_control\_precompiled_headers</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\_precompiled_headers\pch.h">
-      <Filter>edit_control\_precompiled_headers</Filter>
+      <Filter>src\edit_control\_precompiled_headers</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\dispatcher_system\dispatcher.h">
-      <Filter>edit_control\dispatcher_system</Filter>
+      <Filter>src\edit_control\dispatcher_system</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\intellisense_system\intelisense.h">
-      <Filter>edit_control\intellisense_system</Filter>
+      <Filter>src\edit_control\intellisense_system</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\keyboard_system\history_defines.h">
-      <Filter>edit_control\keyboard_system</Filter>
+      <Filter>src\edit_control\keyboard_system</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\keyboard_system\keyboard.h">
-      <Filter>edit_control\keyboard_system</Filter>
+      <Filter>src\edit_control\keyboard_system</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\line_number_system\line_number.h">
-      <Filter>edit_control\line_number_system</Filter>
+      <Filter>src\edit_control\line_number_system</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\mouse_system\mouse.h">
-      <Filter>edit_control\mouse_system</Filter>
+      <Filter>src\edit_control\mouse_system</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\render_system\render.h">
-      <Filter>edit_control\render_system</Filter>
+      <Filter>src\edit_control\render_system</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\scroll_bar_system\scroll_bar.h">
-      <Filter>edit_control\scroll_bar_system</Filter>
+      <Filter>src\edit_control\scroll_bar_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\edit_control\_edit_control\control_register.cpp">
-      <Filter>edit_control\_edit_control</Filter>
+      <Filter>src\edit_control\_edit_control</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\_edit_control\edit_control.cpp">
-      <Filter>edit_control\_edit_control</Filter>
+      <Filter>src\edit_control\_edit_control</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\_precompiled_headers\pch.cpp">
-      <Filter>edit_control\_precompiled_headers</Filter>
+      <Filter>src\edit_control\_precompiled_headers</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\dispatcher_system\dispatcher.cpp">
-      <Filter>edit_control\dispatcher_system</Filter>
+      <Filter>src\edit_control\dispatcher_system</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\intellisense_system\intellisense.cpp">
-      <Filter>edit_control\intellisense_system</Filter>
+      <Filter>src\edit_control\intellisense_system</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\keyboard_system\helper_functions.cpp">
-      <Filter>edit_control\keyboard_system</Filter>
+      <Filter>src\edit_control\keyboard_system</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\keyboard_system\history.cpp">
-      <Filter>edit_control\keyboard_system</Filter>
+      <Filter>src\edit_control\keyboard_system</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\keyboard_system\keyboard.cpp">
-      <Filter>edit_control\keyboard_system</Filter>
+      <Filter>src\edit_control\keyboard_system</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\line_number_system\line_number.cpp">
-      <Filter>edit_control\line_number_system</Filter>
+      <Filter>src\edit_control\line_number_system</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\mouse_system\mouse.cpp">
-      <Filter>edit_control\mouse_system</Filter>
+      <Filter>src\edit_control\mouse_system</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\render_system\render.cpp">
-      <Filter>edit_control\render_system</Filter>
+      <Filter>src\edit_control\render_system</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\scroll_bar_system\scroll_bar.cpp">
-      <Filter>edit_control\scroll_bar_system</Filter>
+      <Filter>src\edit_control\scroll_bar_system</Filter>
     </ClCompile>
+    <ClCompile Include="src\edit_control\intellisense_system\is_logic.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt">
-      <Filter>edit_control\_edit_control</Filter>
-    </None>
-    <None Include="intellisense_structures\mc_command_structure.json" />
-    <None Include="intellisense_structures\file.json" />
-    <None Include="intellisense_structures\commands.json" />
     <None Include="e32" />
+    <None Include="intellisense_structures\commands.json">
+      <Filter>intellisense_structures</Filter>
+    </None>
+    <None Include="intellisense_structures\file.json">
+      <Filter>intellisense_structures</Filter>
+    </None>
+    <None Include="intellisense_structures\mc_command_structure.json">
+      <Filter>intellisense_structures</Filter>
+    </None>
+    <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt">
+      <Filter>src\edit_control\_edit_control</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="bkg_image.bmp" />

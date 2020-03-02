@@ -40,6 +40,7 @@ LRESULT Dispatcher::SSC_Proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         if ((m_Sub_System & SYSTEM_ID_KEYBOARD) != 0)         m_EC.m_Keyboard.Proc_Msg(hWnd, uMsg, wParam, lParam);
         if ((m_Sub_System & SYSTEM_ID_RENDER) != 0)           m_EC.m_Render.Proc_Msg(hWnd, uMsg, wParam, lParam);
         if ((m_Sub_System & SYSTEM_ID_MOUSE) != 0)            m_EC.m_Mouse.Proc_Msg(hWnd, uMsg, wParam, lParam);
+        if ((m_Sub_System & SYSTEM_ID_INTELLISENSE) != 0)     m_EC.m_IntelliSense.Proc_Msg_After(hWnd, uMsg, wParam, lParam);
 
 
         if (m_Repeat_UnlockedMsg) {
@@ -60,6 +61,7 @@ LRESULT Dispatcher::SSC_Proc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         RETURN_CHECK(m_EC.m_Keyboard.Proc_Msg(hWnd, uMsg, wParam, lParam));
         RETURN_CHECK(m_EC.m_Render.Proc_Msg(hWnd, uMsg, wParam, lParam));
         RETURN_CHECK(m_EC.m_Mouse.Proc_Msg(hWnd, uMsg, wParam, lParam));
+        RETURN_CHECK(m_EC.m_IntelliSense.Proc_Msg_After(hWnd, uMsg, wParam, lParam));
     }
 
     return CallWindowProc(Control_Register::OLD_STATIC_WND_PROC, hWnd, uMsg, wParam, lParam);

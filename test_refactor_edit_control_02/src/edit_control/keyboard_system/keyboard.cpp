@@ -52,7 +52,7 @@ void Keyboard::WM_KeyDown(WPARAM wParam, LPARAM lParam) {
     m_EC.m_Dispatcher.Return_Val = 0;
     m_EC.m_Dispatcher.Return = true;
 
-    if (HIBYTE(GetKeyState(VK_CONTROL)) != 0) {
+    if (HIBYTE(GetKeyState(VK_CONTROL)) != 0 && HIBYTE(GetKeyState(VK_MENU)) == 0) {
         switch (wParam) {
         case 'C':
             if ((0x40000000 & lParam) == 0) Copy();

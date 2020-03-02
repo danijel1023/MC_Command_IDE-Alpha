@@ -21,9 +21,9 @@ void IntelliSense::Init(HWND Parent) {
     }
     m_Parent = Parent;
 
-    Json::Json File_Loc(L"intellisense_structures\file.json");
-    Json::Json Temp(File_Loc.Obj(L"File Location").Str());
-    m_Syntax_Obj = a;
+    Json File_Loc(L"intellisense_structures\\file.json");
+    auto& Path = File_Loc.Root().Obj(L"File Location").Str();
+    m_Syntax_Obj.Init(Path);
 }
 
 
@@ -46,17 +46,44 @@ void IntelliSense::Proc_Msg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
             if (m_EC.m_Dispatcher.Return) return;
             break;
         }
-
     }
+}
 
+void IntelliSense::Proc_Msg_After(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    m_EC.m_Dispatcher.Return = false;
+
+    switch (uMsg) {
+    case WM_KEYDOWN:
+        if (HIBYTE(GetKeyState(VK_CONTROL)) == 0) {
+            switch (wParam) {
+            case VK_LEFT:
+            case VK_DELETE:
+            case VK_BACK:
+                Analise_Line(m_EC.m_Text.at(m_EC.m_Caret.Y), m_EC.m_TextColor.at(m_EC.m_Caret.Y));
+                CHECK_ERR(InvalidateRect(m_Parent, NULL, TRUE), ERR_MSG_INVALIDATE_RECT);
+                break;
+            }
+        }
+        if (m_EC.m_Dispatcher.Return) return;
+        break;
+
+    case WM_CHAR:
+        Analise_Line(m_EC.m_Text.at(m_EC.m_Caret.Y), m_EC.m_TextColor.at(m_EC.m_Caret.Y));
+        CHECK_ERR(InvalidateRect(m_Parent, NULL, TRUE), ERR_MSG_INVALIDATE_RECT);
+        break;
+    }
+}
+
+
+void IntelliSense::WM_KeyDown(WPARAM wParam, LPARAM lParam) {
+
+    m_EC.m_Dispatcher.Return = false;
 }
 
 
 void IntelliSense::WM_Char(WPARAM wParam, LPARAM lParam) {
     Log_IO::Start_Log_System Obj(SYSTEM_ID_INTELLISENSE);
-    Log_IO::wcout() << "WM_Char: " << wParam << " - " << lParam << std::endl;
-
-
+    Log_IO::wcout() << "WM_Char: " << (wchar_t)wParam << " - " << lParam << std::endl;
 
     m_EC.m_Dispatcher.Return = false;
 }
@@ -65,8 +92,6 @@ void IntelliSense::WM_Char(WPARAM wParam, LPARAM lParam) {
 void IntelliSense::Two_Sec_Timer() {
     Log_IO::Start_Log_System Obj(SYSTEM_ID_INTELLISENSE);
     Log_IO::wcout() << "Two_Sec_Timer" << std::endl;
-
-
 
     m_EC.m_Dispatcher.Return = false;
 }
