@@ -26,7 +26,8 @@ project "test_refactor_edit_control_02"
 
     includedirs {
         "%{prj.location}/src",
-        "%{prj.location}/src/edit_control/_precompiled_headers"
+        "%{prj.location}/src/edit_control/_precompiled_headers",
+        "%{prj.location}/src/edit_control/intellisense_system"
     }
 
     files {

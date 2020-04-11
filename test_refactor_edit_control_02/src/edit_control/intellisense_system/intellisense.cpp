@@ -23,11 +23,16 @@ void IntelliSense::Init(HWND Parent) {
 
     Json File_Loc(L"intellisense_structures\\file.json");
     auto& Path = File_Loc.Root().Obj(L"File Location").Str();
+
+    Log_IO::wcout() << "Starting Compiling MC Commands" << std::endl;
     m_Syntax_Obj.Init(Path);
+    Log_IO::wcout() << "Completed Compiling MC Commands" << std::endl;
+
 }
 
 
 void IntelliSense::Proc_Msg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    Log_IO::Start_Log_System Obj(SYSTEM_ID_INTELLISENSE);
     m_EC.m_Dispatcher.Return = false;
 
     switch (uMsg) {
@@ -50,6 +55,7 @@ void IntelliSense::Proc_Msg(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 }
 
 void IntelliSense::Proc_Msg_After(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    Log_IO::Start_Log_System Obj(SYSTEM_ID_INTELLISENSE);
     m_EC.m_Dispatcher.Return = false;
 
     switch (uMsg) {
@@ -76,6 +82,7 @@ void IntelliSense::Proc_Msg_After(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lP
 
 
 void IntelliSense::WM_KeyDown(WPARAM wParam, LPARAM lParam) {
+    Log_IO::Start_Log_System Obj(SYSTEM_ID_INTELLISENSE);
 
     m_EC.m_Dispatcher.Return = false;
 }

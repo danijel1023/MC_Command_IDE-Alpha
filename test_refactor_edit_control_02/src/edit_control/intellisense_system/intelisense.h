@@ -4,6 +4,8 @@
 
 #define TIMER_ID_TWO_SEC_TIMER 1
 
+#include "is_parser_structs.h"
+
 class Edit_Control;
 class IntelliSense {
 public:
@@ -26,6 +28,9 @@ private:
     Json m_Syntax_Obj = Json();
 
     void Analise_Line(std::wstring& Line, std::vector<COLORREF>& Colors);
+
+
+    bool Check_Minecraft_Entity(std::wstring& Word);
 
     size_t m_InitCalls = 0;
     bool m_Is_Initialized = false;

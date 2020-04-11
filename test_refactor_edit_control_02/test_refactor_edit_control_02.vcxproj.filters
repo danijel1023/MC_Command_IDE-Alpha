@@ -22,6 +22,12 @@
     <Filter Include="src\edit_control\intellisense_system">
       <UniqueIdentifier>{C4FB12BE-B0E2-D4B5-5933-3BD345F94D1C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\edit_control\intellisense_system\parasers">
+      <UniqueIdentifier>{F48B3322-60FC-359B-291B-B023954A6E9C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\edit_control\intellisense_system\parasers\entity">
+      <UniqueIdentifier>{E031BA4D-CC70-64C9-75F3-40FB61111A34}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\edit_control\keyboard_system">
       <UniqueIdentifier>{A6496447-929A-4F89-BBFE-3D4BA7AEE2F2}</UniqueIdentifier>
     </Filter>
@@ -66,6 +72,15 @@
     <ClInclude Include="src\edit_control\intellisense_system\intelisense.h">
       <Filter>src\edit_control\intellisense_system</Filter>
     </ClInclude>
+    <ClInclude Include="src\edit_control\intellisense_system\is_parser_structs.h">
+      <Filter>src\edit_control\intellisense_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edit_control\intellisense_system\parasers\entity\entity_struct.h">
+      <Filter>src\edit_control\intellisense_system\parasers\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edit_control\intellisense_system\parasers\parasers.h">
+      <Filter>src\edit_control\intellisense_system\parasers</Filter>
+    </ClInclude>
     <ClInclude Include="src\edit_control\keyboard_system\history_defines.h">
       <Filter>src\edit_control\keyboard_system</Filter>
     </ClInclude>
@@ -104,6 +119,12 @@
     <ClCompile Include="src\edit_control\intellisense_system\intellisense.cpp">
       <Filter>src\edit_control\intellisense_system</Filter>
     </ClCompile>
+    <ClCompile Include="src\edit_control\intellisense_system\is_logic.cpp">
+      <Filter>src\edit_control\intellisense_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edit_control\intellisense_system\parasers\entity\entity.cpp">
+      <Filter>src\edit_control\intellisense_system\parasers\entity</Filter>
+    </ClCompile>
     <ClCompile Include="src\edit_control\keyboard_system\helper_functions.cpp">
       <Filter>src\edit_control\keyboard_system</Filter>
     </ClCompile>
@@ -125,7 +146,6 @@
     <ClCompile Include="src\edit_control\scroll_bar_system\scroll_bar.cpp">
       <Filter>src\edit_control\scroll_bar_system</Filter>
     </ClCompile>
-    <ClCompile Include="src\edit_control\intellisense_system\is_logic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="e32" />
