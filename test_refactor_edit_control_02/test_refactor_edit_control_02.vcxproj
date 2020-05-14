@@ -103,6 +103,7 @@
     <ClInclude Include="src\edit_control\_precompiled_headers\error_msg_defines.h" />
     <ClInclude Include="src\edit_control\_precompiled_headers\pch.h" />
     <ClInclude Include="src\edit_control\dispatcher_system\dispatcher.h" />
+    <ClInclude Include="src\edit_control\intellisense_system\error_handler.h" />
     <ClInclude Include="src\edit_control\intellisense_system\intelisense.h" />
     <ClInclude Include="src\edit_control\intellisense_system\is_parser_structs.h" />
     <ClInclude Include="src\edit_control\intellisense_system\parasers\entity\entity_struct.h" />
@@ -122,6 +123,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\edit_control\dispatcher_system\dispatcher.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\error_handler.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\intellisense.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\is_logic.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parasers\entity\entity.cpp" />
@@ -136,6 +138,7 @@
   <ItemGroup>
     <None Include="e32" />
     <None Include="intellisense_structures\commands.json" />
+    <None Include="intellisense_structures\commands_test.json" />
     <None Include="intellisense_structures\file.json" />
     <None Include="intellisense_structures\mc_command_structure.json" />
     <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt" />

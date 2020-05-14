@@ -1,4 +1,4 @@
-//[TODO]: "Comment whole code :("
+﻿//[TODO]: "Comment whole code :("
 #include "pch.h"
 #include "edit_control/_edit_control/edit_control.h"
 
@@ -6,10 +6,13 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ PWSTR pCmdLine, _In_ int nCmdShow) {
     Log_IO Init;    //Initialize Log Class -> will get cleaned up when the program teminates
-    Log_IO::Normal();   //Set Color
     Log_IO::Set_IO(LOG_IO_REDIRECT_TO_CONSOLE, std::wstring(L"e32"));
-    Log_IO::OutputInfo();
-    
+    Log_IO::Enable_Time();
+    Log_IO::Test_Colors();
+    Log_IO::Set_Color::Set_Default_Color(Log_IO::Set_Color::Trace);
+    Log_IO::Set_Color::Default();
+    Log_IO::Print_Entry_Point();
+
     Log_IO::wcout() << L"pCmdLine = " << pCmdLine << std::endl;
 
     // Register the window class.

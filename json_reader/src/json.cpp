@@ -65,8 +65,9 @@ void Json::Init(const std::wstring& Path) {
 
 
 void Json::RD_Init(const std::wstring& Raw_Data) {
+    *m_Raw_Data = Raw_Data;
     // -- Converting raw file data ----
-    Remove_Unnec_Char(*m_Raw_Data = Raw_Data);
+    Remove_Unnec_Char(*m_Raw_Data);
 
     m_Error_Building_Tree = true;
     Format_Data(*m_Raw_Data, Simp_Data, Simp_Data_Val);

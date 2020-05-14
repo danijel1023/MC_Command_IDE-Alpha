@@ -66,6 +66,12 @@ void IntelliSense::Proc_Msg_After(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lP
             case VK_DELETE:
             case VK_BACK:
                 Analise_Line(m_EC.m_Text.at(m_EC.m_Caret.Y), m_EC.m_TextColor.at(m_EC.m_Caret.Y));
+                if (Error_Handler.Has_Error()) {
+                    Log_IO::Set_Color::Error();
+                    Log_IO::wcout() << Error_Handler.Get_Error() << std::endl;
+                    Log_IO::Set_Color::Default();
+                }
+
                 CHECK_ERR(InvalidateRect(m_Parent, NULL, TRUE), ERR_MSG_INVALIDATE_RECT);
                 break;
             }
@@ -75,6 +81,11 @@ void IntelliSense::Proc_Msg_After(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lP
 
     case WM_CHAR:
         Analise_Line(m_EC.m_Text.at(m_EC.m_Caret.Y), m_EC.m_TextColor.at(m_EC.m_Caret.Y));
+        if (Error_Handler.Has_Error()) {
+            Log_IO::Set_Color::Error();
+            Log_IO::wcout() << Error_Handler.Get_Error() << std::endl;
+            Log_IO::Set_Color::Default();
+        }
         CHECK_ERR(InvalidateRect(m_Parent, NULL, TRUE), ERR_MSG_INVALIDATE_RECT);
         break;
     }
@@ -101,4 +112,9 @@ void IntelliSense::Two_Sec_Timer() {
     Log_IO::wcout() << "Two_Sec_Timer" << std::endl;
 
     m_EC.m_Dispatcher.Return = false;
+}
+
+
+COLORREF IntelliSense::Get_Color(std::wstring Type, unsigned int Additional_Data) {
+    return RGB(0, 255, 40);
 }

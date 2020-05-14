@@ -69,6 +69,9 @@
     <ClInclude Include="src\edit_control\dispatcher_system\dispatcher.h">
       <Filter>src\edit_control\dispatcher_system</Filter>
     </ClInclude>
+    <ClInclude Include="src\edit_control\intellisense_system\error_handler.h">
+      <Filter>src\edit_control\intellisense_system</Filter>
+    </ClInclude>
     <ClInclude Include="src\edit_control\intellisense_system\intelisense.h">
       <Filter>src\edit_control\intellisense_system</Filter>
     </ClInclude>
@@ -116,6 +119,9 @@
     <ClCompile Include="src\edit_control\dispatcher_system\dispatcher.cpp">
       <Filter>src\edit_control\dispatcher_system</Filter>
     </ClCompile>
+    <ClCompile Include="src\edit_control\intellisense_system\error_handler.cpp">
+      <Filter>src\edit_control\intellisense_system</Filter>
+    </ClCompile>
     <ClCompile Include="src\edit_control\intellisense_system\intellisense.cpp">
       <Filter>src\edit_control\intellisense_system</Filter>
     </ClCompile>
@@ -150,6 +156,9 @@
   <ItemGroup>
     <None Include="e32" />
     <None Include="intellisense_structures\commands.json">
+      <Filter>intellisense_structures</Filter>
+    </None>
+    <None Include="intellisense_structures\commands_test.json">
       <Filter>intellisense_structures</Filter>
     </None>
     <None Include="intellisense_structures\file.json">

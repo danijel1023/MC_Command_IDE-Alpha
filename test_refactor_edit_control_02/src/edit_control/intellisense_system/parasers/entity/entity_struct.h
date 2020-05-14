@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-struct MCE_Prop {
+typedef struct MCE_Prop {
     enum class AMOUNT : char {
         Single,
         Multiple
@@ -14,12 +14,12 @@ struct MCE_Prop {
 
     AMOUNT Amount;
     TYPE Type;
-};
+} MCE_Prop;
 
-struct STR {
+typedef struct STR {
     std::wstring Name;
-    bool This = true;
-};
+    bool This = false;
+} STR;
 
 
 enum class SORT : char {
@@ -45,7 +45,7 @@ enum class GAMEMODE : char {
 
 
 
-struct MC_Entity {
+typedef struct MC_Entity {
     MCE_Prop Ent_Prop = MCE_Prop();
 
     unsigned long long Limit = 0;
@@ -62,4 +62,4 @@ struct MC_Entity {
     STR Advancements;
     STR Tags;
     STR Scores;
-};
+} MC_Entity;

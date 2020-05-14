@@ -2625,7 +2625,8 @@
           }
         },
         "run": {
-          "type": "literal"
+          "type": "literal",
+          "redirect": []
         },
         "store": {
           "type": "literal",

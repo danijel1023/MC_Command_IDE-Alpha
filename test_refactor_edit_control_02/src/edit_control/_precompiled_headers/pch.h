@@ -24,5 +24,3 @@ std::vector<T>& operator+=(std::vector<T>& v1, const std::vector<T>& v2) {
 // -- IO ---------------
 #include "debugg_defines.h"
 // ---------------------
-
-

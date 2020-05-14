@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <windows.h>
 #include <stdio.h>
@@ -6,9 +6,9 @@
 #include <io.h>
 #include <iostream>
 #include <fstream>
-#include <ctime>
 #include <chrono>
 #include <iomanip>
+#include <time.h>
 
 #define LOG_IO_REDIRECT_TO_FILE 0
 #define LOG_IO_REDIRECT_TO_CONSOLE 1
@@ -28,26 +28,58 @@
 struct Log_wostream {
     template<class T>
     Log_wostream& operator<<(const T stuff) {
-        if (Is_Allowed(m_Mode))
+        if (Is_Allowed(m_Mode)) {
+            if (NLine && Enable_Time) {
+                time(&Raw_Time);
+                struct tm C_Time;
+                localtime_s(&C_Time, &Raw_Time);
+
+                if (&C_Time) {
+                    (*m_Stream_Ptr) << L"[";
+
+                    if (C_Time.tm_hour < 10)
+                        (*m_Stream_Ptr) << 0;
+                    (*m_Stream_Ptr) << C_Time.tm_hour << L":";
+
+                    if (C_Time.tm_min < 10)
+                        (*m_Stream_Ptr) << 0;
+                    (*m_Stream_Ptr) << C_Time.tm_min << L":";
+
+                    if (C_Time.tm_sec < 10)
+                        (*m_Stream_Ptr) << 0;
+                    (*m_Stream_Ptr) << C_Time.tm_sec;
+
+                    (*m_Stream_Ptr) << L"]: ";
+                    NLine = false;
+                }
+            }
+
             (*m_Stream_Ptr) << stuff;
+        }
+
         return (*this);
     }
 
     Log_wostream& operator<< (std::wostream& (*f)(std::wostream&)) {
         if (Is_Allowed(m_Mode))
-            f(*m_Stream_Ptr);
+            (*m_Stream_Ptr) << f;
+
+        if (f == (std::basic_ostream<wchar_t> & (*)(std::basic_ostream<wchar_t>&)) & std::endl) {
+            NLine = true;
+        }
+
         return (*this);
     }
 
     Log_wostream& operator<< (std::wostream& (*f)(std::wios&)) {
         if (Is_Allowed(m_Mode))
-            f(*m_Stream_Ptr);
+            (*m_Stream_Ptr) << f;
         return (*this);
     }
 
     Log_wostream& operator<< (std::wostream& (*f)(std::ios_base&)) {
         if (Is_Allowed(m_Mode))
-            f(*m_Stream_Ptr);
+            (*m_Stream_Ptr) << f;
         return (*this);
     }
 
@@ -74,6 +106,10 @@ struct Log_wostream {
     std::wostream* m_Stream_Ptr = 0;
     unsigned int m_Mode = -1;
     unsigned int m_Allowed_Modes = -1; //All modes are allowed
+    time_t Raw_Time = 0;
+
+    bool Enable_Time = false;
+    bool NLine = true;
 };
 
 
@@ -88,7 +124,8 @@ struct Log_IO {
 
     static void Add_Allowed(const unsigned int Mode) { wcout_obj.Add_Allowed(Mode); }
     static void Remove_Allowed(const unsigned int Mode) { wcout_obj.Remove_Allowed(Mode); }
-
+    static void Enable_Time() { wcout_obj.Enable_Time = true; }
+    static void Disable_Time() { wcout_obj.Enable_Time = false; }
 
     struct Start_Log_System {
         Start_Log_System() = delete;
@@ -102,12 +139,33 @@ struct Log_IO {
     static void End_Log_System_Call() { wcout_obj.m_Mode = -1; }
 
 
-    static void Normal()        { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); }
-    static void Trace()         { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3); }
-    static void Info()          { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); }
-    static void Warn()          { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); }
-    static void Error()         { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12); }
-    static void Fatal_Error()   { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0xCB); }
+    static void (*Default_Color)();
+    struct Set_Color {
+        static void Normal() { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); }
+        static void Trace() { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 3); }
+        static void Info() { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); }
+        static void Warn() { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 14); }
+        static void Error() { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12); }
+        static void Fatal_Error() { SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0xCB); }
+        static void Set_Default_Color(void (*New_Default)()) { Default_Color = New_Default; }
+        static void Default() { Default_Color(); }
+    };
+
+
+    static void Test_Colors() {
+        Set_Color::Trace();
+        wcout_obj << "Trace, ";
+        Set_Color::Normal();
+        wcout_obj << "Normal, ";
+        Set_Color::Info();
+        wcout_obj << "Info, ";
+        Set_Color::Warn();
+        wcout_obj << "Warn, ";
+        Set_Color::Error();
+        wcout_obj << "Error, ";
+        Set_Color::Fatal_Error();
+        wcout_obj << "Fatal_Error" << std::endl;
+    }
 
 
     static const void Set_IO(const unsigned int Mode, const std::wstring& File_Path = std::wstring(L"Default_Log_File")) {
@@ -176,6 +234,14 @@ struct Log_IO {
                 if (_wfreopen_s(&stream, L"conout$", L"w", stderr) != 0) {
                     MessageBox(NULL, L"Setting conout$ (err) Failed!", L"Error!", MB_ICONEXCLAMATION | MB_OK);
                 }
+
+                _setmode(_fileno(stdin), _O_U8TEXT);
+                _setmode(_fileno(stdout), _O_U8TEXT);
+                _setmode(_fileno(stderr), _O_U8TEXT);
+
+                SetConsoleOutputCP(CP_UTF8);
+                SetConsoleCP(CP_UTF8);
+
                 Conosole_Stream = &std::wcout;
                 Open_Console = true;
             }
@@ -190,24 +256,24 @@ struct Log_IO {
     }
 
 
-    static void OutputInfo() {
+    static void Print_Entry_Point() {
         time_t t = time(0);   // get time now
         struct tm now;
         localtime_s(&now, &t);
 
-        wcout() << std::setfill(L'0');
+        wcout_obj << std::setfill(L'0');
 
-        wcout() << "|------------------------------------------------------|" << std::endl
+        wcout_obj << "|------------------------------------------------------|" << std::endl
             << "|                                                      |" << std::endl
             << "|---------------- | Log Entry Point | -----------------|" << std::endl
             << "|                                                      |" << std::endl;
 
-        wcout() << "|--------------  "
+        wcout_obj << "|--------------  "
             << '[' << std::setw(2) << (now.tm_year + 1900) << '-' << std::setw(2) << (now.tm_mon + 1) << '-' << std::setw(2) << now.tm_mday << ']'
             << ' ' << std::setw(2) << now.tm_hour << ':' << std::setw(2) << now.tm_min << ':' << std::setw(2) << now.tm_sec
             << "  ---------------|" << std::endl;
 
-        wcout() << "|                                                      |" << std::endl
+        wcout_obj << "|                                                      |" << std::endl
             << "|------------------------------------------------------|" << std::endl;
     }
 
