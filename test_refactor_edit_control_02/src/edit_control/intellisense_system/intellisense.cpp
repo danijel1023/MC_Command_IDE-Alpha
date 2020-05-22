@@ -12,7 +12,7 @@ IntelliSense::~IntelliSense() {
 
 void IntelliSense::Init(HWND Parent) {
     Log_IO::Start_Log_System obj(SYSTEM_ID_INTELLISENSE);
-    Log_IO::wcout() << "Init" << std::endl;
+    Log_IO::wcout() << L"Init" << std::endl;
 
     m_InitCalls++;
     if (m_Is_Initialized) {
@@ -21,12 +21,17 @@ void IntelliSense::Init(HWND Parent) {
     }
     m_Parent = Parent;
 
-    Json File_Loc(L"intellisense_structures\\file.json");
-    auto& Path = File_Loc.Root().Obj(L"File Location").Str();
+    Json IS_Linker(L"intellisense_structures/linker.json");
+    auto& Commands = IS_Linker.Root().Obj(L"Commands").Str();
+    auto& Minecraft_Color = IS_Linker.Root().Obj(L"Minecraft_Color").Str();
 
-    Log_IO::wcout() << "Starting Compiling MC Commands" << std::endl;
-    m_Syntax_Obj.Init(Path);
-    Log_IO::wcout() << "Completed Compiling MC Commands" << std::endl;
+
+    Log_IO::wcout() << L"Starting Compiling IntelliSence structures" << std::endl;
+    m_Syntax_Obj.Init(Commands);
+    m_Minecraft_Color_Obj.Init(Minecraft_Color);
+
+
+    Log_IO::wcout() << L"Completed Compiling IntelliSence structures" << std::endl;
 
 }
 
@@ -115,6 +120,17 @@ void IntelliSense::Two_Sec_Timer() {
 }
 
 
-COLORREF IntelliSense::Get_Color(std::wstring Type, unsigned int Additional_Data) {
+COLORREF IntelliSense::Get_Color(std::wstring Type) {
+    if (Type == L"INCOMPLETE") return RGB(255, 0, 255);
     return RGB(0, 255, 40);
+}
+
+
+void IntelliSense::Start_New_Line() {
+    Error_Handler.Get_Error();
+    m_Syntax_Obj.Root();
+
+    m_Paraser_Func_Name = L"";
+    m_Paraser_Set_Lock = false;
+    m_Paraser_Func_Counter = 0;
 }

@@ -23,6 +23,7 @@ std::wstring Error_Handler::Get_Error() {
     return Ret;
 }
 
+
 bool Error_Handler::Has_Error() {
     return Error.size();
 }

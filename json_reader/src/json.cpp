@@ -320,14 +320,14 @@ std::wstringstream Json::Get_Tree() {
 
             m_print_tree_Index++;
             if (i + 1 == Elm->Elements.size()) {
-                Ret << wchar_t(192);
+                Ret << L'└';
                 m_print_tree_Index_S->push_back(' ');
             } else {
-                Ret << wchar_t(195);
-                m_print_tree_Index_S->push_back(wchar_t(179));
+                Ret << L'├';
+                m_print_tree_Index_S->push_back(L'│');
             }
 
-            for (wchar_t i = 0; i < 3; i++) Ret << wchar_t(196);
+            for (wchar_t i = 0; i < 3; i++) Ret << L'─';
             Ret << "Key: \"" << (std::get<2>(Elm->Elements.at(i))) << '"' << std::endl;
 
             Ret << Get_Tree().str();
@@ -357,15 +357,15 @@ std::wstringstream Json::Get_Tree() {
 
             m_print_tree_Index++;
             if (i + 1 == Elm->Elements.size()) {
-                Ret << wchar_t(192);
-                m_print_tree_Index_S->push_back(' ');
+                Ret << L'└';
+                m_print_tree_Index_S->push_back(L' ');
             } else {
-                Ret << wchar_t(195);
-                m_print_tree_Index_S->push_back(wchar_t(179));
+                Ret << L'├';
+                m_print_tree_Index_S->push_back(L'│');
             }
 
-            for (wchar_t i = 0; i < 3; i++) Ret << wchar_t(196);
-            Ret << "Index: " << i << std::endl;
+            for (wchar_t i = 0; i < 3; i++) Ret << L'─';
+            Ret << L"Index: " << i << std::endl;
 
             Ret << Get_Tree().str();
         }
@@ -386,13 +386,13 @@ std::wstringstream Json::Get_Tree() {
             }
 
             else {
-                Ret << "   ";
+                Ret << L"   ";
             }
         }
 
-        Ret << wchar_t(192);
-        for (wchar_t i = 0; i < 3; i++) Ret << wchar_t(196);
-        Ret << "Number: " << *Elm << std::endl;
+        Ret << L'└';
+        for (wchar_t i = 0; i < 3; i++) Ret << L'─';
+        Ret << L"Number: " << *Elm << std::endl;
 
         m_print_tree_Index--;
         if (m_print_tree_Index_S->size() > 0) m_print_tree_Index_S->pop_back();
@@ -414,8 +414,8 @@ std::wstringstream Json::Get_Tree() {
             }
         }
 
-        Ret << wchar_t(192);
-        for (wchar_t i = 0; i < 3; i++) Ret << wchar_t(196);
+        Ret << L'└';
+        for (wchar_t i = 0; i < 3; i++) Ret << L'─';
         Ret << "String: \"" << *Elm << '\"' << std::endl;
 
         m_print_tree_Index--;
@@ -436,8 +436,8 @@ std::wstringstream Json::Get_Tree() {
             }
         }
 
-        Ret << wchar_t(192);
-        for (wchar_t i = 0; i < 3; i++) Ret << wchar_t(196);
+        Ret << L'└';
+        for (wchar_t i = 0; i < 3; i++) Ret << L'─';
         Ret << "Bool: " << (*Elm ? "true" : "false") << std::endl;
 
         m_print_tree_Index--;

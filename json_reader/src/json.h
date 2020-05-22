@@ -102,5 +102,5 @@ private:
     Data_Value_Type m_get_str_tree_last_type = Data_Value_Type::Array;
     size_t m_print_tree_Index = 0;
 
-    std::vector<char>* m_print_tree_Index_S = new std::vector<char>();
+    std::vector<wchar_t>* m_print_tree_Index_S = new std::vector<wchar_t>();
 };

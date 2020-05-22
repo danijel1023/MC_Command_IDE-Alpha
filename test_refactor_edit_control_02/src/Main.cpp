@@ -5,7 +5,7 @@
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE, _In_ PWSTR pCmdLine, _In_ int nCmdShow) {
-    Log_IO Init;    //Initialize Log Class -> will get cleaned up when the program teminates
+    Log_IO Epc;    //Initialize Log Class -> will get cleaned up when the program teminates
     Log_IO::Set_IO(LOG_IO_REDIRECT_TO_CONSOLE, std::wstring(L"e32"));
     Log_IO::Enable_Time();
     Log_IO::Test_Colors();

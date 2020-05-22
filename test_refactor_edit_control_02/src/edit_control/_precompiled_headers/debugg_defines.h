@@ -301,7 +301,7 @@ struct Log_IO {
     }
 
     ~Log_IO() {
-        if (Init_Calls != 0) {
+        if (Init_Calls > 1) {
             Init_Calls--;
             return;
         }

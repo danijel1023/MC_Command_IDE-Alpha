@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "intelisense.h"
-#include "parasers/parasers.h"
 
 
 void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Colors) {
@@ -11,13 +10,14 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
         return;
     }
 
-    m_Syntax_Obj.Root();
+    Start_New_Line();   //Reset all parameters - fresh start
 
     std::vector<std::pair<size_t, wchar_t>> Brackets;
     size_t Last_Pos = 0;
     bool New_Last_Pos = true;
     size_t Line_Size = Line.size();
 
+    //data get block 0 0 0
     for (size_t Pos = 0; Pos < Line_Size; Pos++) {
         wchar_t ch = Line.at(Pos);
 
@@ -82,6 +82,7 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                 std::wstring Word = Line.substr(Last_Pos, Pos - Last_Pos + (ch != L' '));   //Get correct word
                 auto Names = m_Syntax_Obj.Get_Names();  //"effect", "give", "tp", ...
 
+                std::wstring Result;
                 bool Found_Match = false;
                 for (size_t NPos = 0; NPos < Names.size(); NPos++) {
 
@@ -103,23 +104,12 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                         else if (Type == L"argument") {
                             m_Syntax_Obj.Obj(L"parser");
 
-                            if (m_Syntax_Obj.Str() == L"minecraft:mob_effect") {
+                            Result = Paraser_Matcher(Word);
+
+                            if (Result != L"ERROR") {
                                 for (size_t CPos = Last_Pos; CPos < Pos + 1; CPos++)
-                                    Colors.at(CPos) = Get_Color(L"minecraft:mob_effect");
+                                    Colors.at(CPos) = Get_Color(Result);
                                 Found_Match = true;
-                            } else if (m_Syntax_Obj.Str() == L"minecraft:entity") {
-                                m_Syntax_Obj.Back();
-                                if (Entity_Paraser(Word)) {
-                                    for (size_t CPos = Last_Pos; CPos < Pos + 1; CPos++)
-                                        Colors.at(CPos) = Get_Color(L"minecraft:entity");
-                                    Found_Match = true;
-                                }
-                            } else if (m_Syntax_Obj.Str() == L"brigadier:bool") {
-                                if (Word == L"true" || Word == L"false") {
-                                    for (size_t CPos = Last_Pos; CPos < Pos + 1; CPos++)
-                                        Colors.at(CPos) = Get_Color(L"brigadier:bool");
-                                    Found_Match = true;
-                                }
                             }
                         }
 
@@ -134,11 +124,14 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                 if (!Found_Match) {
                     for (size_t CPos = Last_Pos; CPos < Colors.size(); CPos++)
                         Colors.at(CPos) = RGB(255, 0, 0);
-                    //If no match is found, ignore rest of the line
+                    Log_IO::Set_Color::Error();
+                    Log_IO::wcout() << L"No match is found ("<< Word <<") ignoring rest of the line" << std::endl;
+                    Log_IO::Set_Color::Default();
                     return;
                 }
 
-                Last_Pos = Pos + 1;
+                if (Result != L"INCOMPLETE")
+                    Last_Pos = Pos + 1;
 
                 if (m_Syntax_Obj.Has_Name(L"redirect")) {
                     m_Syntax_Obj.Obj(L"redirect");
@@ -155,6 +148,11 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                     }
                 }
             }
+
+            if (m_Paraser_Set_Lock) {
+                m_Syntax_Obj.Back().Back();
+            }
+
         }
     }
 
