@@ -1,4 +1,16 @@
 {
-    "Commands": "intellisense_structures/commands.json",
-    "Minecraft_Color": "intellisense_structures/parasers/minecraft_color.json"
+    "Commands": "intellisense_structures/parsers/commands.json",
+    "Minecraft_Block_Predicate": "intellisense_structures/parsers/minecraft_block_predicate.json",
+    "Minecraft_Color": "intellisense_structures/parsers/minecraft_color.json",
+    "Minecraft_Dimension": "intellisense_structures/parsers/minecraft_dimension.json",
+    "Minecraft_Entity_Anchor": "intellisense_structures/parsers/minecraft_entity_anchor.json",
+    "Minecraft_Entity_Summon": "intellisense_structures/parsers/minecraft_entity_summon.json",
+    "Minecraft_Item_Enchantment": "intellisense_structures/parsers/minecraft_item_enchantment.json",
+    "Minecraft_Item_Predicate": "intellisense_structures/parsers/minecraft_item_predicate.json",
+    "Minecraft_Item_Stack": "intellisense_structures/parsers/minecraft_item_stack.json",
+    "Minecraft_Mob_Effect": "intellisense_structures/parsers/minecraft_mob_effect.json",
+    "Minecraft_Objective_Criteria": "intellisense_structures/parsers/minecraft_objective_criteria.json",
+    "Minecraft_Operation": "intellisense_structures/parsers/minecraft_operation.json",
+    "Minecraft_Particle": "intellisense_structures/parsers/minecraft_particle.json",
+    "Minecraft_Scoreboard_Slot": "intellisense_structures/parsers/minecraft_scoreboard_slot.json"
 }

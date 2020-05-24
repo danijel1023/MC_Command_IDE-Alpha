@@ -12,7 +12,7 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
 
     Start_New_Line();   //Reset all parameters - fresh start
 
-    std::vector<std::pair<size_t, wchar_t>> Brackets;
+    std::vector<wchar_t> Brackets;
     size_t Last_Pos = 0;
     bool New_Last_Pos = true;
     size_t Line_Size = Line.size();
@@ -22,9 +22,9 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
         wchar_t ch = Line.at(Pos);
 
         switch (ch) {
-        case L'(': Brackets.push_back(std::make_pair(Pos, L'(')); break;
-        case L'[': Brackets.push_back(std::make_pair(Pos, L'[')); break;
-        case L'{': Brackets.push_back(std::make_pair(Pos, L'{')); break;
+        case L'(': Brackets.push_back(L'('); break;
+        case L'[': Brackets.push_back(L'['); break;
+        case L'{': Brackets.push_back(L'{'); break;
 
         default:
             if (Brackets.size() == 0 && (ch == L'}' || ch == L']' || ch == L')')) {
@@ -37,7 +37,7 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
             else {
                 switch (ch) {
                 case L'}':
-                    if (Brackets.back().second == L'{') Brackets.pop_back();
+                    if (Brackets.back() == L'{') Brackets.pop_back();
                     else {
                         for (size_t CPos = Last_Pos; CPos < Colors.size(); CPos++)
                             Colors.at(CPos) = RGB(255, 0, 0);
@@ -46,7 +46,7 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                     }
                     break;
                 case L']':
-                    if (Brackets.back().second == L'[') Brackets.pop_back();
+                    if (Brackets.back() == L'[') Brackets.pop_back();
                     else {
                         for (size_t CPos = Last_Pos; CPos < Colors.size(); CPos++)
                             Colors.at(CPos) = RGB(255, 0, 0);
@@ -55,7 +55,7 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                     }
                     break;
                 case L')':
-                    if (Brackets.back().second == L'(') Brackets.pop_back();
+                    if (Brackets.back() == L'(') Brackets.pop_back();
                     else {
                         for (size_t CPos = Last_Pos; CPos < Colors.size(); CPos++)
                             Colors.at(CPos) = RGB(255, 0, 0);
@@ -104,7 +104,7 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                         else if (Type == L"argument") {
                             m_Syntax_Obj.Obj(L"parser");
 
-                            Result = Paraser_Matcher(Word);
+                            Result = Parser_Matcher(Word);
 
                             if (Result != L"ERROR") {
                                 for (size_t CPos = Last_Pos; CPos < Pos + 1; CPos++)
@@ -130,7 +130,8 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                     return;
                 }
 
-                if (Result != L"INCOMPLETE")
+                //if (Result != L"INCOMPLETE")  //not necessary?
+                if (!m_Paraser_Set_Lock)
                     Last_Pos = Pos + 1;
 
                 if (m_Syntax_Obj.Has_Name(L"redirect")) {

@@ -24,12 +24,34 @@ void IntelliSense::Init(HWND Parent) {
     Json IS_Linker(L"intellisense_structures/linker.json");
     auto& Commands = IS_Linker.Root().Obj(L"Commands").Str();
     auto& Minecraft_Color = IS_Linker.Root().Obj(L"Minecraft_Color").Str();
-
+    auto& Minecraft_Block_Predicate = IS_Linker.Root().Obj(L"Minecraft_Block_Predicate").Str();
+    auto& Minecraft_Dimension = IS_Linker.Root().Obj(L"Minecraft_Dimension").Str();
+    auto& Minecraft_Entity_Anchor = IS_Linker.Root().Obj(L"Minecraft_Entity_Anchor").Str();
+    auto& Minecraft_Entity_Summon = IS_Linker.Root().Obj(L"Minecraft_Entity_Summon").Str();
+    auto& Minecraft_Item_Enchantment = IS_Linker.Root().Obj(L"Minecraft_Item_Enchantment").Str();
+    auto& Minecraft_Item_Predicate = IS_Linker.Root().Obj(L"Minecraft_Item_Predicate").Str();
+    auto& Minecraft_Item_Stack = IS_Linker.Root().Obj(L"Minecraft_Item_Stack").Str();
+    auto& Minecraft_Mob_Effect = IS_Linker.Root().Obj(L"Minecraft_Mob_Effect").Str();
+    auto& Minecraft_Objective_Criteria = IS_Linker.Root().Obj(L"Minecraft_Objective_Criteria").Str();
+    auto& Minecraft_Operation = IS_Linker.Root().Obj(L"Minecraft_Operation").Str();
+    auto& Minecraft_Particle = IS_Linker.Root().Obj(L"Minecraft_Particle").Str();
+    auto& Minecraft_Scoreboard_Slot = IS_Linker.Root().Obj(L"Minecraft_Scoreboard_Slot").Str();
 
     Log_IO::wcout() << L"Starting Compiling IntelliSence structures" << std::endl;
     m_Syntax_Obj.Init(Commands);
+    m_Minecraft_Block_Predicate_Obj.Init(Minecraft_Block_Predicate);
     m_Minecraft_Color_Obj.Init(Minecraft_Color);
-
+    m_Minecraft_Dimension_Obj.Init(Minecraft_Dimension);
+    m_Minecraft_Entity_Anchor_Obj.Init(Minecraft_Entity_Anchor);
+    m_Minecraft_Entity_Summon_Obj.Init(Minecraft_Entity_Summon);
+    m_Minecraft_Item_Enchantment_Obj.Init(Minecraft_Item_Enchantment);
+    m_Minecraft_Item_Predicate_Obj.Init(Minecraft_Item_Predicate);
+    m_Minecraft_Item_Stack_Obj.Init(Minecraft_Item_Stack);
+    m_Minecraft_Mob_Effect_Obj.Init(Minecraft_Mob_Effect);
+    m_Minecraft_Objective_Criteria_Obj.Init(Minecraft_Objective_Criteria);
+    m_Minecraft_Operation_Obj.Init(Minecraft_Operation);
+    m_Minecraft_Particle_Obj.Init(Minecraft_Particle);
+    m_Minecraft_Scoreboard_Slot_Obj.Init(Minecraft_Scoreboard_Slot);
 
     Log_IO::wcout() << L"Completed Compiling IntelliSence structures" << std::endl;
 
@@ -133,4 +155,160 @@ void IntelliSense::Start_New_Line() {
     m_Paraser_Func_Name = L"";
     m_Paraser_Set_Lock = false;
     m_Paraser_Func_Counter = 0;
+}
+
+
+bool IntelliSense::Generic_ArrElm_Search(Json& Obj, std::wstring Word) {
+    Obj.Root();
+
+    size_t Size = Obj.Size();
+    for (size_t i = 0; i < Size; i++) {
+        if (Obj.Arr(i).Str() == Word) return true;
+        Obj.Back();
+    }
+
+    return false;
+}
+
+
+bool IntelliSense::Generic_Split(std::wstring Words, std::vector<std::wstring>* Output_Ptr) {
+    auto& Output = *Output_Ptr;
+
+    size_t Last_Pos = 0;
+    std::wstring Brackets;
+    size_t Words_Size = Words.size();
+    for (size_t Pos = 0; Pos < Words_Size; Pos++) {
+        wchar_t ch = Words.at(Pos);
+
+        switch (ch) {
+        case L'(': Brackets.push_back(L'('); break;
+        case L'[': Brackets.push_back(L'['); break;
+        case L'{': Brackets.push_back(L'{'); break;
+
+        default:
+            if (Brackets.size() == 0 && (ch == L'}' || ch == L']' || ch == L')')) {
+                Error_Handler << L"Brackets don't add up";
+                return false;
+            }
+
+            else {
+                switch (ch) {
+                case L'}':
+                    if (Brackets.back() == L'{') Brackets.pop_back();
+                    else {
+                        Error_Handler << L"Brackets don't add up";
+                        return false;
+                    }
+                    break;
+                case L']':
+                    if (Brackets.back() == L'[') Brackets.pop_back();
+                    else {
+                        Error_Handler << L"Brackets don't add up";
+                        return false;
+                    }
+                    break;
+                case L')':
+                    if (Brackets.back() == L'(') Brackets.pop_back();
+                    else {
+                        Error_Handler << L"Brackets don't add up";
+                        return false;
+                    }
+                    break;
+                }
+            }
+        }
+
+        if ((ch == L' ' || Pos + 1 == Words_Size) && Brackets.size() == 0) {
+            Output.push_back(Words.substr(Last_Pos, Pos - Last_Pos + 1));
+            Last_Pos = Pos + 1;
+        }
+    }
+
+    return true;
+}
+
+
+bool IntelliSense::Is_Lowercase(wchar_t& ch) {
+    switch (ch) {
+    case L'a': break;
+    case L'b': break;
+    case L'c': break;
+    case L'd': break;
+    case L'e': break;
+    case L'f': break;
+    case L'g': break;
+    case L'h': break;
+    case L'i': break;
+    case L'j': break;
+    case L'k': break;
+    case L'l': break;
+    case L'm': break;
+    case L'n': break;
+    case L'o': break;
+    case L'p': break;
+    case L'q': break;
+    case L'r': break;
+    case L's': break;
+    case L't': break;
+    case L'u': break;
+    case L'v': break;
+    case L'w': break;
+    case L'x': break;
+    case L'y': break;
+    case L'z': break;
+    default: return false;
+    }
+    return true;
+}
+
+
+bool IntelliSense::Is_Uppercase(wchar_t& ch) {
+    switch (ch) {
+    case L'A': break;
+    case L'B': break;
+    case L'C': break;
+    case L'D': break;
+    case L'E': break;
+    case L'F': break;
+    case L'G': break;
+    case L'H': break;
+    case L'I': break;
+    case L'J': break;
+    case L'K': break;
+    case L'L': break;
+    case L'M': break;
+    case L'N': break;
+    case L'O': break;
+    case L'P': break;
+    case L'Q': break;
+    case L'R': break;
+    case L'S': break;
+    case L'T': break;
+    case L'U': break;
+    case L'V': break;
+    case L'W': break;
+    case L'X': break;
+    case L'Y': break;
+    case L'Z': break;
+    default: return false;
+    }
+    return true;
+}
+
+
+bool IntelliSense::Is_Number(wchar_t& ch) {
+    switch (ch) {
+    case L'0': break;
+    case L'1': break;
+    case L'2': break;
+    case L'3': break;
+    case L'4': break;
+    case L'5': break;
+    case L'6': break;
+    case L'7': break;
+    case L'8': break;
+    case L'9': break;
+    default: return false;
+    }
+    return true;
 }
