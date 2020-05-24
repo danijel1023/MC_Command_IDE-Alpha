@@ -1,15 +1,28 @@
 # ChangeLog
 
+
+###### 2020-05-24 [[](https://github.com/danijel1023/MC_Command_IDE/commit/)]
+
+- Add `Minecraft_Block_State` parser (.json, folder, .cpp & linked it in parser.cpp)
+- Complete Parsers:
+`Minecraft_Block_Pos`,
+`Minecraft_Column_Pos`,
+`Minecraft_Message`
+- Move `changelog.md` to solution folder from test_refactor_edit_control_02 folder
+- Fix `Brigadier_Double` & `Brigadier_Integer` not failing on wrongly formated number
+- Remove double "pch.h" include
+---
+
+
 ###### 2020-05-24 [[f1ad2a6](https://github.com/danijel1023/MC_Command_IDE/commit/f1ad2a6314dbb9636bb5440dc8b9c514c67689e4)]
 
 - `changelog.md`
 - Most of the parsers
 - `Generic_Split` (splits string by space while keeping spaces inside of brackets and strings ('\\"' / '\\''))
-- Corrected typo (paraser -> parser)
-- Added `parsers.md` & `done_parsers.md`
-- Updated `README.md`
-
-- Completed Parsers:
+- Correct typo (paraser -> parser)
+- Add `parsers.md` & `done_parsers.md`
+- Update `README.md`
+- Complete Parsers:
 `Brigadier_Bool`,
 `Brigadier_Double`,
 `Brigadier_Float`,
@@ -29,5 +42,7 @@
 `Minecraft_Particle`,
 `Minecraft_Scoreboard_Slot`
 ---
+
+
 
 

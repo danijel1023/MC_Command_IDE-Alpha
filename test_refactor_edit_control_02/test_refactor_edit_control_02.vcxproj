@@ -125,6 +125,7 @@
     <ClCompile Include="src\edit_control\intellisense_system\parsers\brigadier_integer\brigadier_integer.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_block_pos\minecraft_block_pos.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_block_predicate\minecraft_block_predicate.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_block_state\minecraft_block_state.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_color\minecraft_color.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_column_pos\minecraft_column_pos.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_component\minecraft_component.cpp" />
@@ -175,10 +176,10 @@
     <ClCompile Include="src\edit_control\scroll_bar_system\scroll_bar.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="changelog.md" />
     <None Include="intellisense_structures\parsers\minecraft_block_predicate.json" />
     <None Include="intellisense_structures\parsers\commands.json" />
     <None Include="intellisense_structures\linker.json" />
+    <None Include="intellisense_structures\parsers\minecraft_block_state.json" />
     <None Include="intellisense_structures\parsers\minecraft_dimension.json" />
     <None Include="intellisense_structures\parsers\minecraft_entity_anchor.json" />
     <None Include="intellisense_structures\parsers\minecraft_entity_summon.json" />

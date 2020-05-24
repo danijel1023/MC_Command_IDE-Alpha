@@ -17,18 +17,34 @@ bool IntelliSense::Minecraft_Column_Pos(std::wstring& Word) {
     if (!Generic_Split(Word, &Words)) {
         m_Paraser_Set_Lock = false;
         return false;
-    } else {
-        size_t Words_Size = Words.size();
-        for (size_t i = 0; i < Words_Size; i++) {
-            auto& Word = Words.at(i);
-
-            if (!Brigadier_Double(Word)) {
-                m_Paraser_Set_Lock = false;
-                return false;
-            }
-        }
-        if (m_Paraser_Func_Counter == 0) return true;
     }
 
+    size_t Words_Size = Words.size();
+    for (size_t i = 0; i < Words_Size; i++) {
+        auto& Word = Words.at(i);
+        if (Word.size() == 0) {
+            Error_Handler << L"Missing argument";
+            m_Paraser_Set_Lock = false;
+            return false;
+        }
+
+        if (Word.at(0) == L'^') {
+            Error_Handler << L"Cannot use local coords in column pos";
+            m_Paraser_Set_Lock = false;
+            return false;
+        }
+
+        if (Word.at(0) == L'~') {
+            Word.erase(0, 1);
+        }
+
+        if (Word.size() != 0 && !Brigadier_Double(Word)) {
+            //'Error_Handler' not necessary because 'Brigadier_Double' has it's own 'Error_Handler'
+            m_Paraser_Set_Lock = false;
+            return false;
+        }
+    }
+
+    if (m_Paraser_Func_Counter == 0) return true;
     return false;
 }

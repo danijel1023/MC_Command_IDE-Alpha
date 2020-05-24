@@ -35,16 +35,20 @@ private:
 
     void Start_New_Line();
 
-    bool Validate_Name(std::wstring Name);
-    bool Validate_NBT(std::wstring Word);
-    bool Validate_Advancements(std::wstring Word);
-    bool Validate_Tags(std::wstring Word);
-    bool Validate_Scores(std::wstring Word);
-    bool Get_Num(std::wstring Word, MC_NType* Num);
-    bool Get_Range(std::wstring Word, RANGE* Num);
+
+    // ---------------------------------------------------- // Need to remove this sht and
+    /**/    bool Validate_Name(std::wstring Name);
+    /**/    bool Validate_NBT(std::wstring Word);
+    /**/    bool Validate_Advancements(std::wstring Word);
+    /**/    bool Validate_Tags(std::wstring Word);
+    /**/    bool Validate_Scores(std::wstring Word);
+    /**/    bool Get_Num(std::wstring Word, MC_NType* Num);
+    /**/    bool Get_Range(std::wstring Word, RANGE* Num);
+    // ---------------------------------------------------- // replace it with standard parsers
 
 
     Json m_Minecraft_Block_Predicate_Obj = Json();
+    Json m_Minecraft_Block_State_Obj = Json();
     Json m_Minecraft_Color_Obj = Json();
     Json m_Minecraft_Dimension_Obj = Json();
     Json m_Minecraft_Entity_Anchor_Obj = Json();
@@ -72,18 +76,14 @@ private:
 
     bool Minecraft_Block_Pos(std::wstring& Word);
     bool Minecraft_Block_Predicate(std::wstring& Word);
+    bool Minecraft_Block_State(std::wstring& Word);
     bool Minecraft_Color(std::wstring& Word);
     bool Minecraft_Column_Pos(std::wstring& Word);
-
-
     bool Minecraft_Component(std::wstring& Word);       //Later - Json format
-
-
     bool Minecraft_Dimension(std::wstring& Word);
     bool Minecraft_Entity(std::wstring& Word);
     bool Minecraft_Entity_Anchor(std::wstring& Word);
     bool Minecraft_Entity_Summon(std::wstring& Word);   //Entity list
-
     bool Minecraft_Function(std::wstring& Word);        //Function name syntax
     bool Minecraft_Game_Profile(std::wstring& Word);    //[not supported]
     bool Minecraft_Int_Range(std::wstring& Word);       //int (.. int)
@@ -115,6 +115,8 @@ private:
     bool Is_Lowercase(wchar_t& ch);
     bool Is_Uppercase(wchar_t& ch);
     bool Is_Number(wchar_t& ch);
+    bool Is_Valid_Double(std::wstring& Word);
+    bool Is_Valid_Integer(std::wstring& Word);
 
     size_t m_InitCalls = 0;
     bool m_Is_Initialized = false;

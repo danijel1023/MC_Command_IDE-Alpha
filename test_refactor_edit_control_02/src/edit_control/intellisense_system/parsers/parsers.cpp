@@ -3,6 +3,13 @@
 
 
 std::wstring IntelliSense::Parser_Matcher(std::wstring Word) {
+    if (Word.size() == 0) {
+        Error_Handler << L"Empty paramater";
+        return L"ERROR";
+    }
+
+    //std::wstring Parser = m_Syntax_Obj.Str();   //debugging
+
     if (m_Syntax_Obj.Str() == L"brigadier:bool") {
         m_Syntax_Obj.Back();
         if (Brigadier_Bool(Word)) return L"brigadier:bool";
@@ -36,6 +43,11 @@ std::wstring IntelliSense::Parser_Matcher(std::wstring Word) {
     else if (m_Syntax_Obj.Str() == L"minecraft:block_predicate") {
         m_Syntax_Obj.Back();
         if (Minecraft_Block_Predicate(Word)) return L"minecraft:block_predicate";
+    }
+
+    else if (m_Syntax_Obj.Str() == L"minecraft:block_state") {
+        m_Syntax_Obj.Back();
+        if (Minecraft_Block_State(Word)) return L"minecraft:block_state";
     }
 
     else if (m_Syntax_Obj.Str() == L"minecraft:color") {

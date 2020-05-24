@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "intelisense.h"
-#include "pch.h"
 
 bool IntelliSense::Minecraft_Function(std::wstring& Word) {
     bool Has_Name_Space = false;

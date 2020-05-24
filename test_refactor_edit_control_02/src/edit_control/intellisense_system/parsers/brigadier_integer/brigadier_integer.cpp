@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "intelisense.h"
-#include "pch.h"
 
 static bool Is_Number(wchar_t ch) {
     switch (ch) {
@@ -41,11 +40,16 @@ bool IntelliSense::Brigadier_Integer(std::wstring& Word) {
         m_Syntax_Obj.Back();
     }
 
+    if (!Is_Valid_Integer(Word)) {
+        Error_Handler << L"Invalid double paramater";
+        return false;
+    }
+
     int Result;
     try {
         Result = std::stoi(Word);
     }
-    catch (const std::invalid_argument& ia) {
+    catch (...) {
         Error_Handler << L"Invalid integer paramater";
         return false;
     }

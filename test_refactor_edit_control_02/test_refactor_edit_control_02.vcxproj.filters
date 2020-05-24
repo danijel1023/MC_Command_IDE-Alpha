@@ -172,6 +172,7 @@
     <ClCompile Include="src\edit_control\intellisense_system\parsers\parsers.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_block_pos\minecraft_block_pos.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\brigadier_string\brigadier_string.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_block_state\minecraft_block_state.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt">
@@ -185,7 +186,6 @@
     <None Include="intellisense_structures\parsers\commands.json">
       <Filter>intellisense_structures</Filter>
     </None>
-    <None Include="changelog.md" />
     <None Include="src\edit_control\intellisense_system\parsers\parsers.md" />
     <None Include="intellisense_structures\parsers\minecraft_item_stack.json" />
     <None Include="intellisense_structures\parsers\minecraft_entity_anchor.json" />
@@ -199,6 +199,7 @@
     <None Include="intellisense_structures\parsers\minecraft_scoreboard_slot.json" />
     <None Include="intellisense_structures\parsers\minecraft_dimension.json" />
     <None Include="intellisense_structures\parsers\minecraft_item_predicate.json" />
+    <None Include="intellisense_structures\parsers\minecraft_block_state.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bkg_image.bmp" />

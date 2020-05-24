@@ -23,8 +23,9 @@ void IntelliSense::Init(HWND Parent) {
 
     Json IS_Linker(L"intellisense_structures/linker.json");
     auto& Commands = IS_Linker.Root().Obj(L"Commands").Str();
-    auto& Minecraft_Color = IS_Linker.Root().Obj(L"Minecraft_Color").Str();
     auto& Minecraft_Block_Predicate = IS_Linker.Root().Obj(L"Minecraft_Block_Predicate").Str();
+    auto& Minecraft_Block_State = IS_Linker.Root().Obj(L"Minecraft_Block_State").Str();
+    auto& Minecraft_Color = IS_Linker.Root().Obj(L"Minecraft_Color").Str();
     auto& Minecraft_Dimension = IS_Linker.Root().Obj(L"Minecraft_Dimension").Str();
     auto& Minecraft_Entity_Anchor = IS_Linker.Root().Obj(L"Minecraft_Entity_Anchor").Str();
     auto& Minecraft_Entity_Summon = IS_Linker.Root().Obj(L"Minecraft_Entity_Summon").Str();
@@ -40,6 +41,7 @@ void IntelliSense::Init(HWND Parent) {
     Log_IO::wcout() << L"Starting Compiling IntelliSence structures" << std::endl;
     m_Syntax_Obj.Init(Commands);
     m_Minecraft_Block_Predicate_Obj.Init(Minecraft_Block_Predicate);
+    m_Minecraft_Block_State_Obj.Init(Minecraft_Block_State);
     m_Minecraft_Color_Obj.Init(Minecraft_Color);
     m_Minecraft_Dimension_Obj.Init(Minecraft_Dimension);
     m_Minecraft_Entity_Anchor_Obj.Init(Minecraft_Entity_Anchor);
@@ -219,7 +221,7 @@ bool IntelliSense::Generic_Split(std::wstring Words, std::vector<std::wstring>* 
         }
 
         if ((ch == L' ' || Pos + 1 == Words_Size) && Brackets.size() == 0) {
-            Output.push_back(Words.substr(Last_Pos, Pos - Last_Pos + 1));
+            Output.push_back(Words.substr(Last_Pos, Pos - Last_Pos + (ch != L' ')));
             Last_Pos = Pos + 1;
         }
     }
@@ -312,3 +314,30 @@ bool IntelliSense::Is_Number(wchar_t& ch) {
     }
     return true;
 }
+
+
+bool IntelliSense::Is_Valid_Double(std::wstring& Word) {
+    bool Has_Decimal = false;
+    size_t Word_Size = Word.size();
+    for (size_t i = 0; i < Word_Size; i++) {
+        if (Word.at(i) == L'.') {
+            if (Has_Decimal) return false;
+            Has_Decimal = true;
+        }
+
+        if (!Is_Number(Word.at(i))) return false;
+    }
+
+    return true;
+}
+
+
+bool IntelliSense::Is_Valid_Integer(std::wstring& Word) {
+    size_t Word_Size = Word.size();
+    for (size_t i = 0; i < Word_Size; i++) {
+        if (!Is_Number(Word.at(i))) return false;
+    }
+
+    return true;
+}
+

@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "intelisense.h"
-#include "pch.h"
 
 bool IntelliSense::Brigadier_Double(std::wstring& Word) {
     bool Using_Min = false, Using_Max = false;
@@ -24,11 +23,16 @@ bool IntelliSense::Brigadier_Double(std::wstring& Word) {
         m_Syntax_Obj.Back();
     }
 
+    if (!Is_Valid_Double(Word)) {
+        Error_Handler << L"Invalid double paramater";
+        return false;
+    }
+
     double Result;
     try {
         Result = std::stod(Word);
     }
-    catch (const std::invalid_argument& ia) {
+    catch (...) {
         Error_Handler << L"Invalid double paramater";
         return false;
     }
