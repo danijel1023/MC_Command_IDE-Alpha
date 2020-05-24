@@ -1,6 +1,6 @@
 # ChangeLog
 
-###### 2020-05-24 [[624756a](https://github.com/danijel1023/MC_Command_IDE/commit/624756a09caa0d32b815e46dc1d679646b6887fe)]
+###### 2020-05-24 [[f1ad2a6](https://github.com/danijel1023/MC_Command_IDE/commit/f1ad2a6314dbb9636bb5440dc8b9c514c67689e4)]
 
 - `changelog.md`
 - Most of the parsers
