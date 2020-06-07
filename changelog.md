@@ -1,7 +1,20 @@
 # ChangeLog
 
 
-###### 2020-05-24 [[](https://github.com/danijel1023/MC_Command_IDE/commit/)]
+###### 2020-MM-DD [[](https://github.com/danijel1023/MC_Command_IDE/commit/)]
+
+- Complete Parsers:
+`Minecraft_Objective`,
+`Minecraft_Int_Range`,
+`Minecraft_Swizzle`,
+`Minecraft_Team`,
+`Minecraft_Time`,
+`Minecraft_Vec2`,
+`Minecraft_Vec3`
+---
+
+
+###### 2020-05-24 [[29b519b](https://github.com/danijel1023/MC_Command_IDE/commit/29b519b58cbdf406d97e1cf12ad75b7653f9d5fa)]
 
 - Add `Minecraft_Block_State` parser (.json, folder, .cpp & linked it in parser.cpp)
 - Complete Parsers:

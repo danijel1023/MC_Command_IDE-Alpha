@@ -27,6 +27,7 @@ void IntelliSense::Init(HWND Parent) {
     auto& Minecraft_Block_State = IS_Linker.Root().Obj(L"Minecraft_Block_State").Str();
     auto& Minecraft_Color = IS_Linker.Root().Obj(L"Minecraft_Color").Str();
     auto& Minecraft_Dimension = IS_Linker.Root().Obj(L"Minecraft_Dimension").Str();
+    auto& Minecraft_Entity = IS_Linker.Root().Obj(L"Minecraft_Entity").Str();
     auto& Minecraft_Entity_Anchor = IS_Linker.Root().Obj(L"Minecraft_Entity_Anchor").Str();
     auto& Minecraft_Entity_Summon = IS_Linker.Root().Obj(L"Minecraft_Entity_Summon").Str();
     auto& Minecraft_Item_Enchantment = IS_Linker.Root().Obj(L"Minecraft_Item_Enchantment").Str();
@@ -44,6 +45,7 @@ void IntelliSense::Init(HWND Parent) {
     m_Minecraft_Block_State_Obj.Init(Minecraft_Block_State);
     m_Minecraft_Color_Obj.Init(Minecraft_Color);
     m_Minecraft_Dimension_Obj.Init(Minecraft_Dimension);
+    m_Minecraft_Entity_Obj.Init(Minecraft_Entity);
     m_Minecraft_Entity_Anchor_Obj.Init(Minecraft_Entity_Anchor);
     m_Minecraft_Entity_Summon_Obj.Init(Minecraft_Entity_Summon);
     m_Minecraft_Item_Enchantment_Obj.Init(Minecraft_Item_Enchantment);
@@ -228,116 +230,3 @@ bool IntelliSense::Generic_Split(std::wstring Words, std::vector<std::wstring>* 
 
     return true;
 }
-
-
-bool IntelliSense::Is_Lowercase(wchar_t& ch) {
-    switch (ch) {
-    case L'a': break;
-    case L'b': break;
-    case L'c': break;
-    case L'd': break;
-    case L'e': break;
-    case L'f': break;
-    case L'g': break;
-    case L'h': break;
-    case L'i': break;
-    case L'j': break;
-    case L'k': break;
-    case L'l': break;
-    case L'm': break;
-    case L'n': break;
-    case L'o': break;
-    case L'p': break;
-    case L'q': break;
-    case L'r': break;
-    case L's': break;
-    case L't': break;
-    case L'u': break;
-    case L'v': break;
-    case L'w': break;
-    case L'x': break;
-    case L'y': break;
-    case L'z': break;
-    default: return false;
-    }
-    return true;
-}
-
-
-bool IntelliSense::Is_Uppercase(wchar_t& ch) {
-    switch (ch) {
-    case L'A': break;
-    case L'B': break;
-    case L'C': break;
-    case L'D': break;
-    case L'E': break;
-    case L'F': break;
-    case L'G': break;
-    case L'H': break;
-    case L'I': break;
-    case L'J': break;
-    case L'K': break;
-    case L'L': break;
-    case L'M': break;
-    case L'N': break;
-    case L'O': break;
-    case L'P': break;
-    case L'Q': break;
-    case L'R': break;
-    case L'S': break;
-    case L'T': break;
-    case L'U': break;
-    case L'V': break;
-    case L'W': break;
-    case L'X': break;
-    case L'Y': break;
-    case L'Z': break;
-    default: return false;
-    }
-    return true;
-}
-
-
-bool IntelliSense::Is_Number(wchar_t& ch) {
-    switch (ch) {
-    case L'0': break;
-    case L'1': break;
-    case L'2': break;
-    case L'3': break;
-    case L'4': break;
-    case L'5': break;
-    case L'6': break;
-    case L'7': break;
-    case L'8': break;
-    case L'9': break;
-    default: return false;
-    }
-    return true;
-}
-
-
-bool IntelliSense::Is_Valid_Double(std::wstring& Word) {
-    bool Has_Decimal = false;
-    size_t Word_Size = Word.size();
-    for (size_t i = 0; i < Word_Size; i++) {
-        if (Word.at(i) == L'.') {
-            if (Has_Decimal) return false;
-            Has_Decimal = true;
-        }
-
-        if (!Is_Number(Word.at(i))) return false;
-    }
-
-    return true;
-}
-
-
-bool IntelliSense::Is_Valid_Integer(std::wstring& Word) {
-    size_t Word_Size = Word.size();
-    for (size_t i = 0; i < Word_Size; i++) {
-        if (!Is_Number(Word.at(i))) return false;
-    }
-
-    return true;
-}
-

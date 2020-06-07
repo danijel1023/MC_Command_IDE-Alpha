@@ -2,5 +2,5 @@
 #include "intelisense.h"
 
 bool IntelliSense::Minecraft_Team(std::wstring& Word) {
-    return false;
+    return Brigadier_String(Word, L"word");
 }

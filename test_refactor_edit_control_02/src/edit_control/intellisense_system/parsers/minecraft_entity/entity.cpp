@@ -2,29 +2,27 @@
 #include "intelisense.h"
 #include "entity_struct.h"
 
-#define END_ITER(i, max) (i + 1 == max)
-
-bool Is_Syntax_Ch(wchar_t ch);
-bool Is_Bracket(wchar_t ch);
-bool Is_Open_Bracket(wchar_t ch);
-bool Is_Closing_Bracket(wchar_t ch);
-wchar_t Matching_Bracket(wchar_t ch);
-
-
 
 bool IntelliSense::Minecraft_Entity(std::wstring& Word) {
-    MC_Entity MCE;
+    if (Word.size() < 2) {
+        Error_Handler << L"Entity has to have at leas 2 characters";
+        return false;
+    }
+
+    bool Needs_Players = false, Needs_Single = false;
+    bool Players = false, Single = false;
+
     if (m_Syntax_Obj.Has_Name(L"properties")) {
         m_Syntax_Obj.Obj(L"properties");
 
         if (m_Syntax_Obj.Has_Name(L"type")) {
             m_Syntax_Obj.Obj(L"type");
-            std::wstring Type = m_Syntax_Obj.Str();
+            std::wstring& Type = m_Syntax_Obj.Str();
 
             if (Type == L"players") {
-                MCE.Ent_Prop.Type = MCE_Prop::TYPE::Players;
+                Needs_Players = true;
             } else if (Type == L"entities") {
-                MCE.Ent_Prop.Type = MCE_Prop::TYPE::Entities;
+                Needs_Players = false;
             } else {
                 Error_Handler << L"Expected value 'players' or 'entities', got: " << Type.c_str();
             }
@@ -34,12 +32,12 @@ bool IntelliSense::Minecraft_Entity(std::wstring& Word) {
 
         if (m_Syntax_Obj.Has_Name(L"amount")) {
             m_Syntax_Obj.Obj(L"amount");
-            std::wstring Amount = m_Syntax_Obj.Str();
+            std::wstring& Amount = m_Syntax_Obj.Str();
 
             if (Amount == L"single") {
-                MCE.Ent_Prop.Amount = MCE_Prop::AMOUNT::Single;
+                Needs_Single = true;
             } else if (Amount == L"multiple") {
-                MCE.Ent_Prop.Amount = MCE_Prop::AMOUNT::Multiple;
+                Needs_Single = false;
             } else {
                 Error_Handler << L"Expected value 'single' or 'multiple', got: " << Amount.c_str();
             }
@@ -47,445 +45,187 @@ bool IntelliSense::Minecraft_Entity(std::wstring& Word) {
             m_Syntax_Obj.Back();
         }
         m_Syntax_Obj.Back();
-        
+
         if (Word.at(0) != L'@') {
-            return Validate_Name(Word);
-        } else {
-            if (Word.size() == 1) {
-                Error_Handler << L"Name containing ilegal char(s)";
+            size_t Word_Size = Word.size();
+            if (Word_Size < 3 || Word_Size > 16) {
+                Error_Handler << L"Entity name must be from 3 to 16 characters long";
                 return false;
-            } else {
-                switch (Word.at(1)) {
-                case L'a':
-                    MCE.Ent_Prop.Type = MCE_Prop::TYPE::Players;
-                    MCE.Ent_Prop.Amount = MCE_Prop::AMOUNT::Multiple;
-                    MCE.Sort = SORT::Arbitrary;
-                    break;
+            }
 
-                case L'e':
-                    MCE.Ent_Prop.Type = MCE_Prop::TYPE::Entities;
-                    MCE.Ent_Prop.Amount = MCE_Prop::AMOUNT::Multiple;
-                    MCE.Sort = SORT::Arbitrary;
-                    break;
+            for (size_t i = 0; i < Word_Size; i++) {
+                wchar_t ch = Word.at(i);
+                if (!(Std::Is_Lowercase(ch) || Std::Is_Number(ch) || Std::Is_Uppercase(ch) || ch == L'_')) {
+                    Error_Handler << L"Entity name contains ilegal characters";
+                    return false;
+                }
+            }
 
-                case L'p':
-                    MCE.Ent_Prop.Type = MCE_Prop::TYPE::Players;
-                    MCE.Ent_Prop.Amount = MCE_Prop::AMOUNT::Single;
-                    MCE.Sort = SORT::Nearest;
-                    break;
+            //Doesn't require players/single testing bc players name is 'type:player' and 'amount:single'
 
-                case L'r':
-                    MCE.Ent_Prop.Type = MCE_Prop::TYPE::Players;
-                    MCE.Ent_Prop.Amount = MCE_Prop::AMOUNT::Single;
-                    MCE.Sort = SORT::Random;
-                    break;
+            return true;
+        }
 
-                case L's':
-                    MCE.Ent_Prop.Type = MCE_Prop::TYPE::Entities;
-                    MCE.Ent_Prop.Amount = MCE_Prop::AMOUNT::Single;
-                    MCE.Sort = SORT::Arbitrary;
-                    break;
+        else {
+            std::vector<std::wstring> Used_Params;
+            switch (Word.at(1)) {
+            case L'a':
+                Used_Params.push_back(L"type");
+                Players = true;
+                Single = false;
+                break;
 
-                default:
-                    Error_Handler << L"Name containing ilegal char(s)";
+            case L'e':
+                Players = false;
+                Single = false;
+                break;
+
+            case L'p':
+                Used_Params.push_back(L"type");
+                Players = true;
+                Single = true;
+                break;
+
+            case L'r':
+                Used_Params.push_back(L"type");
+                Players = true;
+                Single = true;
+                break;
+
+            case L's':
+                Players = false;
+                Single = true;
+                break;
+
+            default:
+                Error_Handler << L"Invalid selector";
+                return false;
+            }
+
+            if (Word.size() > 2) {
+                Word.erase(0, 2);
+
+                std::wstring Error;
+                std::vector<std::wstring> Params;
+                if (!State_Formater::Seperate_State(Word, &Params, &Error, L'[', L']')) {
+                    Error_Handler << Error.c_str();
                     return false;
                 }
 
-                if (Word.size() > 2) {
-                    if (Word.at(2) != L'[') {
-                        Error_Handler << L"Selector must be followed by space or '['";
+                std::vector<std::wstring> Used_Invert_Params;
+                size_t Params_Size = Params.size();
+                for (size_t i = 0; i < Params_Size; i++) {
+                    std::wstring State = Params.at(i);
+                    std::wstring Value = Params.at(i + 1);
+
+                    Std::Clear_Spaces(&State);
+                    Std::Clear_Spaces(&Value);
+
+                    if (!m_Minecraft_Entity_Obj.Has_Name(State)) {
+                        Error_Handler << std::wstring(L"Invalid option: " + State).c_str();
                         return false;
                     }
 
-                    if (Word.back() != L']') {
-                        Error_Handler << L"Expected ']' on the end of the selector";
+                    m_Minecraft_Entity_Obj.Obj(State);
+
+
+                    bool Found_Invert = false;
+                    size_t Value_Size = Value.size();
+                    for (size_t i = 0; i < Value_Size; i++) {
+                        wchar_t ch = Value.at(i);
+                        if (ch != L' ') {
+                            Value.erase(0, i);
+                            if (ch == L'!') {
+                                Found_Invert = true;
+                                Value.erase(0, 1);
+                            }
+
+                            break;
+                        }
+                    }
+
+                    if (Found_Invert && !m_Minecraft_Entity_Obj.Has_Name(L"can_invert")) {
+                        Error_Handler << L"Didn't expect '!'";
                         return false;
                     }
 
+                    if (m_Minecraft_Entity_Obj.Obj(L"amount").Str() == L"single") {
+                        m_Minecraft_Entity_Obj.Back();
 
-
-                    //@x[TEXT IN HERE]
-                    enum class Modes { String, Operator, Value, Seperator };
-                    enum class Sub_Modes { Space, Char };
-
-                    std::wstring Brackets;
-                    Modes Mode = Modes::String;
-                    Sub_Modes Sub_Mode = Sub_Modes::Space;
-
-                    std::vector<std::wstring> Params;
-                    Params.emplace_back();
-
-                    bool Element_Start = false;
-                    std::wstring Paramater_str = Word.substr(3, Word.size() - 4);
-                    for (size_t Pos = 0; Pos < Paramater_str.size(); Pos++) {
-                        wchar_t ch = Paramater_str.at(Pos);
-
-                        if (Mode == Modes::String) {
-                            if (Sub_Mode == Sub_Modes::Space) {
-                                if (Is_Syntax_Ch(ch)) {
-                                    Error_Handler << L"Expected non-syntax char";
+                        if (Found_Invert) {
+                            if (std::find(Used_Invert_Params.begin(), Used_Invert_Params.end(), State) != Used_Invert_Params.end()) {
+                                if (std::find(Used_Params.begin(), Used_Params.end(), State) != Used_Params.end()) {
+                                    Error_Handler << std::wstring(L"Cannot mix 'inverted' match with 'non-inverted' for " + State).c_str();
                                     return false;
                                 }
-
-                                else if (ch != L' ') {
-                                    Element_Start = true;
-                                    Sub_Mode = Sub_Modes::Char;
-                                }
-                            }
-
-                            if (Sub_Mode != Sub_Modes::Space) {
-                                if (ch == L' ') {
-                                    Mode = Modes::Operator;
-                                    Sub_Mode = Sub_Modes::Space;
-                                } else if (ch == L'=') {
-                                    Element_Start = false;
-                                    Mode = Modes::Value;
-                                    Sub_Mode = Sub_Modes::Space;
-                                    Params.emplace_back();
-                                }
-
-                                else {
-                                    Params.back().push_back(ch);
-                                }
+                                Used_Invert_Params.push_back(State);
                             }
                         }
-
-                        else if (Mode == Modes::Operator) {
-                            if (ch == L'=') {
-                                Element_Start = false;
-                                Mode = Modes::Value;
-                                Sub_Mode = Sub_Modes::Space;
-                                Params.emplace_back();
-                            }
-
-                            else if (ch != L' ') {
-                                Error_Handler << L"Expected L' ' or L'='";
-                                return false;
-                            }
-                        }
-
-                        else if (Mode == Modes::Value) {
-                            if (Is_Open_Bracket(ch)) {
-                                Brackets.push_back(ch);
-                                Params.back().push_back(ch);
-                            } else if (Is_Closing_Bracket(ch)) {
-                                if (ch == Matching_Bracket(Brackets.back())) {
-                                    Brackets.pop_back();
-                                    Params.back().push_back(ch);
-                                } else {
-                                    Error_Handler << L"Unmached brackets";
-                                    return false;
-                                }
-                            }
-
-                            else if (Brackets.size() == 0) {
-                                if (Sub_Mode == Sub_Modes::Space) {
-                                    if (ch == L',') {
-                                        Element_Start = true;
-                                        Mode = Modes::String;
-                                        Sub_Mode = Sub_Modes::Space;
-                                        Params.emplace_back();
-                                    }
-
-                                    else if (ch != L' ') {
-                                        Sub_Mode = Sub_Modes::Char;
-                                    }
-                                }
-
-                                if (Sub_Mode != Sub_Modes::Space) {
-                                    if (ch == L' ') {
-                                        Mode = Modes::Seperator;
-                                        Sub_Mode = Sub_Modes::Space;
-                                    } else if (ch == L',') {
-                                        Element_Start = true;
-                                        Mode = Modes::String;
-                                        Sub_Mode = Sub_Modes::Space;
-                                        Params.emplace_back();
-                                    }
-
-                                    else {
-                                        Params.back().push_back(ch);
-                                    }
-                                }
-                            }
-
-                            else {
-                                Params.back().push_back(ch);
-                            }
-                        }
-
-                        else if (Mode == Modes::Seperator) {
-                            if (ch == L',') {
-                                Element_Start = true;
-                                Mode = Modes::String;
-                                Sub_Mode = Sub_Modes::Space;
-                                Params.emplace_back();
-                            }
-
-                            else if (ch != L' ') {
-                                Error_Handler << L"Expected L' ' or L','";
-                                return false;
-                            }
-                        }
-
-
-                        if (END_ITER(Pos, Paramater_str.size())) {
-                            if (Element_Start) {
-                                Error_Handler << L"Unexpected end of selector";
-                                return false;
-                            }
-                        }
-
-                    }
-
-                    if (Params.size() == 1) return true;
-                    for (size_t Word = 0; Word < Params.size(); Word++) {
-                        if (Params.at(Word) == L"name") {
-                            if (MCE.Name.Use) {
-                                Error_Handler << L"Already using 'name'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Validate_Name(Params.at(Word))) return false;
-                            MCE.Name = Params.at(Word);
-                        }
-
-                        else if (Params.at(Word) == L"nbt") {
-                            if (MCE.NBT.Use) {
-                                Error_Handler << L"Already using 'nbt'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Validate_NBT(Params.at(Word))) return false;
-                            MCE.Name = Params.at(Word);
-                        }
-
-                        else if (Params.at(Word) == L"team") {
-                            if (MCE.Team.Use) {
-                                Error_Handler << L"Already using 'team'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Validate_Name(Params.at(Word))) return false;
-                            MCE.Team = Params.at(Word);
-                        }
-
-                        else if (Params.at(Word) == L"advancements") {
-                            if (MCE.Advancements.Use) {
-                                Error_Handler << L"Already using 'advancements'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Validate_Advancements(Params.at(Word))) return false;
-                            MCE.Advancements = Params.at(Word);
-                        }
-
-                        else if (Params.at(Word) == L"scores") {
-                            if (MCE.Scores.Use) {
-                                Error_Handler << L"Already using 'scores'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Validate_Scores(Params.at(Word))) return false;
-                            MCE.Scores = Params.at(Word);
-                        }
-
-
-                        else if (Params.at(Word) == L"x") {
-                            if (MCE.Coordinates.X.Use) {
-                                Error_Handler << L"Already using 'x'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Get_Num(Params.at(Word), &MCE.Coordinates.X)) return false;
-                        }
-                        else if (Params.at(Word) == L"y") {
-                            if (MCE.Coordinates.Y.Use) {
-                                Error_Handler << L"Already using 'y'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Get_Num(Params.at(Word), &MCE.Coordinates.Y)) return false;
-                        }
-                        else if (Params.at(Word) == L"z") {
-                            if (MCE.Coordinates.Z.Use) {
-                                Error_Handler << L"Already using 'z'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Get_Num(Params.at(Word), &MCE.Coordinates.Z)) return false;
-                        }
-
-
-                        else if (Params.at(Word) == L"distance") {
-                            if (MCE.Select_Area.Use_Volume) {
-                                Error_Handler << L"Already using volume";
-                                return false;
-                            }
-
-                            if (MCE.Select_Area.Radius.Use) {
-                                Error_Handler << L"Already using 'distance'";
-                                return false;
-                            }
-                            Word++;
-                            MCE.Select_Area.Use_Radius = true;
-                            if (!Get_Range(Params.at(Word), &MCE.Select_Area.Radius)) return false;
-                        }
-
-                        else if (Params.at(Word) == L"dx") {
-                            if (MCE.Select_Area.Use_Radius) {
-                                Error_Handler << L"Already using radius";
-                                return false;
-                            }
-                            if (MCE.Select_Area.DX.Use) {
-                                Error_Handler << L"Already using 'dx'";
-                                return false;
-                            }
-                            Word++;
-                            MCE.Select_Area.Use_Volume = true;
-                            if (!Get_Num(Params.at(Word), &MCE.Select_Area.DX)) return false;
-                        }
-                        else if (Params.at(Word) == L"dy") {
-                            if (MCE.Select_Area.Use_Radius) {
-                                Error_Handler << L"Already using radius";
-                                return false;
-                            }
-                            if (MCE.Select_Area.DY.Use) {
-                                Error_Handler << L"Already using 'dy'";
-                                return false;
-                            }
-                            Word++;
-                            MCE.Select_Area.Use_Volume = true;
-                            if (!Get_Num(Params.at(Word), &MCE.Select_Area.DY)) return false;
-                        }
-                        else if (Params.at(Word) == L"dz") {
-                            if (MCE.Select_Area.Use_Radius) {
-                                Error_Handler << L"Already using radius";
-                                return false;
-                            }
-                            if (MCE.Select_Area.DZ.Use) {
-                                Error_Handler << L"Already using 'dz'";
-                                return false;
-                            }
-                            Word++;
-                            MCE.Select_Area.Use_Volume = true;
-                            if (!Get_Num(Params.at(Word), &MCE.Select_Area.DZ)) return false;
-                        }
-
-
-                        else if (Params.at(Word) == L"x_rotation") {
-                            if (MCE.Rotation.HRotation.Use) {
-                                Error_Handler << L"Already using 'x_rotation'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Get_Range(Params.at(Word), &MCE.Rotation.HRotation)) return false;
-                        }
-
-                        else if (Params.at(Word) == L"y_rotation") {
-                            if (MCE.Rotation.HRotation.Use) {
-                                Error_Handler << L"Already using 'y_rotation'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Get_Range(Params.at(Word), &MCE.Rotation.VRotation)) return false;
-                        }
-
-
-                        else if (Params.at(Word) == L"level") {
-                            if (MCE.XP_Level.Use) {
-                                Error_Handler << L"Already using 'level'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Get_Range(Params.at(Word), &MCE.XP_Level)) return false;
-                        }
-
-
-                        else if (Params.at(Word) == L"limit") {
-                            if (MCE.Limit.Use) {
-                                Error_Handler << L"Already using 'limit'";
-                                return false;
-                            }
-                            Word++;
-                            if (!Get_Num(Params.at(Word), &MCE.Limit)) return false;
-                        }
-
-
-                        else if (Params.at(Word) == L"tags") {
-                            Word++;
-                            if (!Validate_Tags(Params.at(Word))) return false;
-                            MCE.Tags = Params.at(Word);
-                        }
-
-
+                        
                         else {
-                            Error_Handler << L"Unindentified parameter";
+                            if (std::find(Used_Params.begin(), Used_Params.end(), State) != Used_Params.end()) {
+                                Error_Handler << std::wstring(L"Allowed only one: " + State).c_str();
+                                return false;
+                            }
+                            Used_Params.push_back(State);
+                        }
+                    }
+
+
+                    if (m_Minecraft_Entity_Obj.Has_Name(L"parser")) {
+                        m_Minecraft_Entity_Obj.Obj(L"parser");
+                        if (Parser_Matcher(Value, m_Minecraft_Entity_Obj) == L"ERROR") {
+                            return false;
+                        }
+
+                        m_Minecraft_Entity_Obj.Back();
+                    }
+                    
+                    else if (m_Minecraft_Entity_Obj.Has_Name(L"value")) {
+                        bool Match_Found = false;
+                        size_t Match_Value_Size = m_Minecraft_Entity_Obj.Obj(L"value").Size();
+                        for (size_t i = 0; i < Match_Value_Size; i++) {
+                            if (m_Minecraft_Entity_Obj.Arr(i).Str() == Value) {
+                                m_Minecraft_Entity_Obj.Back();
+                                Match_Found = true;
+                            }
+                            m_Minecraft_Entity_Obj.Back();
+                        }
+                        m_Minecraft_Entity_Obj.Back();
+
+                        if (!Match_Found) {
+                            Error_Handler << std::wstring(L"Invalid paramater: " + Value).c_str();
                             return false;
                         }
                     }
+                    
+                    else {
+                        Error_Handler << L"FATAL INTERNAL ERROR: Could not locate 'parser' nor 'value'";
+                        return false;
+                    }
+
+
+                    if (State == L"limit") {
+                        if (Value == L"1") Single = true;
+                        else Single = false;
+                    } else if (State == L"type") {
+                        if (Value == L"player" || Value == L"minecraft:player") Players = true;
+                        else Players = false;
+                    }
                 }
+            }
+
+            if (Needs_Players && !Players) {
+                Error_Handler << L"Needs only players";
+                return false;
+            }
+
+            if (Needs_Single && !Single) {
+                Error_Handler << L"Needs only one entity";
+                return false;
             }
         }
     }
 
     return true;
-}
-
-
-bool Is_Syntax_Ch(wchar_t ch) {
-    switch (ch) {
-    case L'=': return true;
-    case L',': return true;
-    }
-
-    return false;
-}
-
-
-bool Is_Bracket(wchar_t ch) {
-    switch (ch) {
-    case L'(': return true;
-    case L'[': return true;
-    case L'{': return true;
-    case L')': return true;
-    case L']': return true;
-    case L'}': return true;
-    }
-
-    return false;
-}
-
-bool Is_Open_Bracket(wchar_t ch) {
-    switch (ch) {
-    case L'(': return true;
-    case L'[': return true;
-    case L'{': return true;
-    }
-
-    return false;
-}
-
-bool Is_Closing_Bracket(wchar_t ch) {
-    switch (ch) {
-    case L')': return true;
-    case L']': return true;
-    case L'}': return true;
-    }
-
-    return false;
-}
-
-
-wchar_t Matching_Bracket(wchar_t ch) {
-    switch (ch) {
-    case L'(': return L')';
-    case L'[': return L']';
-    case L'{': return L'}';
-    case L')': return L'(';
-    case L']': return L'[';
-    case L'}': return L'{';
-    }
-
-    return false;
 }

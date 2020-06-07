@@ -13,6 +13,7 @@ project "test_refactor_edit_control_02"
     kind "WindowedApp"
     language "C++"
     staticruntime "Off"
+    defines { "_UNICODE", "UNICODE" }
 
     postbuildcommands {
         "{COPY} %{prj.location}bkg_image.bmp %{cfg.targetdir}"
@@ -46,10 +47,12 @@ project "test_refactor_edit_control_02"
     filter "configurations:Debug"
         symbols "On"
         runtime "Debug"
+        defines { "_BUILD_DEBUG" }
 
     filter "configurations:Release"
         optimize "On"
         runtime "Release"
+        defines { "_BUILD_RELEASE" }
         
 
 project "json_reader"

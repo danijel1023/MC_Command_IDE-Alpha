@@ -4,6 +4,7 @@
     "Minecraft_Block_State": "intellisense_structures/parsers/minecraft_block_state.json",
     "Minecraft_Color": "intellisense_structures/parsers/minecraft_color.json",
     "Minecraft_Dimension": "intellisense_structures/parsers/minecraft_dimension.json",
+    "Minecraft_Entity": "intellisense_structures/parsers/minecraft_entity.json",
     "Minecraft_Entity_Anchor": "intellisense_structures/parsers/minecraft_entity_anchor.json",
     "Minecraft_Entity_Summon": "intellisense_structures/parsers/minecraft_entity_summon.json",
     "Minecraft_Item_Enchantment": "intellisense_structures/parsers/minecraft_item_enchantment.json",

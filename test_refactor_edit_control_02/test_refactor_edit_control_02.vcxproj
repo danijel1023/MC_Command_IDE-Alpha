@@ -59,6 +59,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_BUILD_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;src\edit_control\_precompiled_headers;src\edit_control\intellisense_system;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -78,6 +79,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_UNICODE;UNICODE;_BUILD_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;src\edit_control\_precompiled_headers;src\edit_control\intellisense_system;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -96,10 +98,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\edit_control\intellisense_system\error_handler.h" />
-    <ClInclude Include="src\edit_control\intellisense_system\intelisense.h" />
-    <ClInclude Include="src\edit_control\intellisense_system\is_parser_structs.h" />
     <ClInclude Include="src\edit_control\intellisense_system\parsers\minecraft_entity\entity_struct.h" />
+    <ClInclude Include="src\edit_control\intellisense_system\state_formater\state_formater.h" />
     <ClInclude Include="src\edit_control\_edit_control\caret_struct.h" />
     <ClInclude Include="src\edit_control\_edit_control\control_register.h" />
     <ClInclude Include="src\edit_control\_edit_control\edit_control.h" />
@@ -108,6 +108,11 @@
     <ClInclude Include="src\edit_control\_precompiled_headers\error_msg_defines.h" />
     <ClInclude Include="src\edit_control\_precompiled_headers\pch.h" />
     <ClInclude Include="src\edit_control\dispatcher_system\dispatcher.h" />
+    <ClInclude Include="src\edit_control\intellisense_system\error_handler.h" />
+    <ClInclude Include="src\edit_control\intellisense_system\intelisense.h" />
+    <ClInclude Include="src\edit_control\intellisense_system\is_parser_structs.h" />
+    <ClInclude Include="src\edit_control\intellisense_system\snbt_formater\snbt_formater.h" />
+    <ClInclude Include="src\edit_control\intellisense_system\standard.h" />
     <ClInclude Include="src\edit_control\keyboard_system\history_defines.h" />
     <ClInclude Include="src\edit_control\keyboard_system\keyboard.h" />
     <ClInclude Include="src\edit_control\line_number_system\line_number.h" />
@@ -116,6 +121,17 @@
     <ClInclude Include="src\edit_control\scroll_bar_system\scroll_bar.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_double_range\minecraft_double_range.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_advancements\minecraft_entity_advancements.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_scores\minecraft_entity_scores.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\state_formater\state_formater.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\edit_control\_edit_control\control_register.cpp" />
+    <ClCompile Include="src\edit_control\_edit_control\edit_control.cpp" />
+    <ClCompile Include="src\edit_control\_precompiled_headers\pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\edit_control\dispatcher_system\dispatcher.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\error_handler.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\intellisense.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\is_logic.cpp" />
@@ -123,6 +139,7 @@
     <ClCompile Include="src\edit_control\intellisense_system\parsers\brigadier_double\brigadier_double.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\brigadier_float\brigadier_float.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\brigadier_integer\brigadier_integer.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\brigadier_string\brigadier_string.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_block_pos\minecraft_block_pos.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_block_predicate\minecraft_block_predicate.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_block_state\minecraft_block_state.cpp" />
@@ -151,22 +168,16 @@
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_particle\minecraft_particle.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_resource_location\minecraft_resource_location.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_rotation\minecraft_rotation.cpp" />
-    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_scoreboard_slot\minecraft_scoreboard_slot.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_score_holder\minecraft_score_holder.cpp" />
-    <ClCompile Include="src\edit_control\intellisense_system\parsers\brigadier_string\brigadier_string.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_scoreboard_slot\minecraft_scoreboard_slot.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_swizzle\minecraft_swizzle.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_team\minecraft_team.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_time\minecraft_time.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_vec2\minecraft_vec2.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_vec3\minecraft_vec3.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\parsers.cpp" />
-    <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\edit_control\_edit_control\control_register.cpp" />
-    <ClCompile Include="src\edit_control\_edit_control\edit_control.cpp" />
-    <ClCompile Include="src\edit_control\_precompiled_headers\pch.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\edit_control\dispatcher_system\dispatcher.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\snbt_formater\helper_func.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\snbt_formater\snbt_formater.cpp" />
     <ClCompile Include="src\edit_control\keyboard_system\helper_functions.cpp" />
     <ClCompile Include="src\edit_control\keyboard_system\history.cpp" />
     <ClCompile Include="src\edit_control\keyboard_system\keyboard.cpp" />
@@ -176,25 +187,26 @@
     <ClCompile Include="src\edit_control\scroll_bar_system\scroll_bar.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="intellisense_structures\parsers\minecraft_block_predicate.json" />
-    <None Include="intellisense_structures\parsers\commands.json" />
     <None Include="intellisense_structures\linker.json" />
+    <None Include="intellisense_structures\parsers\commands.json" />
+    <None Include="intellisense_structures\parsers\minecraft_block_predicate.json" />
     <None Include="intellisense_structures\parsers\minecraft_block_state.json" />
+    <None Include="intellisense_structures\parsers\minecraft_color.json" />
     <None Include="intellisense_structures\parsers\minecraft_dimension.json" />
+    <None Include="intellisense_structures\parsers\minecraft_entity.json" />
     <None Include="intellisense_structures\parsers\minecraft_entity_anchor.json" />
     <None Include="intellisense_structures\parsers\minecraft_entity_summon.json" />
     <None Include="intellisense_structures\parsers\minecraft_item_enchantment.json" />
     <None Include="intellisense_structures\parsers\minecraft_item_predicate.json" />
     <None Include="intellisense_structures\parsers\minecraft_item_stack.json" />
-    <None Include="intellisense_structures\parsers\minecraft_color.json" />
     <None Include="intellisense_structures\parsers\minecraft_mob_effect.json" />
     <None Include="intellisense_structures\parsers\minecraft_objective_criteria.json" />
     <None Include="intellisense_structures\parsers\minecraft_operation.json" />
     <None Include="intellisense_structures\parsers\minecraft_particle.json" />
     <None Include="intellisense_structures\parsers\minecraft_scoreboard_slot.json" />
+    <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt" />
     <None Include="src\edit_control\intellisense_system\parsers\done_parsers.md" />
     <None Include="src\edit_control\intellisense_system\parsers\parsers.md" />
-    <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bkg_image.bmp" />

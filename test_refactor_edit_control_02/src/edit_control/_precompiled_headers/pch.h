@@ -24,3 +24,20 @@ std::vector<T>& operator+=(std::vector<T>& v1, const std::vector<T>& v2) {
 // -- IO ---------------
 #include "debugg_defines.h"
 // ---------------------
+
+#include "standard.h"
+
+
+#ifdef _BUILD_DEBUG
+//Complete before Alpha release
+#define TODO_ALPHA
+
+//Complete before Beta release
+#define TODO_BETA
+
+#elif _BUILD_RELEASE
+//Complete before Alpha release
+#define TODO_ALPHA if();
+
+#endif
+

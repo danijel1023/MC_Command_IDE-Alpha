@@ -60,7 +60,6 @@ void Json::Init(const std::wstring& Path) {
     File.read(&Str[0], size);
 
     RD_Init(Str);
-    m_Initialized = true;
 }
 
 
@@ -93,6 +92,7 @@ void Json::RD_Init(const std::wstring& Raw_Data) {
     }
 
     Root();
+    m_Initialized = true;
 }
 
 

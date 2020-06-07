@@ -1,0 +1,116 @@
+{
+    //Custom paraser
+    "advancements": {
+        "amount": "single",
+        "parser": "minecraft:entity_advancements"
+    },
+    //Custom paraser
+    "distance": {
+        "amount": "single",
+        "parser": "minecraft:double_range",
+        "properties": {
+            "min": 0
+        }
+    },
+    "dx": {
+        "amount": "single",
+        "parser": "brigadier:double"
+    },
+    "dy": {
+        "amount": "single",
+        "parser": "brigadier:double"
+    },
+    "dz": {
+        "amount": "single",
+        "parser": "brigadier:double"
+    },
+    "gamemode": {
+        "amount": "single",
+        "can_invert": true,
+        "value": [
+            "adventure",
+            "creative",
+            "spectator",
+            "survival"
+        ]
+    },
+    //Custom paraser
+    "level": {
+        "amount": "single",
+        "parser": "minecraft:int_range",
+        "properties": {
+            "min": 0
+        }
+    },
+    "limit": {
+        "amount": "single",
+        "parser": "brigadier:integer",
+        "properties": {
+            "min": 1
+        }
+    },
+    "name": {
+        "amount": "single",
+        "can_invert": true,
+        "parser": "brigadier:string",
+        "properties": {
+            "type": "word"
+        }
+    },
+    "nbt": {
+        "amount": "multiple",
+        "can_invert": true,
+        "parser": "minecraft:nbt_compound_tag"
+    },
+    "predicate": {
+        "amount": "multiple",
+        "can_invert": true,
+        "parser": "minecraft:resource_location"
+    },
+    //Custom paraser
+    "scores": {
+        "amount": "single",
+        "parser": "minecraft:entity_scores"
+    },
+    "sort": {
+        "amount": "single",
+        "value": [ "arbitrary", "furthest", "nearest", "random" ]
+    },
+    "tag": {
+        "amount": "multiple",
+        "can_invert": true,
+        "parser": "brigadier:string",
+        "properties": {
+            "type": "word"
+        }
+    },
+    "type": {
+        "amount": "single",
+        "can_invert": true,
+        "parser": "minecraft:entity_summon"
+    },
+    "team": {
+        "amount": "single",
+        "parser": "minecraft:team"
+    },
+    "x": {
+        "amount": "single",
+        "parser": "brigadier:double"
+    },
+    "x_rotation": {
+        "amount": "single",
+        "parser": "brigadier:double"
+    },
+    "y": {
+        "amount": "single",
+        "parser": "brigadier:double"
+    },
+    "y_rotation": {
+        "amount": "single",
+        "parser": "brigadier:double"
+    },
+    "z": {
+        "amount": "single",
+        "parser": "brigadier:double"
+    }
+}

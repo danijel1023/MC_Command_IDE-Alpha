@@ -2,5 +2,56 @@
 #include "intelisense.h"
 
 bool IntelliSense::Minecraft_Block_State(std::wstring& Word) {
-    return Generic_ArrElm_Search(m_Minecraft_Block_State_Obj, Word);
+    std::wstring Params;
+    size_t Word_Size = Word.size();
+    for (size_t i = 0; i < Word_Size; i++) {
+        wchar_t ch = Word.at(i);
+
+        if (ch == L'[' || ch == L'{') {
+            Params = Word.substr(i);
+            Word.erase(i);
+            break;
+        }
+    }
+
+    if (!Generic_ArrElm_Search(m_Minecraft_Block_State_Obj, Word)) {
+        Error_Handler << std::wstring(L"Cannot find match for (" + Word + L") in blocks and blocks tags").c_str();
+        return false;
+    }
+
+
+    std::wstring Prop_Params;
+    std::wstring SNbt_Params;
+
+    size_t Ancor = 0;
+    size_t Params_Size = Params.size();
+    if (Params_Size != 0) {
+        bool Has_Properties = (Params.at(0) == L'[');
+
+        if (Has_Properties) {
+            for (size_t i = 0; i < Params_Size; i++) {
+                wchar_t ch = Params.at(i);
+
+                if (ch == L']') {
+                    Ancor = i;
+                    break;
+                }
+            }
+
+            Prop_Params = Params.substr(0, Ancor);
+
+            //Check properties params
+            TODO_ALPHA
+        }
+
+        SNbt_Params = Params.substr(Ancor);
+
+        std::wstring Error;
+        if (!SNbt_Formater::Is_Valid(&SNbt_Params, &Error)) {
+            Error_Handler << Error.c_str();
+            return false;
+        }
+    }
+
+    return true;
 }

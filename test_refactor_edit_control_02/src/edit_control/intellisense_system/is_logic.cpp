@@ -17,9 +17,28 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
     bool New_Last_Pos = true;
     size_t Line_Size = Line.size();
 
+    bool Is_String = false, Skip = false;
     //data get block 0 0 0
     for (size_t Pos = 0; Pos < Line_Size; Pos++) {
         wchar_t ch = Line.at(Pos);
+
+        if (Skip) { Skip = false; continue; }
+        if (Is_String) {
+            if (ch == L'\\') {
+                Skip = true;
+                continue;
+            }
+
+            if (ch == L'"') {
+                Is_String = false;
+            } else {
+                continue;
+            }
+        }
+
+        if (ch == L'"') {
+            Is_String = true;
+        }
 
         switch (ch) {
         case L'(': Brackets.push_back(L'('); break;
@@ -134,7 +153,7 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                 if (!m_Paraser_Set_Lock)
                     Last_Pos = Pos + 1;
 
-                if (m_Syntax_Obj.Has_Name(L"redirect")) {
+                if (!m_Paraser_Set_Lock && m_Syntax_Obj.Has_Name(L"redirect")) {
                     m_Syntax_Obj.Obj(L"redirect");
 
                     std::vector<std::wstring> Recirect;

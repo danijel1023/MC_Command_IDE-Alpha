@@ -1,11 +1,35 @@
 #include "pch.h"
 #include "intelisense.h"
 
-bool IntelliSense::Minecraft_Int_Range(std::wstring& Word, bool Use_Prop, bool Use_Min, int Min, bool Use_Max, int Max) {
-    return Minecraft_Int_Range(Word, m_Syntax_Obj, Use_Prop, Use_Min, Min, Use_Max, Max);
+bool IntelliSense::Minecraft_Double_Range(std::wstring& Word, bool Use_Prop, bool Use_Min, double Min, bool Use_Max, double Max) {
+    return Minecraft_Double_Range(Word, m_Syntax_Obj, Use_Prop, Use_Min, Use_Max, Min, Max);
 }
 
-bool IntelliSense::Minecraft_Int_Range(std::wstring& Word, Json& m_Syntax_Obj, bool Use_Prop, bool Use_Min, int Min, bool Use_Max, int Max) {
+bool IntelliSense::Minecraft_Double_Range(std::wstring& Word, Json& m_Syntax_Obj, bool Use_Prop, bool Use_Min, double Min, bool Use_Max, double Max) {
+    if (Use_Prop && m_Syntax_Obj.Has_Name(L"properties")) {
+        m_Syntax_Obj.Obj(L"properties");
+
+        if (m_Syntax_Obj.Has_Name(L"min")) {
+            m_Syntax_Obj.Obj(L"min");
+
+            Min = m_Syntax_Obj.Num();
+            Use_Min = true;
+
+            m_Syntax_Obj.Back();
+        }
+
+        if (m_Syntax_Obj.Has_Name(L"max")) {
+            m_Syntax_Obj.Obj(L"max");
+
+            Max = m_Syntax_Obj.Num();
+            Use_Max = true;
+
+            m_Syntax_Obj.Back();
+        }
+
+        m_Syntax_Obj.Back();
+    }
+
     size_t First_N_Pos = 0;
     size_t Second_N_Pos = 0;
 
@@ -24,7 +48,7 @@ bool IntelliSense::Minecraft_Int_Range(std::wstring& Word, Json& m_Syntax_Obj, b
     if (Second_N_Pos != 0) {    //Range
         std::wstring Min_Str = Word.substr(0, First_N_Pos);
         std::wstring Max_Str = Word.substr(Second_N_Pos);
-        int Min_Result = 0, Max_Result = 0;
+        double Min_Result = 0, Max_Result = 0;
 
         if (Min_Str.size() == 0 && Max_Str.size() == 0) {
             Error_Handler << L"Expected value or range value";
@@ -32,13 +56,13 @@ bool IntelliSense::Minecraft_Int_Range(std::wstring& Word, Json& m_Syntax_Obj, b
         }
 
         if (Min_Str.size()) {
-            if (!Brigadier_Integer(Min_Str, true, &Min_Result, false)) {
+            if (!Brigadier_Double(Min_Str, true, &Min_Result, false)) {
                 return false;
             }
         }
 
         if (Max_Str.size()) {
-            if (!Brigadier_Integer(Max_Str, true, &Max_Result, false)) {
+            if (!Brigadier_Double(Max_Str, true, &Max_Result, false)) {
                 return false;
             }
         }
@@ -58,10 +82,10 @@ bool IntelliSense::Minecraft_Int_Range(std::wstring& Word, Json& m_Syntax_Obj, b
             return false;
         }
     }
-    
+
     else {  //Not-Range
-        int Result = 0;
-        if (!Brigadier_Integer(Word, true, &Result, false)) {
+        double Result = 0;
+        if (!Brigadier_Double(Word, true, &Result, false)) {
             Error_Handler << L"Number is not right integer format";
             return false;
         }
@@ -77,5 +101,5 @@ bool IntelliSense::Minecraft_Int_Range(std::wstring& Word, Json& m_Syntax_Obj, b
         }
     }
 
-    return true;
+    return false;
 }

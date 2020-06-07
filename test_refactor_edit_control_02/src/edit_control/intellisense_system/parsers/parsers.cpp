@@ -1,8 +1,11 @@
 #include "pch.h"
 #include "intelisense.h"
 
-
 std::wstring IntelliSense::Parser_Matcher(std::wstring Word) {
+    return Parser_Matcher(Word, m_Syntax_Obj);
+}
+
+std::wstring IntelliSense::Parser_Matcher(std::wstring Word, Json& m_Syntax_Obj) {
     if (Word.size() == 0) {
         Error_Handler << L"Empty paramater";
         return L"ERROR";
@@ -70,14 +73,29 @@ std::wstring IntelliSense::Parser_Matcher(std::wstring Word) {
         if (Minecraft_Dimension(Word)) return L"minecraft:dimension";
     }
 
+    else if (m_Syntax_Obj.Str() == L"minecraft:double_range") { //Custom parsers
+        m_Syntax_Obj.Back();
+        if (Minecraft_Double_Range(Word)) return L"minecraft:double_range";
+    }
+
     else if (m_Syntax_Obj.Str() == L"minecraft:entity") {
         m_Syntax_Obj.Back();
         if (Minecraft_Entity(Word)) return L"minecraft:entity";
     }
 
+    else if (m_Syntax_Obj.Str() == L"minecraft:entity_advancements") {  //Custom parsers
+        m_Syntax_Obj.Back();
+        if (Minecraft_Entity_Advancements(Word)) return L"minecraft:entity_advancements";
+    }
+
     else if (m_Syntax_Obj.Str() == L"minecraft:entity_anchor") {
         m_Syntax_Obj.Back();
         if (Minecraft_Entity_Anchor(Word)) return L"minecraft:entity_anchor";
+    }
+
+    else if (m_Syntax_Obj.Str() == L"minecraft:entity_scores") {    //Custom parsers
+        m_Syntax_Obj.Back();
+        if (Minecraft_Entity_Scores(Word)) return L"minecraft:entity_scores";
     }
 
     else if (m_Syntax_Obj.Str() == L"minecraft:entity_summon") {

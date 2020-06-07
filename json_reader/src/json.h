@@ -17,6 +17,8 @@ public:
 
     //Init function with just path to file
     void Init(const std::wstring& Path);
+    //Init function with for raw file data
+    void RD_Init(const std::wstring& Raw_Data);
 
     Json& Root();
     Json& Back();
@@ -30,6 +32,14 @@ public:
     size_t Size();
     std::vector<std::wstring> Get_Names();
     bool Has_Name(const std::wstring& Name);
+    bool Is_Halted() { return m_Halted; }
+
+    bool Is_Arr() { return (std::get<1>(m_Branch->back()) == Data_Value_Type::Array); }
+    bool Is_Obj() { return (std::get<1>(m_Branch->back()) == Data_Value_Type::Object); }
+    bool Is_Str() { return (std::get<1>(m_Branch->back()) == Data_Value_Type::String); }
+    bool Is_Num() { return (std::get<1>(m_Branch->back()) == Data_Value_Type::Number); }
+    bool Is_Bol() { return (std::get<1>(m_Branch->back()) == Data_Value_Type::Bool); }
+    bool Is_Ptr() { return (std::get<1>(m_Branch->back()) == Data_Value_Type::Pointer); }
 
     std::wstringstream Get_Tree();
 
@@ -43,10 +53,6 @@ private:
     bool m_Error_Reading_Tree = false;
     bool m_Error_Building_Tree = false;
 
-
-
-    //Init function with for raw file data
-    void RD_Init(const std::wstring& Raw_Data);
 
     //Sanitised raw data: removed unnecessary spaces, newlines and tabs
     std::wstring* m_Raw_Data = new std::wstring();
