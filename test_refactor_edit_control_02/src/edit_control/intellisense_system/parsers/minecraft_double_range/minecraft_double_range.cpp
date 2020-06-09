@@ -101,5 +101,5 @@ bool IntelliSense::Minecraft_Double_Range(std::wstring& Word, Json& m_Syntax_Obj
         }
     }
 
-    return false;
+    return true;
 }

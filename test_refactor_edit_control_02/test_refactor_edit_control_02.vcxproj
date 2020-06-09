@@ -98,7 +98,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\edit_control\intellisense_system\parsers\minecraft_entity\entity_struct.h" />
     <ClInclude Include="src\edit_control\intellisense_system\state_formater\state_formater.h" />
     <ClInclude Include="src\edit_control\_edit_control\caret_struct.h" />
     <ClInclude Include="src\edit_control\_edit_control\control_register.h" />
@@ -121,9 +120,11 @@
     <ClInclude Include="src\edit_control\scroll_bar_system\scroll_bar.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="intellisense_structures\parsers\minecraft_entity_type.json" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_double_range\minecraft_double_range.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_advancements\minecraft_entity_advancements.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_scores\minecraft_entity_scores.cpp" />
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_type\minecraft_entity_type.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\state_formater\state_formater.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\edit_control\_edit_control\control_register.cpp" />
@@ -148,7 +149,6 @@
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_component\minecraft_component.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_dimension\minecraft_dimension.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity\entity.cpp" />
-    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity\param_validator.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_anchor\minecraft_entity_anchor.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_summon\minecraft_entity_summon.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_function\minecraft_function.cpp" />

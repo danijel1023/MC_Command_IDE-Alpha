@@ -9,7 +9,7 @@ bool IntelliSense::Brigadier_Integer(std::wstring& Word, Json& m_Syntax_Obj, boo
     bool Use_Min = false, Use_Max = false;
     int Min = 0, Max = 0;
 
-    if (m_Syntax_Obj.Has_Name(L"properties")) {
+    if (Use_Prop && m_Syntax_Obj.Has_Name(L"properties")) {
         m_Syntax_Obj.Obj(L"properties");
 
         if (m_Syntax_Obj.Has_Name(L"min")) {

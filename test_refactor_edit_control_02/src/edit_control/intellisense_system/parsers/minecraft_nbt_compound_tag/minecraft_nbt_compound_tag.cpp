@@ -2,5 +2,11 @@
 #include "intelisense.h"
 
 bool IntelliSense::Minecraft_Nbt_Compound_Tag(std::wstring& Word) {
-    return false;
+    std::wstring Error;
+    if (!SNbt_Formater::Is_Valid_c(Word, &Error)) {
+        Error_Handler << Error.c_str();
+        return false;
+    }
+
+    return true;
 }

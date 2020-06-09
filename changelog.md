@@ -1,16 +1,12 @@
 # ChangeLog
 
 
-###### 2020-MM-DD [[](https://github.com/danijel1023/MC_Command_IDE/commit/)]
+###### 2020-06-10 [[](https://github.com/danijel1023/MC_Command_IDE/commit/)]
 
-- Complete Parsers:
-`Minecraft_Objective`,
-`Minecraft_Int_Range`,
-`Minecraft_Swizzle`,
-`Minecraft_Team`,
-`Minecraft_Time`,
-`Minecraft_Vec2`,
-`Minecraft_Vec3`
+ - Redo a lot of the parsers to match official minecraft specification
+ - Add Minecraft_Entity_Type that contains all entityes for entity selector
+ - Add custom parsers for entity selector
+
 ---
 
 

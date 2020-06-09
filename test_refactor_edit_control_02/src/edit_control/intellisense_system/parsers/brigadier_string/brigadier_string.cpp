@@ -2,6 +2,10 @@
 #include "intelisense.h"
 
 bool IntelliSense::Brigadier_String(std::wstring& Word, std::wstring Properties) {
+    return Brigadier_String(Word, m_Syntax_Obj, Properties);
+}
+
+bool IntelliSense::Brigadier_String(std::wstring& Word, Json& m_Syntax_Obj, std::wstring Properties) {
     if (Properties.size() == 0 && m_Syntax_Obj.Has_Name(L"properties")) {
         m_Syntax_Obj.Obj(L"properties");
 

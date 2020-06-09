@@ -43,8 +43,8 @@
 -  [ ] Minecraft_Swizzle
 -  [ ] Minecraft_Team
 -  [ ] Minecraft_Time
--  [ ] Minecraft_Vec2
--  [ ] Minecraft_Vec3
+-  [x] Minecraft_Vec2
+-  [x] Minecraft_Vec3
 
 [Parser List](https://minecraft.gamepedia.com/Argument_types)
 

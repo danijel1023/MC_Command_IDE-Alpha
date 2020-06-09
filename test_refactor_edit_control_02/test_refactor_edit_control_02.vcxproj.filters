@@ -222,7 +222,6 @@
     <ClInclude Include="src\edit_control\scroll_bar_system\scroll_bar.h">
       <Filter>src\edit_control\scroll_bar_system</Filter>
     </ClInclude>
-    <ClInclude Include="src\edit_control\intellisense_system\parsers\minecraft_entity\entity_struct.h" />
     <ClInclude Include="src\edit_control\intellisense_system\state_formater\state_formater.h" />
   </ItemGroup>
   <ItemGroup>
@@ -287,9 +286,6 @@
       <Filter>src\edit_control\intellisense_system\parsers\minecraft_dimension</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity\entity.cpp">
-      <Filter>src\edit_control\intellisense_system\parsers\minecraft_entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity\param_validator.cpp">
       <Filter>src\edit_control\intellisense_system\parsers\minecraft_entity</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_anchor\minecraft_entity_anchor.cpp">
@@ -404,6 +400,8 @@
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_double_range\minecraft_double_range.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_scores\minecraft_entity_scores.cpp" />
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_advancements\minecraft_entity_advancements.cpp" />
+    <ClCompile Include="intellisense_structures\parsers\minecraft_entity_type.json" />
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_type\minecraft_entity_type.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="intellisense_structures\linker.json">

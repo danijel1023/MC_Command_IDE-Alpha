@@ -2,12 +2,13 @@
 #include "pch.h"
 
 namespace Std{
-    inline static bool Is_Lowercase(wchar_t& ch);
-    inline static bool Is_Uppercase(wchar_t& ch);
-    inline static bool Is_Number(wchar_t& ch);
-    static bool Is_Valid_Double(std::wstring& Word);
-    static bool Is_Valid_Integer(std::wstring& Word);
-    static void Clear_Spaces(std::wstring* Word_Ptr);
+    inline bool Is_Lowercase(wchar_t& ch);
+    inline bool Is_Uppercase(wchar_t& ch);
+    inline bool Is_Number(wchar_t& ch);
+    bool Is_Valid_Double(std::wstring& Word);
+    bool Is_Valid_Integer(std::wstring& Word);
+    void Clear_Spaces(std::wstring* Word_Ptr);
+    bool Check_Spaces(std::wstring& Word);
 };
 
 

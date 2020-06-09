@@ -27,7 +27,7 @@ bool IntelliSense::Minecraft_Function(std::wstring& Word) {
                 return false;
             }
         } else if (Has_Name_Space) {
-            if (!(Std::Is_Lowercase(ch) || Std::Std::Is_Number(ch) || ch == L'_' || ch == L'-' || ch == L'.' || ch == L'/')) {
+            if (!(Std::Is_Lowercase(ch) || Std::Is_Number(ch) || ch == L'_' || ch == L'-' || ch == L'.' || ch == L'/')) {
                 Error_Handler << L"The function path paramater contains ilegal chars";
                 return false;
             } else if (ch == L'/') {

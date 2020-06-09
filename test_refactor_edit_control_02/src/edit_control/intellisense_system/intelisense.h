@@ -6,7 +6,6 @@
 
 #include "is_parser_structs.h"
 #include "error_handler.h"
-#include "parsers/minecraft_entity/entity_struct.h"
 #include "snbt_formater/snbt_formater.h"
 #include "state_formater/state_formater.h"
 
@@ -44,6 +43,7 @@ private:
     Json m_Minecraft_Entity_Obj = Json();
     Json m_Minecraft_Entity_Anchor_Obj = Json();
     Json m_Minecraft_Entity_Summon_Obj = Json();
+    Json m_Minecraft_Entity_Type_Obj = Json();
     Json m_Minecraft_Item_Enchantment_Obj = Json();
     Json m_Minecraft_Item_Predicate_Obj = Json();
     Json m_Minecraft_Item_Stack_Obj = Json();
@@ -68,6 +68,7 @@ private:
     bool Brigadier_Integer(std::wstring& Word, bool Use_Ret = false, int* Ret_Val = nullptr, bool Use_Prop = true, bool Use_Min = false, int Min = 0, bool Use_Max = false, int Max = 0);
     bool Brigadier_Integer(std::wstring& Word, Json& m_Syntax_Obj, bool Use_Ret = false, int* Ret_Val = nullptr, bool Use_Prop = true, bool Use_Min = false, int Min = 0, bool Use_Max = false, int Max = 0);
     bool Brigadier_String(std::wstring& Word, std::wstring Properties = std::wstring());
+    bool Brigadier_String(std::wstring& Word, Json& m_Syntax_Obj, std::wstring Properties = std::wstring());
 
     bool Minecraft_Block_Pos(std::wstring& Word);
     bool Minecraft_Block_Predicate(std::wstring& Word);
@@ -78,11 +79,13 @@ private:
     bool Minecraft_Dimension(std::wstring& Word);
     bool Minecraft_Double_Range(std::wstring& Word, bool Use_Prop = true, bool Use_Min = false, double Min = 0, bool Use_Max = false, double Max = 0);
     bool Minecraft_Double_Range(std::wstring& Word, Json& m_Syntax_Obj, bool Use_Prop = true, bool Use_Min = false, double Min = 0, bool Use_Max = false, double Max = 0);
-    bool Minecraft_Entity(std::wstring& Word);
+    bool Minecraft_Entity(std::wstring& Word, bool Use_Prop = true, bool Needs_Players = false, bool Needs_Single = false);
+    bool Minecraft_Entity(std::wstring& Word, Json& m_Syntax_Obj, bool Use_Prop = true, bool Needs_Players = false, bool Needs_Single = false);
     bool Minecraft_Entity_Advancements(std::wstring& Word);
     bool Minecraft_Entity_Anchor(std::wstring& Word);
     bool Minecraft_Entity_Scores(std::wstring& Word);
     bool Minecraft_Entity_Summon(std::wstring& Word);
+    bool Minecraft_Entity_Type(std::wstring& Word);
     bool Minecraft_Function(std::wstring& Word);
     bool Minecraft_Game_Profile(std::wstring& Word);
     bool Minecraft_Int_Range(std::wstring& Word, bool Use_Prop = true, bool Use_Min = false, int Min = 0, bool Use_Max = false, int Max = 0);

@@ -6,6 +6,30 @@ bool IntelliSense::Minecraft_Int_Range(std::wstring& Word, bool Use_Prop, bool U
 }
 
 bool IntelliSense::Minecraft_Int_Range(std::wstring& Word, Json& m_Syntax_Obj, bool Use_Prop, bool Use_Min, int Min, bool Use_Max, int Max) {
+    if (Use_Prop && m_Syntax_Obj.Has_Name(L"properties")) {
+        m_Syntax_Obj.Obj(L"properties");
+
+        if (m_Syntax_Obj.Has_Name(L"min")) {
+            m_Syntax_Obj.Obj(L"min");
+
+            Min = m_Syntax_Obj.Num();
+            Use_Min = true;
+
+            m_Syntax_Obj.Back();
+        }
+
+        if (m_Syntax_Obj.Has_Name(L"max")) {
+            m_Syntax_Obj.Obj(L"max");
+
+            Max = m_Syntax_Obj.Num();
+            Use_Max = true;
+
+            m_Syntax_Obj.Back();
+        }
+
+        m_Syntax_Obj.Back();
+    }
+    
     size_t First_N_Pos = 0;
     size_t Second_N_Pos = 0;
 

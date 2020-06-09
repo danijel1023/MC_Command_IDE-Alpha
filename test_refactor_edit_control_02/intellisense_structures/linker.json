@@ -7,6 +7,7 @@
     "Minecraft_Entity": "intellisense_structures/parsers/minecraft_entity.json",
     "Minecraft_Entity_Anchor": "intellisense_structures/parsers/minecraft_entity_anchor.json",
     "Minecraft_Entity_Summon": "intellisense_structures/parsers/minecraft_entity_summon.json",
+    "Minecraft_Entity_Type": "intellisense_structures/parsers/minecraft_entity_type.json",
     "Minecraft_Item_Enchantment": "intellisense_structures/parsers/minecraft_item_enchantment.json",
     "Minecraft_Item_Predicate": "intellisense_structures/parsers/minecraft_item_predicate.json",
     "Minecraft_Item_Stack": "intellisense_structures/parsers/minecraft_item_stack.json",

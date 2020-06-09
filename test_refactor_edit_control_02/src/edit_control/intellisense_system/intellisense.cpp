@@ -30,6 +30,7 @@ void IntelliSense::Init(HWND Parent) {
     auto& Minecraft_Entity = IS_Linker.Root().Obj(L"Minecraft_Entity").Str();
     auto& Minecraft_Entity_Anchor = IS_Linker.Root().Obj(L"Minecraft_Entity_Anchor").Str();
     auto& Minecraft_Entity_Summon = IS_Linker.Root().Obj(L"Minecraft_Entity_Summon").Str();
+    auto& Minecraft_Entity_Type = IS_Linker.Root().Obj(L"Minecraft_Entity_Type").Str();
     auto& Minecraft_Item_Enchantment = IS_Linker.Root().Obj(L"Minecraft_Item_Enchantment").Str();
     auto& Minecraft_Item_Predicate = IS_Linker.Root().Obj(L"Minecraft_Item_Predicate").Str();
     auto& Minecraft_Item_Stack = IS_Linker.Root().Obj(L"Minecraft_Item_Stack").Str();
@@ -48,6 +49,7 @@ void IntelliSense::Init(HWND Parent) {
     m_Minecraft_Entity_Obj.Init(Minecraft_Entity);
     m_Minecraft_Entity_Anchor_Obj.Init(Minecraft_Entity_Anchor);
     m_Minecraft_Entity_Summon_Obj.Init(Minecraft_Entity_Summon);
+    m_Minecraft_Entity_Type_Obj.Init(Minecraft_Entity_Type);
     m_Minecraft_Item_Enchantment_Obj.Init(Minecraft_Item_Enchantment);
     m_Minecraft_Item_Predicate_Obj.Init(Minecraft_Item_Predicate);
     m_Minecraft_Item_Stack_Obj.Init(Minecraft_Item_Stack);

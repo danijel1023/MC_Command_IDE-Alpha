@@ -87,7 +87,7 @@
     "type": {
         "amount": "single",
         "can_invert": true,
-        "parser": "minecraft:entity_summon"
+        "parser": "minecraft:entity_type"
     },
     "team": {
         "amount": "single",
