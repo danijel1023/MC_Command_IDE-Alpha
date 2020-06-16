@@ -1,7 +1,7 @@
 # ChangeLog
 
 
-###### 2020-06-16 [[](https://github.com/danijel1023/MC_Command_IDE/commit/)]
+###### 2020-06-16 [[5a079a8](https://github.com/danijel1023/MC_Command_IDE/commit/5a079a83994eda87f2834fe3c813e7c57bdb6b04)]
 
  - Fixed:
    - brigadier bool (always returns false)
@@ -30,7 +30,7 @@
 ---
 
 
-###### 2020-06-10 [[e5539d8](https://github.com/danijel1023/MC_Command_IDE/commit/802d81f8c6e6f87954d8e5b411836449bce04204)]
+###### 2020-06-10 [[802d81f](https://github.com/danijel1023/MC_Command_IDE/commit/802d81f8c6e6f87954d8e5b411836449bce04204)]
 
  - Redo a lot of the parsers to match official minecraft specification
  - Add Minecraft_Entity_Type that contains all entityes for entity selector
