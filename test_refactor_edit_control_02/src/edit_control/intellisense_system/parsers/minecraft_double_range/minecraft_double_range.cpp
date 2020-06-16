@@ -67,7 +67,7 @@ bool IntelliSense::Minecraft_Double_Range(std::wstring& Word, Json& m_Syntax_Obj
             }
         }
 
-        if (Min_Result > Max_Result) {
+        if (Min_Str.size() && Max_Str.size() && Min_Result > Max_Result) {
             Error_Handler << L"Min value cannot be larger than max value";
             return false;
         }

@@ -2,8 +2,8 @@
 #include "pch.h"
 
 namespace SNbt_Formater {
-    bool Is_Valid_c(std::wstring Word, std::wstring* Error);
-    bool Is_Valid(std::wstring* Word_Ptr, std::wstring* Error);
+    bool Is_Valid(std::wstring Word, std::wstring* Error);
+    bool Is_Valid_nc(std::wstring* Word_Ptr, std::wstring* Error);
 
     //*** Private ***
     bool Compress_Str(std::wstring* Word_Ptr, std::wstring* Error);

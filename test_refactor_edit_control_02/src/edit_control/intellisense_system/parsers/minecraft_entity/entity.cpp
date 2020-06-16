@@ -116,7 +116,8 @@ bool IntelliSense::Minecraft_Entity(std::wstring& Word, Json& m_Syntax_Obj, bool
 
             std::vector<std::wstring> Used_Invert_Params;
             size_t Params_Size = Params.size();
-            for (size_t i = 0; i < Params_Size; i++) {
+            m_Minecraft_Entity_Obj.Root();
+            for (size_t i = 0; i < Params_Size; i += 2) {
                 std::wstring State = Params.at(i);
                 std::wstring Value = Params.at(i + 1);
 

@@ -41,12 +41,11 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
         }
 
         switch (ch) {
-        case L'(': Brackets.push_back(L'('); break;
         case L'[': Brackets.push_back(L'['); break;
         case L'{': Brackets.push_back(L'{'); break;
 
         default:
-            if (Brackets.size() == 0 && (ch == L'}' || ch == L']' || ch == L')')) {
+            if (Brackets.size() == 0 && (ch == L'}' || ch == L']')) {
                 for (size_t CPos = Last_Pos; CPos < Colors.size(); CPos++)
                     Colors.at(CPos) = RGB(255, 0, 0);
                 Error_Handler << L"Brackets don't add up";
@@ -66,15 +65,6 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                     break;
                 case L']':
                     if (Brackets.back() == L'[') Brackets.pop_back();
-                    else {
-                        for (size_t CPos = Last_Pos; CPos < Colors.size(); CPos++)
-                            Colors.at(CPos) = RGB(255, 0, 0);
-                        Error_Handler << L"Brackets don't add up";
-                        return;
-                    }
-                    break;
-                case L')':
-                    if (Brackets.back() == L'(') Brackets.pop_back();
                     else {
                         for (size_t CPos = Last_Pos; CPos < Colors.size(); CPos++)
                             Colors.at(CPos) = RGB(255, 0, 0);
@@ -167,6 +157,14 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                         m_Syntax_Obj.Obj(L"children").Obj(Recirect.at(a));
                     }
                 }
+            }
+
+            else {
+                for (size_t CPos = Last_Pos; CPos < Colors.size(); CPos++)
+                    Colors.at(CPos) = RGB(255, 0, 0);
+                Log_IO::Set_Color::Error();
+                Log_IO::wcout() << L"Command does not take any more paramaters" << std::endl;
+                Log_IO::Set_Color::Default();
             }
 
             if (m_Paraser_Set_Lock) {

@@ -47,12 +47,12 @@ project "test_refactor_edit_control_02"
     filter "configurations:Debug"
         symbols "On"
         runtime "Debug"
-        defines { "_BUILD_DEBUG" }
+        --defines { "_BUILD_DEBUG" }
 
     filter "configurations:Release"
         optimize "On"
         runtime "Release"
-        defines { "_BUILD_RELEASE" }
+        --defines { "_BUILD_RELEASE" }
         
 
 project "json_reader"

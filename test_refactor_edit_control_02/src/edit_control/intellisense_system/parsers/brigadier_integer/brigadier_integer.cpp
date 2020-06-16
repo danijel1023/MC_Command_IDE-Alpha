@@ -5,10 +5,7 @@ bool IntelliSense::Brigadier_Integer(std::wstring& Word, bool Use_Ret, int* Ret_
     return Brigadier_Integer(Word, m_Syntax_Obj, Use_Ret, Ret_Val, Use_Prop, Use_Min, Min, Use_Max, Max);
 }
 
-bool IntelliSense::Brigadier_Integer(std::wstring& Word, Json& m_Syntax_Obj, bool Use_Ret = false, int* Ret_Val = nullptr, bool Use_Prop = true, bool Use_Min = false, int Min = 0, bool Use_Max = false, int Max = 0) {
-    bool Use_Min = false, Use_Max = false;
-    int Min = 0, Max = 0;
-
+bool IntelliSense::Brigadier_Integer(std::wstring& Word, Json& m_Syntax_Obj, bool Use_Ret, int* Ret_Val, bool Use_Prop, bool Use_Min, int Min, bool Use_Max, int Max) {
     if (Use_Prop && m_Syntax_Obj.Has_Name(L"properties")) {
         m_Syntax_Obj.Obj(L"properties");
 
@@ -50,6 +47,8 @@ bool IntelliSense::Brigadier_Integer(std::wstring& Word, Json& m_Syntax_Obj, boo
         Error_Handler << std::wstring(L"Value cannot be larger than " + std::to_wstring(Max)).c_str();
         return false;
     }
+
+    if (Use_Ret) *Ret_Val = Result;
     
     return true;
 }

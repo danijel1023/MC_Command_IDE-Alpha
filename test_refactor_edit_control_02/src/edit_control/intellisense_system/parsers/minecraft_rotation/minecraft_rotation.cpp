@@ -2,5 +2,5 @@
 #include "intelisense.h"
 
 bool IntelliSense::Minecraft_Rotation(std::wstring& Word) {
-    return false;
+    return Minecraft_Vec2(Word);
 }

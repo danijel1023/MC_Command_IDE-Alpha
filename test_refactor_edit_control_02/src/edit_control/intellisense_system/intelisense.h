@@ -1,10 +1,8 @@
 ﻿#pragma once
-#include "pch.h"
 #include "../../json_reader/src/json.h"
 
 #define TIMER_ID_TWO_SEC_TIMER 1
 
-#include "is_parser_structs.h"
 #include "error_handler.h"
 #include "snbt_formater/snbt_formater.h"
 #include "state_formater/state_formater.h"
@@ -53,8 +51,8 @@ private:
     Json m_Minecraft_Particle_Obj = Json();
     Json m_Minecraft_Scoreboard_Slot_Obj = Json();
 
-    std::wstring Parser_Matcher(std::wstring Word);
-    std::wstring Parser_Matcher(std::wstring Word, Json& m_Syntax_Obj);
+    std::wstring Parser_Matcher(std::wstring& Word);
+    std::wstring Parser_Matcher(std::wstring& Word, Json& m_Syntax_Obj);
 
     std::wstring m_Paraser_Func_Name;
     bool m_Paraser_Set_Lock = false;
@@ -71,8 +69,8 @@ private:
     bool Brigadier_String(std::wstring& Word, Json& m_Syntax_Obj, std::wstring Properties = std::wstring());
 
     bool Minecraft_Block_Pos(std::wstring& Word);
-    bool Minecraft_Block_Predicate(std::wstring& Word);
-    bool Minecraft_Block_State(std::wstring& Word);
+    bool Minecraft_Block_Predicate(std::wstring Word);
+    bool Minecraft_Block_State(std::wstring Word);
     bool Minecraft_Color(std::wstring& Word);
     bool Minecraft_Column_Pos(std::wstring& Word);
     bool Minecraft_Component(std::wstring& Word);
@@ -86,15 +84,15 @@ private:
     bool Minecraft_Entity_Scores(std::wstring& Word);
     bool Minecraft_Entity_Summon(std::wstring& Word);
     bool Minecraft_Entity_Type(std::wstring& Word);
-    bool Minecraft_Function(std::wstring& Word);
+    bool Minecraft_Function(std::wstring Word);
     bool Minecraft_Game_Profile(std::wstring& Word);
     bool Minecraft_Int_Range(std::wstring& Word, bool Use_Prop = true, bool Use_Min = false, int Min = 0, bool Use_Max = false, int Max = 0);
     bool Minecraft_Int_Range(std::wstring& Word, Json& m_Syntax_Obj, bool Use_Prop = true, bool Use_Min = false, int Min = 0, bool Use_Max = false, int Max = 0);
     bool Minecraft_Item_Enchantment(std::wstring& Word);
-    bool Minecraft_Item_Predicate(std::wstring& Word);
-    bool Minecraft_Item_Stack(std::wstring& Word);
+    bool Minecraft_Item_Predicate(std::wstring Word);
+    bool Minecraft_Item_Stack(std::wstring Word);
     bool Minecraft_Message(std::wstring& Word);
-    bool Minecraft_Mob_Effect(std::wstring& Word);
+    bool Minecraft_Mob_Effect(std::wstring Word);
     bool Minecraft_Nbt_Compound_Tag(std::wstring& Word);
     bool Minecraft_Nbt_Path(std::wstring& Word);
     bool Minecraft_Nbt_Tag(std::wstring& Word);
@@ -102,7 +100,7 @@ private:
     bool Minecraft_Objective_Criteria(std::wstring& Word);
     bool Minecraft_Operation(std::wstring& Word);
     bool Minecraft_Particle(std::wstring& Word);
-    bool Minecraft_Resource_Location(std::wstring& Word);
+    bool Minecraft_Resource_Location(std::wstring Word);
     bool Minecraft_Rotation(std::wstring& Word);
     bool Minecraft_Score_Holder(std::wstring& Word);
     bool Minecraft_Scoreboard_Slot(std::wstring& Word);

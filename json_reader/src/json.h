@@ -43,6 +43,10 @@ public:
 
     std::wstringstream Get_Tree();
 
+    /****  WARNING: Experimental  ****/
+    std::vector<Element_Struct>* Get_Branch() { return m_Branch; }
+    /****  WARNING: Experimental  ****/
+    void Set_Branch(std::vector<Element_Struct>* New_Branch) { m_Branch = New_Branch; }
 
     Json& operator=(Json& Right);
 

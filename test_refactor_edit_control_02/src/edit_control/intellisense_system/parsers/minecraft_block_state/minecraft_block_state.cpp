@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "intelisense.h"
 
-bool IntelliSense::Minecraft_Block_State(std::wstring& Word) {
+bool IntelliSense::Minecraft_Block_State(std::wstring Word) {
     std::wstring Params;
     size_t Word_Size = Word.size();
     for (size_t i = 0; i < Word_Size; i++) {
@@ -12,6 +12,12 @@ bool IntelliSense::Minecraft_Block_State(std::wstring& Word) {
             Word.erase(i);
             break;
         }
+    }
+
+    std::wstring Error;
+    if (!Std::Insert_Namespace(Word, &Error)) {
+        Error_Handler << Error.c_str();
+        return false;
     }
 
     if (!Generic_ArrElm_Search(m_Minecraft_Block_State_Obj, Word)) {
@@ -41,13 +47,12 @@ bool IntelliSense::Minecraft_Block_State(std::wstring& Word) {
             Prop_Params = Params.substr(0, Ancor);
 
             //Check properties params
-            TODO_ALPHA
         }
 
         SNbt_Params = Params.substr(Ancor);
 
         std::wstring Error;
-        if (!SNbt_Formater::Is_Valid(&SNbt_Params, &Error)) {
+        if (!SNbt_Formater::Is_Valid(SNbt_Params, &Error)) {
             Error_Handler << Error.c_str();
             return false;
         }

@@ -1,17 +1,17 @@
 #include "pch.h"
 #include "intelisense.h"
 
-std::wstring IntelliSense::Parser_Matcher(std::wstring Word) {
+std::wstring IntelliSense::Parser_Matcher(std::wstring& Word) {
     return Parser_Matcher(Word, m_Syntax_Obj);
 }
 
-std::wstring IntelliSense::Parser_Matcher(std::wstring Word, Json& m_Syntax_Obj) {
+std::wstring IntelliSense::Parser_Matcher(std::wstring& Word, Json& m_Syntax_Obj) {
     if (Word.size() == 0) {
         Error_Handler << L"Empty paramater";
         return L"ERROR";
     }
 
-    //std::wstring Parser = m_Syntax_Obj.Str();   //debugging
+    std::wstring Parser = m_Syntax_Obj.Str();   //debugging
 
     if (m_Syntax_Obj.Str() == L"brigadier:bool") {
         m_Syntax_Obj.Back();
@@ -101,6 +101,11 @@ std::wstring IntelliSense::Parser_Matcher(std::wstring Word, Json& m_Syntax_Obj)
     else if (m_Syntax_Obj.Str() == L"minecraft:entity_summon") {
         m_Syntax_Obj.Back();
         if (Minecraft_Entity_Summon(Word)) return L"minecraft:entity_summon";
+    }
+
+    else if (m_Syntax_Obj.Str() == L"minecraft:entity_type") {    //Custom parsers
+        m_Syntax_Obj.Back();
+        if (Minecraft_Entity_Type(Word)) return L"minecraft:entity_type";
     }
 
     else if (m_Syntax_Obj.Str() == L"minecraft:function") {

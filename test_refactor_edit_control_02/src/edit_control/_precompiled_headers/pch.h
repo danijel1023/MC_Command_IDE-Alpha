@@ -20,15 +20,14 @@ std::vector<T>& operator+=(std::vector<T>& v1, const std::vector<T>& v2) {
 #include <commctrl.h>   //SetWindowSubclass
 
 #include "error_defines.h"
+#include "standard.h"
 
 // -- IO ---------------
 #include "debugg_defines.h"
 // ---------------------
 
-#include "standard.h"
 
-
-#ifdef _BUILD_DEBUG
+/*#ifdef _BUILD_DEBUG
 //Complete before Alpha release
 #define TODO_ALPHA
 
@@ -39,5 +38,5 @@ std::vector<T>& operator+=(std::vector<T>& v1, const std::vector<T>& v2) {
 //Complete before Alpha release
 #define TODO_ALPHA if();
 
-#endif
+#endif*/
 

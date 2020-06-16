@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "snbt_formater.h"
 
-bool SNbt_Formater::Is_Valid_c(std::wstring Word, std::wstring* Error) {
-    return Is_Valid(&Word, Error);
+bool SNbt_Formater::Is_Valid(std::wstring Word, std::wstring* Error) {
+    return Is_Valid_nc(&Word, Error);
 }
 
-bool SNbt_Formater::Is_Valid(std::wstring* Word_Ptr, std::wstring* Error) {
+bool SNbt_Formater::Is_Valid_nc(std::wstring* Word_Ptr, std::wstring* Error) {
     auto& Word = *Word_Ptr;
     if (!Compress_Str(&Word, Error)) {
         return false;

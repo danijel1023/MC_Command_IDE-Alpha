@@ -64,14 +64,26 @@
     <Filter Include="src\edit_control\intellisense_system\parsers\minecraft_dimension">
       <UniqueIdentifier>{603C4C87-4C3D-E001-7505-4D86616556BC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\edit_control\intellisense_system\parsers\minecraft_double_range">
+      <UniqueIdentifier>{814D9DB2-EDB6-3215-76FA-E0BFE262E359}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\edit_control\intellisense_system\parsers\minecraft_entity">
       <UniqueIdentifier>{D7CCF9A3-4395-C727-0C26-D03978ADF762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\edit_control\intellisense_system\parsers\minecraft_entity_advancements">
+      <UniqueIdentifier>{2FD2C2D6-1BEA-CD8B-84B9-AD5070F0B0BE}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\edit_control\intellisense_system\parsers\minecraft_entity_anchor">
       <UniqueIdentifier>{B19FE5AD-9D36-2863-46EB-9E633261EE3D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\edit_control\intellisense_system\parsers\minecraft_entity_scores">
+      <UniqueIdentifier>{452B22D7-31C2-648C-DA76-DB8CC6EC2A67}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\edit_control\intellisense_system\parsers\minecraft_entity_summon">
       <UniqueIdentifier>{95B766D8-814E-A98D-2A03-208E16796F68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\edit_control\intellisense_system\parsers\minecraft_entity_type">
+      <UniqueIdentifier>{983077E0-841C-0F50-ED92-CEA2D99DAF80}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\edit_control\intellisense_system\parsers\minecraft_function">
       <UniqueIdentifier>{A0204E82-0CB4-AF30-159B-1FE781AD46F8}</UniqueIdentifier>
@@ -148,6 +160,9 @@
     <Filter Include="src\edit_control\intellisense_system\snbt_formater">
       <UniqueIdentifier>{C92CF442-B5C0-E9EA-1E85-439F0A3824DD}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\edit_control\intellisense_system\state_formater">
+      <UniqueIdentifier>{B383D20C-1F95-7AB3-A8E6-0CF314F703ED}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\edit_control\keyboard_system">
       <UniqueIdentifier>{A6496447-929A-4F89-BBFE-3D4BA7AEE2F2}</UniqueIdentifier>
     </Filter>
@@ -195,14 +210,11 @@
     <ClInclude Include="src\edit_control\intellisense_system\intelisense.h">
       <Filter>src\edit_control\intellisense_system</Filter>
     </ClInclude>
-    <ClInclude Include="src\edit_control\intellisense_system\is_parser_structs.h">
-      <Filter>src\edit_control\intellisense_system</Filter>
-    </ClInclude>
     <ClInclude Include="src\edit_control\intellisense_system\snbt_formater\snbt_formater.h">
       <Filter>src\edit_control\intellisense_system\snbt_formater</Filter>
     </ClInclude>
-    <ClInclude Include="src\edit_control\intellisense_system\standard.h">
-      <Filter>src\edit_control\intellisense_system</Filter>
+    <ClInclude Include="src\edit_control\intellisense_system\state_formater\state_formater.h">
+      <Filter>src\edit_control\intellisense_system\state_formater</Filter>
     </ClInclude>
     <ClInclude Include="src\edit_control\keyboard_system\history_defines.h">
       <Filter>src\edit_control\keyboard_system</Filter>
@@ -222,7 +234,9 @@
     <ClInclude Include="src\edit_control\scroll_bar_system\scroll_bar.h">
       <Filter>src\edit_control\scroll_bar_system</Filter>
     </ClInclude>
-    <ClInclude Include="src\edit_control\intellisense_system\state_formater\state_formater.h" />
+    <ClInclude Include="src\edit_control\_precompiled_headers\standard.h">
+      <Filter>src\edit_control\intellisense_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -285,14 +299,26 @@
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_dimension\minecraft_dimension.cpp">
       <Filter>src\edit_control\intellisense_system\parsers\minecraft_dimension</Filter>
     </ClCompile>
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_double_range\minecraft_double_range.cpp">
+      <Filter>src\edit_control\intellisense_system\parsers\minecraft_double_range</Filter>
+    </ClCompile>
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity\entity.cpp">
       <Filter>src\edit_control\intellisense_system\parsers\minecraft_entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_advancements\minecraft_entity_advancements.cpp">
+      <Filter>src\edit_control\intellisense_system\parsers\minecraft_entity_advancements</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_anchor\minecraft_entity_anchor.cpp">
       <Filter>src\edit_control\intellisense_system\parsers\minecraft_entity_anchor</Filter>
     </ClCompile>
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_scores\minecraft_entity_scores.cpp">
+      <Filter>src\edit_control\intellisense_system\parsers\minecraft_entity_scores</Filter>
+    </ClCompile>
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_summon\minecraft_entity_summon.cpp">
       <Filter>src\edit_control\intellisense_system\parsers\minecraft_entity_summon</Filter>
+    </ClCompile>
+    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_type\minecraft_entity_type.cpp">
+      <Filter>src\edit_control\intellisense_system\parsers\minecraft_entity_type</Filter>
     </ClCompile>
     <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_function\minecraft_function.cpp">
       <Filter>src\edit_control\intellisense_system\parsers\minecraft_function</Filter>
@@ -375,6 +401,9 @@
     <ClCompile Include="src\edit_control\intellisense_system\snbt_formater\snbt_formater.cpp">
       <Filter>src\edit_control\intellisense_system\snbt_formater</Filter>
     </ClCompile>
+    <ClCompile Include="src\edit_control\intellisense_system\state_formater\state_formater.cpp">
+      <Filter>src\edit_control\intellisense_system\state_formater</Filter>
+    </ClCompile>
     <ClCompile Include="src\edit_control\keyboard_system\helper_functions.cpp">
       <Filter>src\edit_control\keyboard_system</Filter>
     </ClCompile>
@@ -396,12 +425,6 @@
     <ClCompile Include="src\edit_control\scroll_bar_system\scroll_bar.cpp">
       <Filter>src\edit_control\scroll_bar_system</Filter>
     </ClCompile>
-    <ClCompile Include="src\edit_control\intellisense_system\state_formater\state_formater.cpp" />
-    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_double_range\minecraft_double_range.cpp" />
-    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_scores\minecraft_entity_scores.cpp" />
-    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_advancements\minecraft_entity_advancements.cpp" />
-    <ClCompile Include="intellisense_structures\parsers\minecraft_entity_type.json" />
-    <ClCompile Include="src\edit_control\intellisense_system\parsers\minecraft_entity_type\minecraft_entity_type.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="intellisense_structures\linker.json">
@@ -422,10 +445,16 @@
     <None Include="intellisense_structures\parsers\minecraft_dimension.json">
       <Filter>intellisense_structures\parsers</Filter>
     </None>
+    <None Include="intellisense_structures\parsers\minecraft_entity.json">
+      <Filter>intellisense_structures\parsers</Filter>
+    </None>
     <None Include="intellisense_structures\parsers\minecraft_entity_anchor.json">
       <Filter>intellisense_structures\parsers</Filter>
     </None>
     <None Include="intellisense_structures\parsers\minecraft_entity_summon.json">
+      <Filter>intellisense_structures\parsers</Filter>
+    </None>
+    <None Include="intellisense_structures\parsers\minecraft_entity_type.json">
       <Filter>intellisense_structures\parsers</Filter>
     </None>
     <None Include="intellisense_structures\parsers\minecraft_item_enchantment.json">
@@ -461,7 +490,7 @@
     <None Include="src\edit_control\intellisense_system\parsers\parsers.md">
       <Filter>src\edit_control\intellisense_system\parsers</Filter>
     </None>
-    <None Include="intellisense_structures\parsers\minecraft_entity.json" />
+    <None Include="src\edit_control\_precompiled_headers\standard.inl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bkg_image.bmp" />

@@ -34,7 +34,7 @@ bool SNbt_Formater::Compress_Str(std::wstring* Word_Ptr, std::wstring* Error) {
     auto& Word = *Word_Ptr;
 
     size_t Ancor = 0;
-    bool Is_Str = false, Is_Un_QStr = false, Skip = false;
+    bool Is_Str = false, Is_Un_QStr = false, Skip = false, Single_Q = false;
     size_t Word_Size = Word.size();
     for (size_t i = 0; i < Word_Size; i++) {
         wchar_t ch = Word.at(i);
@@ -43,7 +43,7 @@ bool SNbt_Formater::Compress_Str(std::wstring* Word_Ptr, std::wstring* Error) {
         else if (Is_Str) {
             if (ch == L'\\') { Skip = true; }
 
-            else if (ch == L'"') {
+            else if ((!Single_Q && ch == L'"') || (Single_Q && ch == L'\'')) {
                 size_t Size = i - Ancor;
                 Word.erase(Ancor, Size);
                 Word.at(Ancor) = L'Q';
@@ -55,7 +55,7 @@ bool SNbt_Formater::Compress_Str(std::wstring* Word_Ptr, std::wstring* Error) {
             }
         }
 
-        else if (ch == L'"') {
+        else if (ch == L'"' || ch == L'\'') {
             if (Is_Un_QStr) {
                 *Error = L"Ilegal char in unquoted string";
                 return false;
@@ -63,6 +63,7 @@ bool SNbt_Formater::Compress_Str(std::wstring* Word_Ptr, std::wstring* Error) {
 
             Ancor = i;
             Is_Str = true;
+            Single_Q = (ch == L'\'');
         }
 
         else if (Is_Syntax_ch(ch) || i + 1 == Word_Size) {

@@ -187,12 +187,11 @@ bool IntelliSense::Generic_Split(std::wstring Words, std::vector<std::wstring>* 
         wchar_t ch = Words.at(Pos);
 
         switch (ch) {
-        case L'(': Brackets.push_back(L'('); break;
         case L'[': Brackets.push_back(L'['); break;
         case L'{': Brackets.push_back(L'{'); break;
 
         default:
-            if (Brackets.size() == 0 && (ch == L'}' || ch == L']' || ch == L')')) {
+            if (Brackets.size() == 0 && (ch == L']' || ch == L')')) {
                 Error_Handler << L"Brackets don't add up";
                 return false;
             }
@@ -208,13 +207,6 @@ bool IntelliSense::Generic_Split(std::wstring Words, std::vector<std::wstring>* 
                     break;
                 case L']':
                     if (Brackets.back() == L'[') Brackets.pop_back();
-                    else {
-                        Error_Handler << L"Brackets don't add up";
-                        return false;
-                    }
-                    break;
-                case L')':
-                    if (Brackets.back() == L'(') Brackets.pop_back();
                     else {
                         Error_Handler << L"Brackets don't add up";
                         return false;

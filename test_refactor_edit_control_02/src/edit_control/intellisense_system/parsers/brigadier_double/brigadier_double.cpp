@@ -49,5 +49,7 @@ bool IntelliSense::Brigadier_Double(std::wstring& Word, Json& m_Syntax_Obj, bool
         return false;
     }
 
+    if (Use_Ret) *Ret_Val = Result;
+
     return true;
 }

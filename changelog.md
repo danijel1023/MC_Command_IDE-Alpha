@@ -1,6 +1,35 @@
 # ChangeLog
 
 
+###### 2020-06-16 [[](https://github.com/danijel1023/MC_Command_IDE/commit/)]
+
+ - Fixed:
+   - brigadier bool (always returns false)
+   - brigadier double (didn't return value)
+   - brigadier integer (didn't return value)
+   - minecraft block predicate (missing default namespace, edited the origianl word - pass by reference)
+   - minecraft block state (missing default namespace, edited the origianl word - pass by reference)
+   - minecraft double range (wrongly compared ranged values)
+   - minecraft entity (Json tree reading problem - didn't return to root)
+   - minecraft entity summon (missing default namespace)
+   - minecraft entity type (missing default namespace)
+   - minecraft function (missing default namespace, wrong formating)
+   - minecraft integer range (wrongly compared ranged values)
+   - minecraft item predicate (missing default namespace, missing SNBT parser)
+   - minecraft item stack (missing default namespace, missing SNBT parser)
+   - minecraft mob effect (missing default namespace)
+   - minecraft nbt path (wrong formating)
+   - minecraft resource location (not done)
+   - minecraft rotation (not done)
+   - minecraft score holder (not done)
+
+ - `parser.cpp` - copying bug
+ - add SNBT and state formaters / parsers
+ - add `Std::` custom standard functions
+
+---
+
+
 ###### 2020-06-10 [[e5539d8](https://github.com/danijel1023/MC_Command_IDE/commit/802d81f8c6e6f87954d8e5b411836449bce04204)]
 
  - Redo a lot of the parsers to match official minecraft specification

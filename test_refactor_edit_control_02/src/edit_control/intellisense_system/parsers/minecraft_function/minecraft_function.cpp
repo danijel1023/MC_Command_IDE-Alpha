@@ -1,54 +1,52 @@
 #include "pch.h"
 #include "intelisense.h"
 
-bool IntelliSense::Minecraft_Function(std::wstring& Word) {
-    bool Has_Name_Space = false;
-    size_t Seperator_Pos = 0;
-    std::wstring Name_Space;
-    std::wstring Path;
-
-    size_t Word_Size = Word.size();
-    for (size_t i = 0; i < Word_Size; i++) {
-        wchar_t ch = Word.at(i);
-        if (ch == L':') {
-            if (Has_Name_Space) {
-                Error_Handler << L"The function path paramater contains more than 1 ':'";
-                return false;
-            }
-
-            Has_Name_Space = true;
-            Name_Space = Word.substr(0, i);
-        }
-
-
-        else if (!Has_Name_Space) {
-            if (!(Std::Is_Lowercase(ch) || Std::Is_Number(ch) || ch == L'_' || ch == L'-' || ch == L'.')) {
-                Error_Handler << L"The function namespace paramater contains ilegal chars";
-                return false;
-            }
-        } else if (Has_Name_Space) {
-            if (!(Std::Is_Lowercase(ch) || Std::Is_Number(ch) || ch == L'_' || ch == L'-' || ch == L'.' || ch == L'/')) {
-                Error_Handler << L"The function path paramater contains ilegal chars";
-                return false;
-            } else if (ch == L'/') {
-                if (Seperator_Pos + 1 == i) {
-                    Error_Handler << L"The function path paramater contains two or more '/' in a row";
-                    return false;
-                }
-                Seperator_Pos = i;
-            }
-        }
-    }
-
-    if (Seperator_Pos + 1 == Word.size()) {
-        Error_Handler << L"The function path paramater doesn't contain function name";
+bool IntelliSense::Minecraft_Function(std::wstring Word) {
+    std::wstring Error;
+    if (!Std::Insert_Namespace(Word, &Error)) {
+        Error_Handler << Error.c_str();
         return false;
     }
 
-    Path = Word.substr(Name_Space.size() + 1);
+    bool Pass_NS = false, Correct_Path = false, Namespace = true;
+    size_t Word_Size = Word.size();
+    for (size_t i = 0; i < Word_Size; i++) {
+        wchar_t ch = Word.at(i);
+        if (Namespace) {
+            if (ch == L':') {
+                Namespace = false;
+            }
+        }
 
-    if (!Has_Name_Space || Path.size() == 0) {
-        Error_Handler << L"The function path paramater doesn't exist";
+        else if (Correct_Path) {
+            if (ch == L'/') {
+                Correct_Path = false;
+            }
+
+            else if (!Std::Is_Std_ch(ch)) {
+                Error_Handler << L"Ilegal char in namespace value";
+                return false;
+            }
+        }
+
+        else {
+            if (ch == L'/') {
+                Error_Handler << L"Cannot have '/' in a namespace value";
+                return false;
+            }
+
+            else if (!Std::Is_Std_ch(ch)) {
+                Error_Handler << L"Ilegal char in namespace value";
+                return false;
+            }
+
+            else Correct_Path = true;
+        }
+    }
+
+
+    if (!Correct_Path) {
+        Error_Handler << L"Missing MC function name";
         return false;
     }
 
