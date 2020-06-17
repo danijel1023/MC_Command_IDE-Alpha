@@ -1,7 +1,7 @@
 # ChangeLog
 
 
-###### 2020-06-17 [[](https://github.com/danijel1023/MC_Command_IDE/commit/)]
+###### 2020-06-17 [[7f8fe45](https://github.com/danijel1023/MC_Command_IDE/commit/7f8fe45fcd512a5069cf6419c479f2d59e4f35cd)]
 
  - Transfer `intellisence_structures` folder for visual studios copy command
  - Fix:
