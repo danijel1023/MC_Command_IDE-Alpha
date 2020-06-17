@@ -1,6 +1,6 @@
 # MC_Command_IDE
 
-###### Currently in pre-Alpha phase
+###### Currently in Alpha phase
 
 - Not all parsers are done
 - Buggy GUI (plans for Beta)
