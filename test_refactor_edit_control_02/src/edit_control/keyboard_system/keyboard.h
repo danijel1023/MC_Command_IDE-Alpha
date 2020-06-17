@@ -37,6 +37,8 @@ private:
     /**/ void WM_Char(WPARAM wParam, LPARAM lParam);
     //--------------------------------------------------
 
+    void Save();
+
     //Func for copy operation
     void Copy();
     //Func for cut operation

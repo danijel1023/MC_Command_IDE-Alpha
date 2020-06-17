@@ -22,11 +22,13 @@ public:
 
     void WM_KeyDown(WPARAM wParam, LPARAM lParam);
     void WM_Char(WPARAM wParam, LPARAM lParam);
+    void Analise_Line(size_t Y);
 
 private:
     Edit_Control& m_EC;
     HWND m_Parent = NULL;
     Json m_Syntax_Obj = Json();
+    Json m_Colors_Obj = Json();
     Error_Handler Error_Handler = ::Error_Handler();
 
     void Analise_Line(std::wstring& Line, std::vector<COLORREF>& Colors);
@@ -111,6 +113,7 @@ private:
     bool Minecraft_Vec3(std::wstring& Word);
 
     bool Generic_ArrElm_Search(Json& Obj, std::wstring Word);
+    bool Generic_ObjElm_Search(Json& Obj, std::wstring Word);
     bool Generic_Split(std::wstring Words, std::vector<std::wstring>* Output_Ptr);
 
 

@@ -13,6 +13,7 @@ bool IntelliSense::Minecraft_Item_Stack(std::wstring Word) {
             }
 
             Word.erase(i);
+            break;
         }
     }
 

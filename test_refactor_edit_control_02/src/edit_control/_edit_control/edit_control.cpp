@@ -36,6 +36,54 @@ void Edit_Control::Init(HWND Parent) {
 }
 
 
+bool Edit_Control::Open_File(const std::wstring& Path) {
+    File_Path = Path;
+    std::wifstream File(Path);
+    if (!File.is_open()) {
+        Log_IO::wcout() << "Error opening the file" << std::endl;
+        return false;
+    }
+
+    std::wstring Text;
+    if (File.is_open()) {
+        std::wstringstream Buffer;
+        Buffer << File.rdbuf();
+        Text = Buffer.str();
+
+        File.close();
+    }
+
+    Set_Text(Text);
+    return true;
+}
+
+
+void Edit_Control::Set_Text(const std::wstring& New_Text) {
+    Clear_Text();
+
+    std::vector<std::wstring> Text;
+    size_t Ancor = 0;
+    size_t N_Text_Size = New_Text.size();
+    for (size_t i = 0; i < N_Text_Size; i++) {
+        if (New_Text.at(i) == L'\n' || i + 1 == N_Text_Size) {
+            Text.push_back(New_Text.substr(Ancor, i - Ancor + (New_Text.at(i) != L'\n')));
+            Ancor = i + 1;
+        }
+
+        if (New_Text.at(i) == L'\n' && i + 1 == N_Text_Size) {
+            Text.push_back(L"");
+        }
+    }
+
+    Set_Text(Text);
+}
+
+
+void Edit_Control::Set_Text(const std::vector<std::wstring>& New_Text) {
+    m_Keyboard.Insert(New_Text, m_Caret);
+}
+
+
 void Edit_Control::Corect_Scrolling() {
     Log_IO::Start_Log_System obj(SYSTEM_ID_EDIT_CONTROL);
     int Screen_CaretY = (int)m_Caret.Y;
@@ -125,6 +173,18 @@ void Edit_Control::Calculate_Text_Metrics() {
     m_Caret_Height = m_Char_Height;
     CHECK_ERR(SelectObject(hDC, hfOld), ERR_MSG_SELECT_OBJECT_HFONT);
     CHECK_ERR(ReleaseDC(m_hWnd, hDC), ERR_MSG_RELEASE_DC);
+}
+
+void Edit_Control::Clear_Text() {
+    m_Text.erase(m_Text.begin(), m_Text.end());
+    m_Text.emplace_back();
+
+    m_TextColor.erase(m_TextColor.begin(), m_TextColor.end());
+    m_TextColor.emplace_back();
+
+    m_Caret.X = 0;
+    m_Caret.Y = 0;
+    m_CaretSel = m_Caret;
 }
 
 

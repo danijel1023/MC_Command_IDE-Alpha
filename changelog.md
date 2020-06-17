@@ -1,31 +1,49 @@
 # ChangeLog
 
 
+###### 2020-06-17 [[](https://github.com/danijel1023/MC_Command_IDE/commit/)]
+
+ - Transfer `intellisence_structures` folder for visual studios copy command
+ - Fix:
+   - `Minecraft_Entity` (@s set for all entityes - true but mc allows to be set for players)
+   - `Minecraft_Item_Predicate` (reading erased string)
+   - `Minecraft_Item_Stack` (reading erased string)
+   - In `void Analise_Line(std::wstring& Line, std::vector<COLORREF>& Colors)` single & double quote
+ - Add:
+   - `Analise_Line` for "outside class" access
+   - `m_Color_Obj` for custom syntax highlighting
+   - IntelliSence trigger on `void Insert(const std::vector<std::wstring>& Text, Caret_Struct Caret);`
+   - Save & open file action
+   - `Set_Text` to erase all the text in editor and input new one
+
+---
+
+
 ###### 2020-06-16 [[5a079a8](https://github.com/danijel1023/MC_Command_IDE/commit/5a079a83994eda87f2834fe3c813e7c57bdb6b04)]
 
- - Fixed:
-   - brigadier bool (always returns false)
-   - brigadier double (didn't return value)
-   - brigadier integer (didn't return value)
-   - minecraft block predicate (missing default namespace, edited the origianl word - pass by reference)
-   - minecraft block state (missing default namespace, edited the origianl word - pass by reference)
-   - minecraft double range (wrongly compared ranged values)
-   - minecraft entity (Json tree reading problem - didn't return to root)
-   - minecraft entity summon (missing default namespace)
-   - minecraft entity type (missing default namespace)
-   - minecraft function (missing default namespace, wrong formating)
-   - minecraft integer range (wrongly compared ranged values)
-   - minecraft item predicate (missing default namespace, missing SNBT parser)
-   - minecraft item stack (missing default namespace, missing SNBT parser)
-   - minecraft mob effect (missing default namespace)
-   - minecraft nbt path (wrong formating)
-   - minecraft resource location (not done)
-   - minecraft rotation (not done)
-   - minecraft score holder (not done)
+ - Fix:
+   - `Brigadier_Bool` (always returns false)
+   - `Brigadier_Double` (didn't return value)
+   - `Brigadier_Integer` (didn't return value)
+   - `Minecraft_Block_Predicate` (missing default namespace, edited the origianl word - pass by reference)
+   - `Minecraft_Block_State` (missing default namespace, edited the origianl word - pass by reference)
+   - `Minecraft_Double_Range` (wrongly compared ranged values)
+   - `Minecraft_Entity` (Json tree reading problem - didn't return to root)
+   - `Minecraft_Entity_Summon` (missing default namespace)
+   - `Minecraft_Entity_Type` (missing default namespace)
+   - `Minecraft_Function` (missing default namespace, wrong formating)
+   - `Minecraft_Integer_Range` (wrongly compared ranged values)
+   - `Minecraft_Item_Predicate` (missing default namespace, missing SNBT parser)
+   - `Minecraft_Item_Stack` (missing default namespace, missing SNBT parser)
+   - `Minecraft_Mob_Effect` (missing default namespace)
+   - `Minecraft_Nbt_Path` (wrong formating)
+   - `Minecraft_Resource` location (not done)
+   - `Minecraft_Rotation` (not done)
+   - `Minecraft_Score_Holder` (not done)
 
  - `parser.cpp` - copying bug
- - add SNBT and state formaters / parsers
- - add `Std::` custom standard functions
+ - Add SNBT and state formaters / parsers
+ - Add `Std::` custom standard functions
 
 ---
 

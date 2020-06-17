@@ -23,6 +23,7 @@ void IntelliSense::Init(HWND Parent) {
 
     Json IS_Linker(L"intellisense_structures/linker.json");
     auto& Commands = IS_Linker.Root().Obj(L"Commands").Str();
+    auto& Colors = IS_Linker.Root().Obj(L"Colors").Str();
     auto& Minecraft_Block_Predicate = IS_Linker.Root().Obj(L"Minecraft_Block_Predicate").Str();
     auto& Minecraft_Block_State = IS_Linker.Root().Obj(L"Minecraft_Block_State").Str();
     auto& Minecraft_Color = IS_Linker.Root().Obj(L"Minecraft_Color").Str();
@@ -42,6 +43,7 @@ void IntelliSense::Init(HWND Parent) {
 
     Log_IO::wcout() << L"Starting Compiling IntelliSence structures" << std::endl;
     m_Syntax_Obj.Init(Commands);
+    m_Colors_Obj.Init(Colors);
     m_Minecraft_Block_Predicate_Obj.Init(Minecraft_Block_Predicate);
     m_Minecraft_Block_State_Obj.Init(Minecraft_Block_State);
     m_Minecraft_Color_Obj.Init(Minecraft_Color);
@@ -98,14 +100,7 @@ void IntelliSense::Proc_Msg_After(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lP
             case VK_LEFT:
             case VK_DELETE:
             case VK_BACK:
-                Analise_Line(m_EC.m_Text.at(m_EC.m_Caret.Y), m_EC.m_TextColor.at(m_EC.m_Caret.Y));
-                if (Error_Handler.Has_Error()) {
-                    Log_IO::Set_Color::Error();
-                    Log_IO::wcout() << Error_Handler.Get_Error() << std::endl;
-                    Log_IO::Set_Color::Default();
-                }
-
-                CHECK_ERR(InvalidateRect(m_Parent, NULL, TRUE), ERR_MSG_INVALIDATE_RECT);
+                Analise_Line(m_EC.m_Caret.Y);
                 break;
             }
         }
@@ -113,15 +108,20 @@ void IntelliSense::Proc_Msg_After(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lP
         break;
 
     case WM_CHAR:
-        Analise_Line(m_EC.m_Text.at(m_EC.m_Caret.Y), m_EC.m_TextColor.at(m_EC.m_Caret.Y));
-        if (Error_Handler.Has_Error()) {
-            Log_IO::Set_Color::Error();
-            Log_IO::wcout() << Error_Handler.Get_Error() << std::endl;
-            Log_IO::Set_Color::Default();
-        }
-        CHECK_ERR(InvalidateRect(m_Parent, NULL, TRUE), ERR_MSG_INVALIDATE_RECT);
+        Analise_Line(m_EC.m_Caret.Y);
         break;
     }
+}
+
+
+void IntelliSense::Analise_Line(size_t Y) {
+    Analise_Line(m_EC.m_Text.at(Y), m_EC.m_TextColor.at(Y));
+    if (Error_Handler.Has_Error()) {
+        Log_IO::Set_Color::Error();
+        Log_IO::wcout() << Error_Handler.Get_Error() << std::endl;
+        Log_IO::Set_Color::Default();
+    }
+    CHECK_ERR(InvalidateRect(m_Parent, NULL, TRUE), ERR_MSG_INVALIDATE_RECT);
 }
 
 
@@ -149,18 +149,33 @@ void IntelliSense::Two_Sec_Timer() {
 
 
 COLORREF IntelliSense::Get_Color(std::wstring Type) {
-    if (Type == L"INCOMPLETE") return RGB(255, 0, 255);
-    return RGB(0, 255, 40);
-}
+    static std::wstring Last_Type;
+    static COLORREF Last_Color = 0;
+    if (Type == Last_Type) return Last_Color;
 
+    if (Type == L"INCOMPLETE") {
+        Last_Type = Type;
+        Last_Color = RGB(54, 54, 54);
+        return Last_Color;
+    }
 
-void IntelliSense::Start_New_Line() {
-    Error_Handler.Get_Error();
-    m_Syntax_Obj.Root();
+    if (!Generic_ObjElm_Search(m_Colors_Obj, Type)) {
+        Last_Type = Type;
+        Last_Color = RGB(0, 255, 40);
+        return Last_Color;
+    }
+    
+    unsigned char R, G, B;
+    R = m_Colors_Obj.Arr(0).Num();
+    m_Colors_Obj.Back();
+    G = m_Colors_Obj.Arr(1).Num();
+    m_Colors_Obj.Back();
+    B = m_Colors_Obj.Arr(2).Num();
+    m_Colors_Obj.Back();
 
-    m_Paraser_Func_Name = L"";
-    m_Paraser_Set_Lock = false;
-    m_Paraser_Func_Counter = 0;
+    Last_Type = Type;
+    Last_Color = RGB(R, G, B);
+    return Last_Color;
 }
 
 
@@ -174,6 +189,28 @@ bool IntelliSense::Generic_ArrElm_Search(Json& Obj, std::wstring Word) {
     }
 
     return false;
+}
+
+
+bool IntelliSense::Generic_ObjElm_Search(Json& Obj, std::wstring Word) {
+    Obj.Root();
+
+    if (Obj.Has_Name(Word)) {
+        Obj.Obj(Word);
+        return true;
+    }
+
+    return false;
+}
+
+
+void IntelliSense::Start_New_Line() {
+    Error_Handler.Get_Error();
+    m_Syntax_Obj.Root();
+
+    m_Paraser_Func_Name = L"";
+    m_Paraser_Set_Lock = false;
+    m_Paraser_Func_Counter = 0;
 }
 
 

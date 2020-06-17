@@ -71,7 +71,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST $(ProjectDir)bkg_image.bmp\ (xcopy /Q /E /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Debug-windows-x86_64\test_refactor_edit_control_02 &gt; nul) ELSE (xcopy /Q /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Debug-windows-x86_64\test_refactor_edit_control_02 &gt; nul)</Command>
+      <Command>IF EXIST $(ProjectDir)bkg_image.bmp\ (xcopy /Q /E /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Debug-windows-x86_64\test_refactor_edit_control_02 &gt; nul) ELSE (xcopy /Q /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Debug-windows-x86_64\test_refactor_edit_control_02 &gt; nul)
+IF EXIST $(ProjectDir)intellisense_structures\ (xcopy /Q /E /Y /I $(ProjectDir)intellisense_structures ..\bin\Debug-windows-x86_64\test_refactor_edit_control_02 &gt; nul) ELSE (xcopy /Q /Y /I $(ProjectDir)intellisense_structures ..\bin\Debug-windows-x86_64\test_refactor_edit_control_02 &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release 64|x64'">
@@ -95,7 +96,8 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST $(ProjectDir)bkg_image.bmp\ (xcopy /Q /E /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Release-windows-x86_64\test_refactor_edit_control_02 &gt; nul) ELSE (xcopy /Q /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Release-windows-x86_64\test_refactor_edit_control_02 &gt; nul)</Command>
+      <Command>IF EXIST $(ProjectDir)bkg_image.bmp\ (xcopy /Q /E /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Release-windows-x86_64\test_refactor_edit_control_02 &gt; nul) ELSE (xcopy /Q /Y /I $(ProjectDir)bkg_image.bmp ..\bin\Release-windows-x86_64\test_refactor_edit_control_02 &gt; nul)
+IF EXIST $(ProjectDir)intellisense_structures\ (xcopy /Q /E /Y /I $(ProjectDir)intellisense_structures ..\bin\Release-windows-x86_64\test_refactor_edit_control_02 &gt; nul) ELSE (xcopy /Q /Y /I $(ProjectDir)intellisense_structures ..\bin\Release-windows-x86_64\test_refactor_edit_control_02 &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -106,11 +108,12 @@
     <ClInclude Include="src\edit_control\_precompiled_headers\error_defines.h" />
     <ClInclude Include="src\edit_control\_precompiled_headers\error_msg_defines.h" />
     <ClInclude Include="src\edit_control\_precompiled_headers\pch.h" />
+    <ClInclude Include="src\edit_control\_precompiled_headers\standard.h" />
+    <ClInclude Include="src\edit_control\_precompiled_headers\standard.inl" />
     <ClInclude Include="src\edit_control\dispatcher_system\dispatcher.h" />
     <ClInclude Include="src\edit_control\intellisense_system\error_handler.h" />
     <ClInclude Include="src\edit_control\intellisense_system\intelisense.h" />
     <ClInclude Include="src\edit_control\intellisense_system\snbt_formater\snbt_formater.h" />
-    <ClInclude Include="src\edit_control\_precompiled_headers\standard.h" />
     <ClInclude Include="src\edit_control\intellisense_system\state_formater\state_formater.h" />
     <ClInclude Include="src\edit_control\keyboard_system\history_defines.h" />
     <ClInclude Include="src\edit_control\keyboard_system\keyboard.h" />
@@ -186,25 +189,25 @@
     <ClCompile Include="src\edit_control\scroll_bar_system\scroll_bar.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="intellisense_structures\linker.json" />
-    <None Include="intellisense_structures\parsers\commands.json" />
-    <None Include="intellisense_structures\parsers\minecraft_block_predicate.json" />
-    <None Include="intellisense_structures\parsers\minecraft_block_state.json" />
-    <None Include="intellisense_structures\parsers\minecraft_color.json" />
-    <None Include="intellisense_structures\parsers\minecraft_dimension.json" />
-    <None Include="intellisense_structures\parsers\minecraft_entity.json" />
-    <None Include="intellisense_structures\parsers\minecraft_entity_anchor.json" />
-    <None Include="intellisense_structures\parsers\minecraft_entity_summon.json" />
-    <None Include="intellisense_structures\parsers\minecraft_entity_type.json" />
-    <None Include="intellisense_structures\parsers\minecraft_item_enchantment.json" />
-    <None Include="intellisense_structures\parsers\minecraft_item_predicate.json" />
-    <None Include="intellisense_structures\parsers\minecraft_item_stack.json" />
-    <None Include="intellisense_structures\parsers\minecraft_mob_effect.json" />
-    <None Include="intellisense_structures\parsers\minecraft_objective_criteria.json" />
-    <None Include="intellisense_structures\parsers\minecraft_operation.json" />
-    <None Include="intellisense_structures\parsers\minecraft_particle.json" />
-    <None Include="intellisense_structures\parsers\minecraft_scoreboard_slot.json" />
-    <None Include="src\edit_control\_precompiled_headers\standard.inl" />
+    <None Include="intellisense_structures\intellisense_structures\linker.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\colors.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\commands.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_block_predicate.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_block_state.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_color.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_dimension.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_entity.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_entity_anchor.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_entity_summon.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_entity_type.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_item_enchantment.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_item_predicate.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_item_stack.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_mob_effect.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_objective_criteria.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_operation.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_particle.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_scoreboard_slot.json" />
     <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt" />
     <None Include="src\edit_control\intellisense_system\parsers\done_parsers.md" />
     <None Include="src\edit_control\intellisense_system\parsers\parsers.md" />

@@ -95,7 +95,7 @@ bool IntelliSense::Minecraft_Entity(std::wstring& Word, Json& m_Syntax_Obj, bool
             break;
 
         case L's':
-            Players = false;
+            Players = true;
             Single = true;
             break;
 

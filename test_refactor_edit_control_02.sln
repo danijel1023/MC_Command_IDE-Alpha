@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test_refactor_edit_control_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "json_reader", "json_reader\json_reader.vcxproj", "{91B4ED9C-FD69-6692-865E-6069F2125D96}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C60F3F21-6E8F-49C3-98C3-08C5F3C6DC78}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{81BDBF79-C98A-439B-98C4-D51F38282795}"
 	ProjectSection(SolutionItems) = preProject
 		changelog.md = changelog.md
 		README.md = README.md
@@ -32,6 +32,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {74B18E46-E943-41B7-81FC-166668AA9811}
+		SolutionGuid = {1C7FF9AA-A5E9-4A96-A12E-0615E1338BB2}
 	EndGlobalSection
 EndGlobal

@@ -201,6 +201,12 @@
     <ClInclude Include="src\edit_control\_precompiled_headers\pch.h">
       <Filter>src\edit_control\_precompiled_headers</Filter>
     </ClInclude>
+    <ClInclude Include="src\edit_control\_precompiled_headers\standard.h">
+      <Filter>src\edit_control\_precompiled_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\edit_control\_precompiled_headers\standard.inl">
+      <Filter>src\edit_control\_precompiled_headers</Filter>
+    </ClInclude>
     <ClInclude Include="src\edit_control\dispatcher_system\dispatcher.h">
       <Filter>src\edit_control\dispatcher_system</Filter>
     </ClInclude>
@@ -233,9 +239,6 @@
     </ClInclude>
     <ClInclude Include="src\edit_control\scroll_bar_system\scroll_bar.h">
       <Filter>src\edit_control\scroll_bar_system</Filter>
-    </ClInclude>
-    <ClInclude Include="src\edit_control\_precompiled_headers\standard.h">
-      <Filter>src\edit_control\intellisense_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -427,60 +430,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="intellisense_structures\linker.json">
-      <Filter>intellisense_structures</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\commands.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_block_predicate.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_block_state.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_color.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_dimension.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_entity.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_entity_anchor.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_entity_summon.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_entity_type.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_item_enchantment.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_item_predicate.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_item_stack.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_mob_effect.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_objective_criteria.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_operation.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_particle.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
-    <None Include="intellisense_structures\parsers\minecraft_scoreboard_slot.json">
-      <Filter>intellisense_structures\parsers</Filter>
-    </None>
     <None Include="src\edit_control\_edit_control\edit_contorl_docs.txt">
       <Filter>src\edit_control\_edit_control</Filter>
     </None>
@@ -490,7 +439,25 @@
     <None Include="src\edit_control\intellisense_system\parsers\parsers.md">
       <Filter>src\edit_control\intellisense_system\parsers</Filter>
     </None>
-    <None Include="src\edit_control\_precompiled_headers\standard.inl" />
+    <None Include="intellisense_structures\intellisense_structures\linker.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_scoreboard_slot.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\colors.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\commands.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_block_predicate.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_block_state.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_color.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_dimension.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_entity.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_entity_anchor.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_entity_summon.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_entity_type.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_item_enchantment.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_item_predicate.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_item_stack.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_mob_effect.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_objective_criteria.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_operation.json" />
+    <None Include="intellisense_structures\intellisense_structures\parsers\minecraft_particle.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bkg_image.bmp" />

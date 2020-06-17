@@ -1,5 +1,6 @@
 {
     "Commands": "intellisense_structures/parsers/commands.json",
+    "Colors": "intellisense_structures/parsers/colors.json",
     "Minecraft_Block_Predicate": "intellisense_structures/parsers/minecraft_block_predicate.json",
     "Minecraft_Block_State": "intellisense_structures/parsers/minecraft_block_state.json",
     "Minecraft_Color": "intellisense_structures/parsers/minecraft_color.json",

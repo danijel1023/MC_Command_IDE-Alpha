@@ -17,7 +17,7 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
     bool New_Last_Pos = true;
     size_t Line_Size = Line.size();
 
-    bool Is_String = false, Skip = false;
+    bool Is_String = false, Skip = false, Single_Q = false;
     //data get block 0 0 0
     for (size_t Pos = 0; Pos < Line_Size; Pos++) {
         wchar_t ch = Line.at(Pos);
@@ -29,15 +29,17 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                 continue;
             }
 
-            if (ch == L'"') {
+            if ((!Single_Q && ch == L'"') || (Single_Q && ch == L'\'')) {
                 Is_String = false;
             } else {
                 continue;
             }
         }
 
-        if (ch == L'"') {
+        else if (ch == L'"' || ch == L'\'') {
             Is_String = true;
+            Single_Q = (ch == L'\'');
+            continue;
         }
 
         switch (ch) {
@@ -105,7 +107,7 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
                         if (Type == L"literal") {
                             if (Names.at(NPos) == Word) {
                                 for (size_t CPos = Last_Pos; CPos < Pos + 1; CPos++)
-                                    Colors.at(CPos) = RGB(0, 255, 40);
+                                    Colors.at(CPos) = Get_Color(Word);
                                 Found_Match = true;
                             }
                         }
@@ -127,7 +129,6 @@ void IntelliSense::Analise_Line(std::wstring& Line, std::vector<COLORREF>& Color
 
 
                     m_Syntax_Obj.Back();
-
                 }
 
                 if (!Found_Match) {

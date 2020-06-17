@@ -206,7 +206,7 @@ void Keyboard::Insert(const std::vector<std::wstring>& Text, Caret_Struct Caret)
             Clr += Generate_Clr(Text.at(Line), Caret);
             Caret.X += Text.at(Line).size();
         }
-        
+
         else {
             Caret.X = 0;
             m_EC.m_Text.insert(m_EC.m_Text.begin() + Caret.Y + Line, Text.at(Line));
@@ -218,6 +218,10 @@ void Keyboard::Insert(const std::vector<std::wstring>& Text, Caret_Struct Caret)
     Caret.Y += Text.size() - 1;
     m_EC.m_Text.at(Caret.Y) += Str_Rest_Of_Line;
     m_EC.m_TextColor.at(Caret.Y) += Clr_Rest_Of_Line;
+
+    for (size_t Y = m_EC.m_Caret.Y; Y <= Caret.Y; Y++) {
+        m_EC.m_IntelliSense.Analise_Line(Y);
+    }
 
     m_EC.m_Caret = Caret;
     m_EC.m_CaretSel = m_EC.m_Caret;

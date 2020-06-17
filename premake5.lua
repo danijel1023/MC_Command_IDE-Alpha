@@ -14,9 +14,11 @@ project "test_refactor_edit_control_02"
     language "C++"
     staticruntime "Off"
     defines { "_UNICODE", "UNICODE" }
+    buildoptions { "/FS" }
 
     postbuildcommands {
-        "{COPY} %{prj.location}bkg_image.bmp %{cfg.targetdir}"
+        "{COPY} %{prj.location}bkg_image.bmp %{cfg.targetdir}",
+        "{COPY} %{prj.location}intellisense_structures %{cfg.targetdir}"
     }
 
     pchheader "pch.h"

@@ -24,8 +24,10 @@ public:
     void Size(RECT& Rect);
     void Minimized();
 
-    void Set_Text(std::wstring New_Text);
-    void Set_Text(std::vector<std::wstring> New_Text);
+    bool Open_File(const std::wstring& Path);
+
+    void Set_Text(const std::wstring& New_Text);
+    void Set_Text(const std::vector<std::wstring>& New_Text);
 
 
     //Very dangerous function - allows to break rendering
@@ -44,6 +46,8 @@ private:
     bool m_Minimised = false;
     RECT m_Rect = {};
     COLORREF m_Default_Text_Color = RGB(170, 170, 170);
+    
+    std::wstring File_Path;
 
     std::vector<std::wstring> m_Text = std::vector<std::wstring>(1);
     std::vector<std::vector<COLORREF>> m_TextColor = std::vector<std::vector<COLORREF>>(1);
@@ -89,6 +93,7 @@ private:
     void Corect_Scrolling();
     void Set_Lines(size_t New_Number);
     void Calculate_Text_Metrics();
+    void Clear_Text();
     
     void Differentiate_Start_End(Caret_Struct* Start, Caret_Struct* End, Caret_Struct& a, Caret_Struct& b);
     COLORREF Get_Last_Color(const Caret_Struct& Caret);

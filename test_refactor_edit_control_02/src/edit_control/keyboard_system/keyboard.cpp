@@ -54,6 +54,10 @@ void Keyboard::WM_KeyDown(WPARAM wParam, LPARAM lParam) {
 
     if (HIBYTE(GetKeyState(VK_CONTROL)) != 0 && HIBYTE(GetKeyState(VK_MENU)) == 0) {
         switch (wParam) {
+        case 'S':
+            if ((0x40000000 & lParam) == 0) Save();
+            break;
+
         case 'C':
             if ((0x40000000 & lParam) == 0) Copy();
             break;
@@ -90,7 +94,7 @@ void Keyboard::WM_KeyDown(WPARAM wParam, LPARAM lParam) {
             break;
 
         case VK_END:
-            m_EC.m_Caret.X = 0;
+            m_EC.m_Caret.X = m_EC.m_Text.back().size();
             m_EC.m_Caret.Y = m_EC.m_Text.size() - 1;
             m_EC.m_CaretSel = m_EC.m_Caret;
             break;
@@ -365,6 +369,35 @@ void Keyboard::WM_Char(WPARAM wParam, LPARAM lParam) {
 
     m_EC.Corect_Scrolling();
     CHECK_ERR(InvalidateRect(m_hWnd, NULL, TRUE), ERR_MSG_INVALIDATE_RECT);
+}
+
+
+void Keyboard::Save() {
+    if (m_EC.File_Path.size() == 0) {
+        MB_ERR("You didn't open file so you cannot save it");
+    }
+
+    else {
+        std::wstringstream Text;
+        size_t Lines = m_EC.m_Text.size() - 1;
+        for (size_t Y_Pos = 0; Y_Pos <= Lines; Y_Pos++) {
+            if (Y_Pos == Lines) {
+                Text << m_EC.m_Text.at(Y_Pos);
+            } else {
+                Text << m_EC.m_Text.at(Y_Pos) << std::endl;
+            }
+        }
+
+        std::wofstream File(m_EC.File_Path);
+        
+        if (!File.is_open()) {
+            MB_ERR("Couldn't open file for saving");
+            return;
+        }
+
+        File << Text.str();
+        File.close();
+    }
 }
 
 

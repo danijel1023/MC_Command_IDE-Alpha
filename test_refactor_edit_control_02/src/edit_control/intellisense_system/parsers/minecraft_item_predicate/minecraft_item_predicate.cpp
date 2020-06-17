@@ -19,6 +19,7 @@ bool IntelliSense::Minecraft_Item_Predicate(std::wstring Word) {
             }
 
             Word.erase(i);
+            break;
         }
     }
 
